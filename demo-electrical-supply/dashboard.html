@@ -2,7 +2,97 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Piedmont Power &amp; Electrical Supply — Executive Intelligence ($40M Run-Rate)</title>
+<title>Piedmont Power &amp; Electrical Supply — Executive Intelligence (Demo)</title>
+<link rel="stylesheet" href="style.css">
+<script src="data.js"></script>
+</head>
+<body>
+<div class="header">
+  <div>
+    <h1 style="margin:0;font-size:24px;">Piedmont Power &amp; Electrical Supply <span class="demo-tag">Simulated $40M Regional Distributor</span></h1>
+    <p style="margin:4px 0 0;color:#94a3b8;font-size:14px;">Commercial Revenue, Gross Margin & Contractor Retention Intelligence • 36-Mo Actuals + Dual-Scenario Forecast</p>
+  </div>
+  <span class="badge">✓ 840 Duplicate SKUs Merged • 4,190 ERP/CRM Records Standardized</span>
+</div>
+
+<div class="kpis" id="kpiRow"></div>
+
+<div class="grid2">
+  <div class="card">
+    <h3>36-Month Gross Revenue + 6-Month Shaded Forecast (Baseline vs. Contractor Win-Back)</h3>
+    <canvas id="lineCanvas" width="780" height="235" style="width:100%;height:auto;background:#0f172a;border-radius:8px;border:1px solid #334155;"></canvas>
+    <div class="cleg">
+      <span>Jan 2024</span>
+      <span><b style="color:#38bdf8;">—</b> Actuals &nbsp;|&nbsp; <b style="color:#f59e0b;">●</b> Peak Construction Months &nbsp;|&nbsp; <b style="color:#a78bfa;">--</b> Baseline Forecast &nbsp;|&nbsp; <b style="color:#10b981;">--</b> With Contractor Outreach (14% Reactivation)</span>
+      <span>Jun 2027</span>
+    </div>
+  </div>
+  <div class="card">
+    <h3>The Portal Ordering Multiplier (3-Yr Avg Spend)</h3>
+    <div id="volBars"></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:24px;">
+  <h3>Commercial Growth Plays, Margin Benchmarks & Lapsed Contractor Watchlist</h3>
+  <div class="grid3">
+    <div class="ibox" style="border-color:#10b981;">
+      <h4>Counter-to-Portal Conversion Play</h4>
+      <div class="bstat">2.4x Higher Account Spend</div>
+      <p style="margin:0;color:#cbd5e1;">Onboarding top 100 Counter-Only contractors onto job-site mobile ordering + automated Will-Call staging locks in repeat commodity & switchgear orders.</p>
+    </div>
+    <div class="ibox" style="border-color:#f59e0b;">
+      <h4>Lapsed Contractor Win-Back ROI</h4>
+      <div class="bstat" id="wbStat">Calculating Win-Back ROI...</div>
+      <p style="margin:0;color:#cbd5e1;" id="wbDesc">Calculating outreach cost & return...</p>
+    </div>
+    <div class="ibox" style="border-color:#f43f5e;">
+      <h4>Unbilled Change-Order &amp; Credit Leakage</h4>
+      <div class="bstat">$620K+ Annual Margin Protected</div>
+      <p style="margin:0;color:#cbd5e1;">Flagging unbilled spec upgrades &amp; Net-30 overages before closeout protects 1.5+ points of net EBITDA across commercial switchgear jobs.</p>
+    </div>
+  </div>
+  <h3>High-Value Lapsed Contractor Watchlist ($50K+ Spend & 65+ Days Inactive)</h3>
+  <div class="twrap" style="max-height:210px;">
+    <table id="churnTable">
+      <thead><tr><th>Account ID</th><th>Contractor Name</th><th>Segment</th><th>3-Yr Revenue</th><th>Last Order</th><th>Days Inactive</th><th>Recommended Next Step</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="gridEq">
+  <div class="card">
+    <h3>Product Line Gross Margin % &amp; Volume</h3>
+    <div id="progBars"></div>
+  </div>
+  <div class="card">
+    <h3>Campaign Profitability & Budget Variance</h3>
+    <div class="twrap">
+      <table id="campTable">
+        <thead><tr><th>Customer Segment</th><th>Accounts</th><th>3-Yr Revenue</th><th>Gross Margin ($)</th><th>Gross Margin %</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Live Operations & Credit Action Queue (Backorders, Margin Leaks & Overdue AR)</h3>
+  <select id="alertFilter" onchange="renderAlerts()">
+    <option value="ALL">All Operational Alerts (Prioritized)</option>
+    <option value="Backorder Risk">Custom Switchgear Backorders</option>
+    <option value="Margin Leak">Unbilled Change Orders</option>
+    <option value="Overdue Net-30">Overdue Net-30ring Gifts</option>
+  </select>
+  <input id="searchBox" onkeyup="renderAlerts()" placeholder="Search name, vendor, or ID...">
+  <div class="twrap">
+    <table id="alertTable">
+      <thead><tr><th>Alert Type</th><th>ID</th><th>Account / Job</th><th>Account Rep</th><th>Dollar Impact</th><th>Key Date</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
 
 <script src="app.js"></script>
 </body>
