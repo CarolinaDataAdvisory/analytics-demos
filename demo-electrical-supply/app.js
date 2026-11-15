@@ -150,7 +150,7 @@ fCanvas.style.width = '100%'; fCanvas.style.height = 'auto';
 fCanvas.style.background = '#0f172a'; fCanvas.style.borderRadius = '8px'; fCanvas.style.border = '1px solid #334155';
 funnelCard.appendChild(fCanvas);
 const fData = D.funnel;
-const fCtx = fCanvas.getContext('2d'), funW = fCanvas.width, fH = fCanvas.height, fP = 28;
+const fCtx = fCanvas.getContext('2d'), funW = fCanvas.width, fH = fCanvas.height, fP = 48;
 const fMax = Math.max(...fData.map(r => Number(r.at(1)))) * 1.15;
 const fx = i => fP + (i / (fData.length - 1)) * (funW - fP * 2);
 const fy = v => fH - fP - (v / fMax) * (fH - fP * 2);
@@ -169,7 +169,7 @@ fCtx.fillStyle = '#f8fafc'; fCtx.fillText(Number(r.at(1)).toLocaleString(), x, y
 fCtx.fillStyle = '#94a3b8'; fCtx.fillText(r.at(0).split(' ').slice(0, 2).join(' '), x, fH - 8);
 });
 const abCount = Number(fData.at(3).at(1)), recGifts = Number(fData.at(4).at(1)), recDollars = recGifts * 24500;
-const fCallout = el('div', 'ibox', 'Checkout Recovery Play: ' + abCount.toLocaleString() + ' commercial quotes sit stalled past 21 days. Automated Estimator follow-up closes ~15% (' + recGifts + ' gifts = +' + fmt(recDollars) + ' incremental revenue at $0 ad spend).');
+const fCallout = el('div', 'ibox', 'Bid Recovery Play: ' + abCount.toLocaleString() + ' commercial quotes sit stalled past 21 days. Automated Estimator follow-up closes ~15% (' + recGifts + ' jobs = +' + fmt(recDollars) + ' incremental revenue at $0 ad spend).');
 fCallout.style.borderColor = '#f59e0b'; fCallout.style.marginTop = '12px'; fCallout.style.fontSize = '12px';
 funnelCard.appendChild(fCallout);
 splitHolder.appendChild(funnelCard);
