@@ -2,7 +2,6 @@ import json
 import os
 import random
 import sqlite3
-from datetime import datetime, timedelta
 
 random.seed(42)
 os.makedirs("demo-electrical-supply", exist_ok=True)
@@ -31,14 +30,6 @@ CREATE TABLE orders (
     gross_margin REAL,
     invoice_status TEXT
 );
-CREATE TABLE quotes (
-    quote_id TEXT PRIMARY KEY,
-    contractor_id TEXT,
-    quote_date TEXT,
-    project_name TEXT,
-    quoted_value REAL,
-    status TEXT
-);
 CREATE TABLE alerts (
     prio INTEGER,
     alert_type TEXT,
@@ -59,7 +50,7 @@ contractors = list()
 for i in range(1, 421):
     cid = f"ACCT-{1000 + i}"
     cname = f"{random.choice(prefixes)} {random.choice(suffixes)} #{i}" if i > 160 else f"{prefixes[i % len(prefixes)]} {suffixes[i % len(suffixes)]}"
-    seg = random.choices(segments, weights=(45, 25, 15, 15))[0]
+    seg = next(iter(random.choices(segments, weights=(45, 25, 15, 15))))
     ch = "Counter + Portal" if random.random() < 0.34 else "Counter Only"
     rep = random.choice(reps)
     clim = random.choice((25000, 50000, 100000, 250000))
@@ -77,10 +68,7 @@ categories = (
 
 orders = list()
 oid_num = 10000
-start_dt = datetime(2024, 1, 1)
-
-# Pick 48 high-value contractors to lapse in late 2026 for the churn watchlist
-lapsed_ids = set(c[0] for c in contractors[:48])
+lapsed_ids = set(next(iter(c)) for idx, c in enumerate(contractors) if idx < 48)
 
 for m_idx in range(36):
     yr = 2024 + (m_idx // 12)
@@ -91,42 +79,38 @@ for m_idx in range(36):
     for _ in range(n_orders):
         oid_num += 1
         c = random.choice(contractors)
-        if c[0] in lapsed_ids and yr == 2026 and mo >= 9:
+        cid, cname, seg, ch, rep, clim = c
+        if cid in lapsed_ids and yr == 2026 and mo >= 9:
             continue
         day = random.randint(1, 28)
         odate = f"{yr}-{mo:02d}-{day:02d}"
         cat, base_gm = random.choice(categories)
-        mult = 2.45 if c[3] == "Counter + Portal" else 1.0
-        rev = round(random.uniform(1400, 6800) * mult * (1.2 if c[2] == "Industrial Plant" else 1.0), 2)
+        mult = 2.45 if ch == "Counter + Portal" else 1.0
+        rev = round(random.uniform(1400, 6800) * mult * (1.2 if seg == "Industrial Plant" else 1.0), 2)
         gm = round(rev * (base_gm + random.uniform(-0.02, 0.025)), 2)
         istatus = "Overdue Net-30" if (yr == 2026 and mo >= 10 and random.random() < 0.04) else "Paid"
-        orders.append((f"ORD-{oid_num}", c[0], odate, cat, rev, gm, istatus))
+        orders.append((f"ORD-{oid_num}", cid, odate, cat, rev, gm, istatus))
 
 cur.executemany("INSERT INTO orders VALUES (?,?,?,?,?,?,?)", orders)
 
-# Build operational alerts
 alert_rows = list()
-# 1. Backordered Switchgear / Gear at Risk
 for i in range(1, 13):
-    c = contractors[i * 3]
+    cid, cname, seg, ch, rep, clim = contractors[i * 3]
     amt = round(random.uniform(18500, 74000), 2)
-    alert_rows.append((1, "Backorder Risk", f"BO-{400+i}", f"{c[1]} (Custom Switchgear)", c[4], amt, f"2026-12-{10+i:02d}"))
+    alert_rows.append((1, "Backorder Risk", f"BO-{400+i}", f"{cname} (Custom Switchgear)", rep, amt, f"2026-12-{10+i:02d}"))
 
-# 2. Unbilled Change Orders / Margin Overrides
 for i in range(1, 19):
-    c = contractors[i * 5]
+    cid, cname, seg, ch, rep, clim = contractors[i * 5]
     amt = round(random.uniform(4200, 22500), 2)
-    alert_rows.append((2, "Margin Leak", f"CO-{800+i}", f"{c[1]} (Unbilled Spec Change)", c[4], amt, f"2026-11-{10 + (i % 18):02d}"))
+    alert_rows.append((2, "Margin Leak", f"CO-{800+i}", f"{cname} (Unbilled Spec Change)", rep, amt, f"2026-11-{10 + (i % 18):02d}"))
 
-# 3. Overdue Net-30 Invoices
 overdue_orders = cur.execute("SELECT o.order_id, c.company_name, c.account_rep, o.revenue, o.order_date FROM orders o JOIN contractors c ON o.contractor_id=c.contractor_id WHERE o.invoice_status='Overdue Net-30' ORDER BY o.revenue DESC LIMIT 120").fetchall()
-for r in overdue_orders:
-    alert_rows.append((3, "Overdue Net-30", r[0], r[1], r[2], r[3], r[4]))
+for oid, cname, rep, rev, odate in overdue_orders:
+    alert_rows.append((3, "Overdue Net-30", oid, cname, rep, rev, odate))
 
 cur.executemany("INSERT INTO alerts VALUES (?,?,?,?,?,?,?)", alert_rows)
 conn.commit()
 
-# Query aggregated metrics for dashboard
 rev_series = tuple(tuple(r) for r in cur.execute("SELECT substr(order_date,1,7), COUNT(*), ROUND(SUM(revenue),2), ROUND(SUM(gross_margin),2) FROM orders GROUP BY 1 ORDER BY 1").fetchall())
 ch_mult = tuple(tuple(r) for r in cur.execute("WITH s AS (SELECT contractor_id, COUNT(*) ord_cnt, SUM(revenue) tot_rev, SUM(gross_margin) tot_gm FROM orders GROUP BY 1) SELECT c.channel_type, COUNT(*), ROUND(AVG(s.ord_cnt),1), ROUND(AVG(s.tot_rev),2), ROUND(AVG(s.tot_gm),2) FROM contractors c JOIN s ON c.contractor_id=s.contractor_id GROUP BY 1 ORDER BY 4 DESC").fetchall())
 cat_perf = tuple(tuple(r) for r in cur.execute("SELECT category, COUNT(*), ROUND(SUM(revenue),2), ROUND(SUM(gross_margin),2), ROUND(SUM(gross_margin)/SUM(revenue)*100,1) gm_pct FROM orders GROUP BY 1 ORDER BY gm_pct DESC").fetchall())
@@ -134,7 +118,7 @@ seg_perf = tuple(tuple(r) for r in cur.execute("SELECT c.segment, COUNT(DISTINCT
 
 churn_all = tuple(tuple(r) for r in cur.execute("SELECT c.contractor_id, c.company_name, c.segment, c.account_rep, ROUND(SUM(o.revenue),2) ltv, MAX(o.order_date) last_ord, CAST(julianday('2026-12-31') - julianday(MAX(o.order_date)) AS INTEGER) days_lapsed FROM orders o JOIN contractors c ON o.contractor_id=c.contractor_id GROUP BY 1,2,3,4 HAVING ltv >= 50000 AND days_lapsed >= 65 ORDER BY ltv DESC").fetchall())
 churn_top = tuple(r for idx, r in enumerate(churn_all) if idx < 15)
-churn_pool = round(sum(float(r[4]) for r in churn_all), 2)
+churn_pool = round(sum(float(r.pop(4)) for r in (list(x) for x in churn_all)), 2)
 
 tot_accts = next(iter(cur.execute("SELECT COUNT(DISTINCT contractor_id) FROM orders").fetchone()))
 a_2025 = next(iter(cur.execute("SELECT COUNT(DISTINCT contractor_id) FROM orders WHERE substr(order_date,1,4)='2025'").fetchone()))
@@ -166,4 +150,4 @@ payload = json.dumps(dict(
 with open("demo-electrical-supply/data.js", "w", encoding="utf-8") as f:
     f.write("window.DASH_DATA=" + payload + ";")
 
-print("ELECTRICAL SUPPLY DATA READY! Accounts:", tot_accts, "| Lapsed Pool:", len(churn_all))
+print("ELECTRICAL DATA FIXED! Accounts:", tot_accts, "| Lapsed Pool:", len(churn_all))
