@@ -1,0 +1,103 @@
+﻿html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Piedmont Community Impact Alliance — Executive Intelligence (Demo)</title>
+<link rel="stylesheet" href="style.css">
+<script src="data.js"></script>
+</head>
+<body>
+<div class="header">
+  <div>
+    <h1 style="margin:0;font-size:24px;">Piedmont Community Impact Alliance <span class="demo-tag">Simulated Sample Organization</span></h1>
+    <p style="margin:4px 0 0;color:#94a3b8;font-size:14px;">Executive Fundraising, Retention & Program Intelligence • 36-Mo Actuals + Dual-Scenario Forecast</p>
+  </div>
+  <span class="badge">✓ 1,225 Duplicates Removed • 7,403 Typos Standardized</span>
+</div>
+
+<div class="kpis" id="kpiRow"></div>
+
+<div class="grid2">
+  <div class="card">
+    <h3>36-Month Net Revenue + 6-Month Shaded Forecast (Baseline vs. Churn Outreach)</h3>
+    <canvas id="lineCanvas" width="780" height="235" style="width:100%;height:auto;background:#0f172a;border-radius:8px;border:1px solid #334155;"></canvas>
+    <div class="cleg">
+      <span>Jan 2024</span>
+      <span><b style="color:#38bdf8;">—</b> Actuals &nbsp;|&nbsp; <b style="color:#f59e0b;">●</b> Q4 Spikes &nbsp;|&nbsp; <b style="color:#a78bfa;">--</b> Baseline Forecast &nbsp;|&nbsp; <b style="color:#10b981;">--</b> With Donor Outreach (5% Full + 10% Half)</span>
+      <span>Jun 2027</span>
+    </div>
+  </div>
+  <div class="card">
+    <h3>The Volunteer Multiplier (Avg Lifetime Value)</h3>
+    <div id="volBars"></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:24px;">
+  <h3>Strategic Insights, Nonprofit Benchmarks & High-Dollar Churn Watchlist</h3>
+  <div class="grid3">
+    <div class="ibox" style="border-color:#10b981;">
+      <h4>Volunteer-to-Donor Conversion Play</h4>
+      <div class="bstat">3.0x Higher LTV ($1,443 vs $482)</div>
+      <p style="margin:0;color:#cbd5e1;">Invite top 500 Donor-Only supporters to VIP hands-on impact days (insider access) & promote Corporate Volunteer Grants matching hours with cash.</p>
+    </div>
+    <div class="ibox" style="border-color:#f59e0b;">
+      <h4>High-Dollar Churn Win-Back ROI</h4>
+      <div class="bstat" id="wbStat">Calculating Win-Back ROI...</div>
+      <p style="margin:0;color:#cbd5e1;" id="wbDesc">Calculating outreach cost & return...</p>
+    </div>
+    <div class="ibox" style="border-color:#f43f5e;">
+      <h4>Payment Failure Leakage Benchmark</h4>
+      <div class="bstat">20%–30% Annual Sustainer Loss</div>
+      <p style="margin:0;color:#cbd5e1;">Automated card-updater SMS/email outreach for the 959 Failed Recurring alerts recovers an estimated $68,000+ in annual pledges.</p>
+    </div>
+  </div>
+  <h3>High-Dollar Donor Churn Watchlist (LTV $1,000+ & 120+ Days Lapsed)</h3>
+  <div class="twrap" style="max-height:210px;">
+    <table id="churnTable">
+      <thead><tr><th>Donor ID</th><th>Supporter Name</th><th>Tier</th><th>Lifetime Giving</th><th>Last Gift</th><th>Days Lapsed</th><th>Recommended Next Step</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="gridEq">
+  <div class="card">
+    <h3>Program Cost Efficiency ($ Cost per Beneficiary)</h3>
+    <div id="progBars"></div>
+  </div>
+  <div class="card">
+    <h3>Campaign Profitability & Budget Variance</h3>
+    <div class="twrap">
+      <table id="campTable">
+        <thead><tr><th>Campaign</th><th>Channel</th><th>Budget</th><th>Net Raised</th><th>ROI %</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Live Executive Action Queue (Grants, Audits & Failed Recurring — 979 Total)</h3>
+  <select id="alertFilter" onchange="renderAlerts()">
+    <option value="ALL">All Alert Types (Prioritized)</option>
+    <option value="Grant Risk">At-Risk Grants (Top Priority)</option>
+    <option value="Flagged Exp">Flagged Vendor Expenses</option>
+    <option value="Failed Recur">Failed Recurring Gifts</option>
+  </select>
+  <input id="searchBox" onkeyup="renderAlerts()" placeholder="Search name, vendor, or ID...">
+  <div class="twrap">
+    <table id="alertTable">
+      <thead><tr><th>Alert Type</th><th>ID</th><th>Name / Foundation / Vendor</th><th>Owner / Contact</th><th>Dollar Impact</th><th>Key Date</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
+"""
+with open("demo-enterprise-impact/dashboard.html", "w", encoding="utf-8") as f:
+    f.write(html)
+print("DONE! Bytes written:", len(html))

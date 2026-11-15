@@ -1,0 +1,25 @@
+campaign_id,campaign_name,channel,start_date,end_date,marketing_budget,staff_hours_allocated,target_goal,program_area
+CMP-100,2024 Annual Gala,Events,2024-01-15,2024-02-24,30788,156,131285,Youth Education
+CMP-101,2024 Spring Appeal,Direct Mail,2024-02-29,2024-04-09,28554,355,200522,General Operations
+CMP-102,2024 Summer Match,Direct Mail,2024-04-14,2024-05-24,12073,84,141261,Housing Relief
+CMP-103,2024 Back to School,Events,2024-05-29,2024-07-08,14711,318,110592,Workforce Readiness
+CMP-104,2024 Fall Direct Mail,Direct Mail,2024-07-13,2024-08-22,68000,253,206073,Workforce Readiness
+CMP-105,2024 Giving Tuesday,Direct Mail,2024-08-27,2024-10-06,37960,177,57901,Housing Relief
+CMP-106,2024 Year-End Drive,Email,2024-10-11,2024-11-20,27918,359,242456,Youth Education
+CMP-107,2024 Monthly Sustainer,Email,2024-11-25,2025-01-04,37112,119,158747,General Operations
+CMP-108,2025 Annual Gala,Events,2025-01-09,2025-02-18,21091,114,186441,Workforce Readiness
+CMP-109,2025 Spring Appeal,Events,2025-02-23,2025-04-04,24173,228,291705,Workforce Readiness
+CMP-110,2025 Summer Match,Multi-Channel,2025-04-09,2025-05-19,32090,221,331429,General Operations
+CMP-111,2025 Back to School,Events,2025-05-24,2025-07-03,29154,442,290179,Workforce Readiness
+CMP-112,2025 Fall Direct Mail,Direct Mail,2025-07-08,2025-08-17,68000,297,347447,Food Security
+CMP-113,2025 Giving Tuesday,Multi-Channel,2025-08-22,2025-10-01,26597,279,303953,Food Security
+CMP-114,2025 Year-End Drive,Email,2025-10-06,2025-11-15,37859,427,147007,Youth Education
+CMP-115,2025 Monthly Sustainer,Social Media,2025-11-20,2025-12-30,39289,141,300878,Housing Relief
+CMP-116,2026 Annual Gala,Direct Mail,2026-01-04,2026-02-13,21134,295,209059,Youth Education
+CMP-117,2026 Spring Appeal,Direct Mail,2026-02-18,2026-03-30,39499,424,147140,Housing Relief
+CMP-118,2026 Summer Match,Email,2026-04-04,2026-05-14,31752,229,233293,General Operations
+CMP-119,2026 Back to School,Events,2026-05-19,2026-06-28,41312,91,115138,General Operations
+CMP-120,2026 Fall Direct Mail,Multi-Channel,2026-07-03,2026-08-12,19892,379,348965,Youth Education
+CMP-121,2026 Giving Tuesday,Email,2026-08-17,2026-09-26,14080,135,79391,Food Security
+CMP-122,2026 Year-End Drive,Direct Mail,2026-10-01,2026-11-10,32802,378,70702,Youth Education
+CMP-123,2026 Monthly Sustainer,Multi-Channel,2026-11-15,2026-12-25,14694,378,65800,Workforce Readiness

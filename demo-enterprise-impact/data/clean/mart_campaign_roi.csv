@@ -1,0 +1,25 @@
+"('campaign_id', None, None, None, None, None, None)","('campaign_name', None, None, None, None, None, None)","('channel', None, None, None, None, None, None)","('program_area', None, None, None, None, None, None)","('marketing_budget', None, None, None, None, None, None)","('target_goal', None, None, None, None, None, None)","('net_raised', None, None, None, None, None, None)","('net_profit', None, None, None, None, None, None)","('roi_pct', None, None, None, None, None, None)"
+CMP-123,2026 Monthly Sustainer,Multi-Channel,Workforce Readiness,14694.0,65800.0,265474.39,250780.39,1706.7
+CMP-102,2024 Summer Match,Direct Mail,Housing Relief,12073.0,141261.0,213723.43,201650.43,1670.3
+CMP-103,2024 Back to School,Events,Workforce Readiness,14711.0,110592.0,246267.64,231556.64,1574.0
+CMP-121,2026 Giving Tuesday,Email,Food Security,14080.0,79391.0,224171.1,210091.1,1492.1
+CMP-116,2026 Annual Gala,Direct Mail,Youth Education,21134.0,209059.0,256909.55,235775.55,1115.6
+CMP-120,2026 Fall Direct Mail,Multi-Channel,Youth Education,19892.0,348965.0,227619.51,207727.51,1044.3
+CMP-108,2025 Annual Gala,Events,Workforce Readiness,21091.0,186441.0,217284.53,196193.53,930.2
+CMP-109,2025 Spring Appeal,Events,Workforce Readiness,24173.0,291705.0,240388.17,216215.17,894.4
+CMP-113,2025 Giving Tuesday,Multi-Channel,Food Security,26597.0,303953.0,241736.01,215139.01,808.9
+CMP-101,2024 Spring Appeal,Direct Mail,General Operations,28554.0,200522.0,257883.34,229329.34,803.1
+CMP-111,2025 Back to School,Events,Workforce Readiness,29154.0,290179.0,232053.35,202899.35,696.0
+CMP-106,2024 Year-End Drive,Email,Youth Education,27918.0,242456.0,218111.1,190193.1,681.3
+CMP-118,2026 Summer Match,Email,General Operations,31752.0,233293.0,246037.48,214285.48,674.9
+CMP-100,2024 Annual Gala,Events,Youth Education,30788.0,131285.0,234908.03,204120.03,663.0
+CMP-110,2025 Summer Match,Multi-Channel,General Operations,32090.0,331429.0,237403.05,205313.05,639.8
+CMP-122,2026 Year-End Drive,Direct Mail,Youth Education,32802.0,70702.0,230896.79,198094.79,603.9
+CMP-105,2024 Giving Tuesday,Direct Mail,Housing Relief,37960.0,57901.0,240001.12,202041.12,532.2
+CMP-107,2024 Monthly Sustainer,Email,General Operations,37112.0,158747.0,230109.41,192997.41,520.0
+CMP-115,2025 Monthly Sustainer,Social Media,Housing Relief,39289.0,300878.0,239527.33,200238.33,509.7
+CMP-114,2025 Year-End Drive,Email,Youth Education,37859.0,147007.0,227193.68,189334.68,500.1
+CMP-119,2026 Back to School,Events,General Operations,41312.0,115138.0,247181.1,205869.1,498.3
+CMP-117,2026 Spring Appeal,Direct Mail,Housing Relief,39499.0,147140.0,235199.16,195700.16,495.5
+CMP-104,2024 Fall Direct Mail,Direct Mail,Workforce Readiness,68000.0,206073.0,239291.0,171291.0,251.9
+CMP-112,2025 Fall Direct Mail,Direct Mail,Food Security,68000.0,347447.0,225577.56,157577.56,231.7

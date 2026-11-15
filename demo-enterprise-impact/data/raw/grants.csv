@@ -1,0 +1,76 @@
+grant_id,foundation_name,program_area,awarded_amount,restricted_funds,start_date,end_date,reporting_deadline,grant_manager,status
+GRT-500,Knight Foundation,Youth Education,235812,True,2024-02-26,2025-08-01,2026-12-01,Priya Patel,At Risk
+GRT-501,Duke Endowment,Food Security,28816,True,2024-04-30,2025-09-06,2026-12-02,Marcus Vance,At Risk
+GRT-502,Carnegie Corp,Workforce Readiness,245904,True,2025-06-07,2026-01-20,2026-12-03,Marcus Vance,At Risk
+GRT-503,Gates Foundation,Youth Education,148160,True,2024-11-22,2025-07-17,2026-12-04,Jordan Brooks,At Risk
+GRT-504,Duke Endowment,Food Security,205667,False,2025-10-08,2026-05-05,2026-12-05,Jordan Brooks,At Risk
+GRT-505,Lilly Endowment,Food Security,164724,True,2024-08-29,2025-12-19,2025-12-04,Jordan Brooks,Active
+GRT-506,Wells Fargo Foundation,Food Security,121228,True,2026-03-20,2027-01-19,2027-01-04,Jordan Brooks,Completed
+GRT-507,Lilly Endowment,Workforce Readiness,92737,True,2026-03-16,2026-10-17,2026-10-02,Priya Patel,Active
+GRT-508,Knight Foundation,Workforce Readiness,248292,False,2024-12-09,2026-03-19,2026-03-04,Jordan Brooks,Pending Renewal
+GRT-509,Knight Foundation,Youth Education,48393,True,2025-09-23,2027-01-12,2026-12-28,Priya Patel,Active
+GRT-510,Bank of America Charitable,Food Security,129211,True,2026-01-12,2027-07-01,2027-06-16,Marcus Vance,Completed
+GRT-511,Wells Fargo Foundation,Housing Relief,221299,False,2024-07-21,2025-09-12,2025-08-28,Elena Rostova,Completed
+GRT-512,Wells Fargo Foundation,Youth Education,50852,True,2024-01-27,2025-01-14,2024-12-30,Jordan Brooks,Active
+GRT-513,Wells Fargo Foundation,Housing Relief,132383,True,2024-09-29,2025-12-07,2025-11-22,Elena Rostova,Active
+GRT-514,Carnegie Corp,Youth Education,177136,True,2026-03-17,2027-02-12,2027-01-28,Elena Rostova,Active
+GRT-515,Gates Foundation,Housing Relief,142076,True,2025-05-18,2026-02-01,2026-01-17,Jordan Brooks,Completed
+GRT-516,Ford Foundation,Food Security,224741,False,2025-06-19,2026-07-15,2026-06-30,Elena Rostova,At Risk
+GRT-517,Ford Foundation,Youth Education,184464,False,2025-08-19,2027-01-18,2027-01-03,Priya Patel,At Risk
+GRT-518,Gates Foundation,Food Security,130397,True,2024-12-13,2025-10-05,2025-09-20,Priya Patel,At Risk
+GRT-519,Duke Endowment,Housing Relief,179685,False,2026-04-27,2026-11-23,2026-11-08,Priya Patel,Completed
+GRT-520,Knight Foundation,Food Security,93372,True,2026-06-01,2027-06-25,2027-06-10,Jordan Brooks,Completed
+GRT-521,Gates Foundation,Food Security,111883,True,2026-02-21,2026-12-19,2026-12-04,Marcus Vance,Completed
+GRT-522,Wells Fargo Foundation,Youth Education,247155,True,2026-02-08,2026-09-01,2026-08-17,Priya Patel,Active
+GRT-523,Lilly Endowment,Housing Relief,167956,True,2025-12-05,2026-10-19,2026-10-04,Priya Patel,Completed
+GRT-524,Wells Fargo Foundation,Housing Relief,84302,True,2026-03-02,2027-08-18,2027-08-03,Priya Patel,Active
+GRT-525,Bank of America Charitable,Youth Education,87708,True,2025-01-02,2025-11-25,2025-11-10,Priya Patel,Active
+GRT-526,Bank of America Charitable,Youth Education,188624,True,2025-02-10,2025-08-20,2025-08-05,Elena Rostova,At Risk
+GRT-527,Gates Foundation,Workforce Readiness,243487,False,2024-11-08,2025-08-25,2025-08-10,Marcus Vance,Active
+GRT-528,Wells Fargo Foundation,Youth Education,27196,False,2026-01-20,2027-04-18,2027-04-03,Elena Rostova,Pending Renewal
+GRT-529,Bank of America Charitable,Housing Relief,202849,True,2024-06-02,2025-02-15,2025-01-31,Priya Patel,Active
+GRT-530,Lilly Endowment,Housing Relief,157160,True,2026-05-03,2026-11-13,2026-10-29,Priya Patel,Active
+GRT-531,Bank of America Charitable,Food Security,196585,True,2024-05-29,2025-07-12,2025-06-27,Marcus Vance,Pending Renewal
+GRT-532,Duke Endowment,Housing Relief,58679,True,2024-06-18,2025-08-01,2025-07-17,Priya Patel,At Risk
+GRT-533,Duke Endowment,Youth Education,37468,True,2025-05-25,2026-04-04,2026-03-20,Jordan Brooks,At Risk
+GRT-534,Lilly Endowment,Food Security,81528,True,2025-08-09,2026-04-17,2026-04-02,Elena Rostova,Pending Renewal
+GRT-535,Lilly Endowment,Workforce Readiness,25620,True,2024-06-18,2025-03-09,2025-02-22,Marcus Vance,Completed
+GRT-536,Duke Endowment,Youth Education,29395,True,2026-05-06,2027-03-11,2027-02-24,Jordan Brooks,Completed
+GRT-537,Wells Fargo Foundation,Workforce Readiness,171831,False,2025-11-26,2027-01-14,2026-12-30,Jordan Brooks,Active
+GRT-538,Bank of America Charitable,Food Security,151046,True,2026-01-23,2027-07-06,2027-06-21,Priya Patel,Active
+GRT-539,Duke Endowment,Workforce Readiness,80081,False,2024-05-27,2025-11-02,2025-10-18,Jordan Brooks,Completed
+GRT-540,Wells Fargo Foundation,Youth Education,31167,True,2024-02-23,2025-04-30,2025-04-15,Priya Patel,Active
+GRT-541,Ford Foundation,Workforce Readiness,98066,True,2025-11-15,2027-02-06,2027-01-22,Priya Patel,Completed
+GRT-542,Gates Foundation,Workforce Readiness,92989,True,2024-02-23,2024-12-11,2024-11-26,Jordan Brooks,Completed
+GRT-543,Wells Fargo Foundation,Housing Relief,145092,False,2024-05-24,2025-03-05,2025-02-18,Priya Patel,Active
+GRT-544,Gates Foundation,Workforce Readiness,85987,False,2025-08-24,2026-03-28,2026-03-13,Jordan Brooks,Completed
+GRT-545,Wells Fargo Foundation,Housing Relief,89896,True,2024-07-26,2025-05-28,2025-05-13,Elena Rostova,Completed
+GRT-546,Knight Foundation,Food Security,66210,True,2024-07-08,2025-10-22,2025-10-07,Jordan Brooks,Active
+GRT-547,Ford Foundation,Workforce Readiness,81271,False,2024-06-29,2025-06-11,2025-05-27,Marcus Vance,Active
+GRT-548,Duke Endowment,Youth Education,102256,True,2025-06-27,2026-11-07,2026-10-23,Marcus Vance,Pending Renewal
+GRT-549,Gates Foundation,Workforce Readiness,219274,True,2024-10-05,2025-08-30,2025-08-15,Jordan Brooks,Active
+GRT-550,Bank of America Charitable,Food Security,63975,True,2024-06-17,2025-02-07,2025-01-23,Marcus Vance,Pending Renewal
+GRT-551,Carnegie Corp,Housing Relief,130293,True,2024-05-09,2024-11-29,2024-11-14,Marcus Vance,Active
+GRT-552,Lilly Endowment,Housing Relief,45876,True,2026-04-07,2027-04-06,2027-03-22,Priya Patel,Active
+GRT-553,Wells Fargo Foundation,Housing Relief,242479,True,2026-02-03,2027-02-22,2027-02-07,Marcus Vance,Completed
+GRT-554,Knight Foundation,Housing Relief,236693,True,2024-05-03,2025-08-25,2025-08-10,Priya Patel,Pending Renewal
+GRT-555,Bank of America Charitable,Housing Relief,166520,True,2024-11-22,2025-09-03,2025-08-19,Jordan Brooks,Active
+GRT-556,Ford Foundation,Youth Education,72682,False,2024-05-28,2025-05-12,2025-04-27,Elena Rostova,Active
+GRT-557,Ford Foundation,Youth Education,29181,False,2025-07-11,2026-12-10,2026-11-25,Elena Rostova,Completed
+GRT-558,Duke Endowment,Youth Education,132420,False,2024-09-25,2025-09-09,2025-08-25,Marcus Vance,Active
+GRT-559,Ford Foundation,Workforce Readiness,91579,True,2026-06-16,2027-05-28,2027-05-13,Jordan Brooks,Active
+GRT-560,Ford Foundation,Workforce Readiness,163110,True,2025-02-28,2026-01-28,2026-01-13,Priya Patel,Active
+GRT-561,Ford Foundation,Youth Education,241436,True,2026-02-10,2026-12-31,2026-12-16,Elena Rostova,Completed
+GRT-562,Duke Endowment,Housing Relief,67565,True,2025-12-23,2027-02-07,2027-01-23,Marcus Vance,At Risk
+GRT-563,Wells Fargo Foundation,Workforce Readiness,120571,True,2025-10-27,2026-04-27,2026-04-12,Elena Rostova,Active
+GRT-564,Carnegie Corp,Workforce Readiness,73958,False,2025-09-01,2027-02-19,2027-02-04,Elena Rostova,Active
+GRT-565,Lilly Endowment,Workforce Readiness,196034,True,2025-11-24,2027-01-01,2026-12-17,Elena Rostova,Completed
+GRT-566,Ford Foundation,Youth Education,216882,True,2026-03-14,2027-08-04,2027-07-20,Jordan Brooks,Active
+GRT-567,Bank of America Charitable,Housing Relief,171141,False,2025-05-01,2026-04-02,2026-03-18,Priya Patel,Completed
+GRT-568,Ford Foundation,Housing Relief,228345,True,2026-01-05,2026-09-12,2026-08-28,Elena Rostova,Completed
+GRT-569,Knight Foundation,Housing Relief,235097,False,2024-07-07,2025-04-06,2025-03-22,Jordan Brooks,Active
+GRT-570,Carnegie Corp,Youth Education,246067,False,2024-10-30,2026-01-16,2026-01-01,Jordan Brooks,Active
+GRT-571,Knight Foundation,Housing Relief,97228,True,2026-02-07,2027-05-21,2027-05-06,Marcus Vance,Completed
+GRT-572,Duke Endowment,Housing Relief,186682,True,2025-03-21,2026-03-22,2026-03-07,Priya Patel,Active
+GRT-573,Bank of America Charitable,Food Security,90019,False,2024-01-26,2024-12-17,2024-12-02,Elena Rostova,Active
+GRT-574,Knight Foundation,Food Security,96022,True,2024-08-09,2025-10-16,2025-10-01,Jordan Brooks,Active
