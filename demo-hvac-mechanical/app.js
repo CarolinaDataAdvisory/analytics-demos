@@ -129,7 +129,7 @@ const progWrap = document.getElementById('progBars');
 const mc = Math.max(...D.prog.map(r => Number(r.at(4))));
 D.prog.forEach((r, i) => {
   const rw = el('div', 'brow'), lb = el('div', 'blbl');
-  lb.append(el('span', '', r.at(0) + ' (' + Number(r.at(2)).toLocaleString() + ' served | ' + r.at(3) + '/100)'), el('span', '', '$' + Number(r.at(4)).toFixed(2) + ' % GM'));
+  lb.append(el('span', '', r.at(0) + ' (' + fmt(r.at(2)) + ' rev)'), el('span', '', Number(r.at(4)).toFixed(1) + '% GM'));
   const tk = el('div', 'btrk'), fl = el('div', 'bfil');
   fl.style.width = (Number(r.at(4)) / mc * 100).toFixed(1) + '%'; fl.style.background = i === 0 ? '#10b981' : '#818cf8';
   tk.appendChild(fl); rw.append(lb, tk); progWrap.appendChild(rw);
@@ -143,14 +143,14 @@ parentGrid.insertBefore(splitHolder, progCard);
 splitHolder.appendChild(progCard);
 
 const funnelCard = el('div', 'card');
-funnelCard.appendChild(el('h3', '', 'Digital Engagement Funnel & Checkout Recovery Opportunity'));
+funnelCard.appendChild(el('h3', '', 'Replacement Estimate Funnel & Stalled Quote Recovery'));
 const fCanvas = document.createElement('canvas');
 fCanvas.width = 480; fCanvas.height = 155;
 fCanvas.style.width = '100%'; fCanvas.style.height = 'auto';
 fCanvas.style.background = '#0f172a'; fCanvas.style.borderRadius = '8px'; fCanvas.style.border = '1px solid #334155';
 funnelCard.appendChild(fCanvas);
 const fData = D.funnel;
-const fCtx = fCanvas.getContext('2d'), funW = fCanvas.width, fH = fCanvas.height, fP = 28;
+const fCtx = fCanvas.getContext('2d'), funW = fCanvas.width, fH = fCanvas.height, fP = 54;
 const fMax = Math.max(...fData.map(r => Number(r.at(1)))) * 1.15;
 const fx = i => fP + (i / (fData.length - 1)) * (funW - fP * 2);
 const fy = v => fH - fP - (v / fMax) * (fH - fP * 2);
@@ -169,7 +169,7 @@ fCtx.fillStyle = '#f8fafc'; fCtx.fillText(Number(r.at(1)).toLocaleString(), x, y
 fCtx.fillStyle = '#94a3b8'; fCtx.fillText(r.at(0).split(' ').slice(0, 2).join(' '), x, fH - 8);
 });
 const abCount = Number(fData.at(3).at(1)), recGifts = Number(fData.at(4).at(1)), recDollars = recGifts * 8900;
-const fCallout = el('div', 'ibox', 'Checkout Recovery Play: ' + abCount.toLocaleString() + ' supporters abandoned the donation page. Triggering an automated 24-hr reminder email recovers ~15% (' + recGifts + ' installs = +' + fmt(recDollars) + ' incremental revenue at $0 ad spend).');
+const fCallout = el('div', 'ibox', 'Estimate Recovery Play: ' + abCount.toLocaleString() + ' replacement quotes sit stalled past 7 days. Comfort Advisor follow-up closes ~15% (' + recGifts + ' installs = +' + fmt(recDollars) + ' incremental revenue at $0 ad spend).');
 fCallout.style.borderColor = '#f59e0b'; fCallout.style.marginTop = '12px'; fCallout.style.fontSize = '12px';
 funnelCard.appendChild(fCallout);
 splitHolder.appendChild(funnelCard);
