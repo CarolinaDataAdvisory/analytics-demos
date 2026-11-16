@@ -19,7 +19,7 @@ const outCost = D.churnCount * 120;
 const wbRoi = (yrRev / outCost).toFixed(1);
 
 document.getElementById('wbStat').textContent = '+' + fmt(liftGain) + ' (6-Mo) / +' + fmt(yrRev) + '/yr';
-document.getElementById('wbDesc').textContent = 'Reaching all ' + D.churnCount.toLocaleString() + ' lapsed $1,000+ donors via calls, handwritten board notes & VIP tours costs ~' + fmt(outCost) + ' ($15/donor) and returns ' + wbRoi + 'x ROI at 5% full + 10% half-gift reactivation.';
+document.getElementById('wbDesc').textContent = 'Reaching all ' + D.churnCount.toLocaleString() + ' lapsed $1,000+ accounts via calls, handwritten board notes & VIP tours costs ~' + fmt(outCost) + ' ($15/donor) and returns ' + wbRoi + 'x ROI at 5% full + 10% half-gift reactivation.';
 
 const ds = D.donorStats;
 const netSign = ds.netChange >= 0 ? '+' : '';
@@ -69,7 +69,7 @@ fvWinback.forEach((v, i) => { ctx.beginPath(); ctx.arc(gx(lastIdx + 1 + i), gy(v
 const ml = Math.max(...D.vol.map(r => Number(r.at(3))));
 D.vol.forEach((r, i) => {
   const rw = el('div', 'brow'), lb = el('div', 'blbl');
-  lb.append(el('span', '', r.at(0) + ' (' + Number(r.at(1)).toLocaleString() + ' donors | ' + r.at(2) + ' orders)'), el('span', '', fmt(r.at(3))));
+  lb.append(el('span', '', r.at(0) + ' (' + Number(r.at(1)).toLocaleString() + ' accounts | ' + r.at(2) + ' orders)'), el('span', '', fmt(r.at(3))));
   const tk = el('div', 'btrk'), fl = el('div', 'bfil');
   fl.style.width = (Number(r.at(3)) / ml * 100).toFixed(1) + '%'; fl.style.background = i === 0 ? '#10b981' : '#64748b';
   tk.appendChild(fl); rw.append(lb, tk); document.getElementById('volBars').appendChild(rw);
