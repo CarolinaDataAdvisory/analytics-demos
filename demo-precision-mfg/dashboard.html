@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rowan Precision Manufacturing &amp; Fab — Executive Intelligence (Demo)</title>
+<link rel="stylesheet" href="style.css">
+<script src="data.js"></script>
+</head>
+<body>
+<div class="header">
+  <div>
+    <h1 style="margin:0;font-size:24px;">Rowan Precision Manufacturing &amp; Fab <span class="demo-tag">Simulated $26M CNC &amp; Metal Fab Job Shop</span></h1>
+    <p style="margin:4px 0 0;color:#94a3b8;font-size:14px;">Executive Fundraising, Retention & Program Intelligence • 36-Mo Actuals + Dual-Scenario Forecast</p>
+  </div>
+  <span class="badge">✓ 390 Duplicate BOM/Part Records Merged • 2,840 JobBOSS/QB Entries Cleaned</span>
+</div>
+
+<div class="kpis" id="kpiRow"></div>
+
+<div class="grid2">
+  <div class="card">
+    <h3>36-Month Plant Shipments + 6-Month Shaded Forecast</h3>
+    <canvas id="lineCanvas" width="780" height="235" style="width:100%;height:auto;background:#0f172a;border-radius:8px;border:1px solid #334155;"></canvas>
+    <div class="cleg">
+      <span>Jan 2024</span>
+      <span><b style="color:#38bdf8;">—</b> Actuals &nbsp;|&nbsp; <b style="color:#f59e0b;">●</b> Q4 Spikes &nbsp;|&nbsp; <b style="color:#a78bfa;">--</b> Baseline Forecast &nbsp;|&nbsp; <b style="color:#10b981;">--</b> With Donor Outreach (5% Full + 10% Half)</span>
+      <span>Jun 2027</span>
+    </div>
+  </div>
+  <div class="card">
+    <h3>The Blanket PO + VMI Multiplier (3-Yr Spend)</h3>
+    <div id="volBars"></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:24px;">
+  <h3>PLANT MARGIN BENCHMARKS &amp; LAPSED OEM WATCHLIST</h3>
+  <div class="grid3">
+    <div class="ibox" style="border-color:#10b981;">
+      <h4>Spot-to-Blanket PO Conversion Play</h4>
+      <div class="bstat">2.6x Higher 3-Yr Account Spend</div>
+      <p style="margin:0;color:#cbd5e1;">Transitioning repeat spot buyers onto Annual Blanket POs + VMI stocking stabilizes CNC spindle hours and raw material buying.</p>
+    </div>
+    <div class="ibox" style="border-color:#f59e0b;">
+      <h4>High-Dollar Churn Win-Back ROI</h4>
+      <div class="bstat" id="wbStat">Calculating Win-Back ROI...</div>
+      <p style="margin:0;color:#cbd5e1;" id="wbDesc">Calculating outreach cost & return...</p>
+    </div>
+    <div class="ibox" style="border-color:#f43f5e;">
+      <h4>Quote-vs-Actual Variance &amp; Scrap Leakage</h4>
+      <div class="bstat">$688K+ Annual Profit Opportunity</div>
+      <p style="margin:0;color:#cbd5e1;">Re-quoting 21 jobs running +14% over estimated shop hours and closing 15% of 215 stalled engineering RFQs protects plant EBITDA.</p>
+    </div>
+  </div>
+  <h3>High-Value Lapsed OEM Watchlist ($65K+ Spend &amp; 105+ Days Inactive)</h3>
+  <div class="twrap" style="max-height:210px;">
+    <table id="churnTable">
+      <thead><tr><th>OEM ID</th><th>OEM Customer</th><th>Primary Work Center</th><th>3-Yr Shipments</th><th>Last Ship Date</th><th>Days Inactive</th><th>Recommended Next Step</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="gridEq">
+  <div class="card">
+    <h3>Work Center Gross Margin % &amp; Volume</h3>
+    <div id="progBars"></div>
+  </div>
+  <div class="card">
+    <h3>Account Engineer Profitability & 3-Yr Shipped Variance</h3>
+    <div class="twrap">
+      <table id="campTable">
+        <thead><tr><th>Account Engineer</th><th>Active OEMs</th><th>3-Yr Shipped</th><th>Gross Margin ($)</th><th>Gross Margin %</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Live Executive Action Queue (Grants, Audits & Blanket Renewalring — 979 Total)</h3>
+  <select id="alertFilter" onchange="renderAlerts()">
+    <option value="ALL">All Alert Types (Prioritized)</option>
+    <option value="Margin Variance">At-Risk Grants (Top Priority)</option>
+    <option value="Scrap / Rework">Flagged Vendor Expenses</option>
+    <option value="Blanket Renewal">Blanket Renewalring Gifts</option>
+  </select>
+  <input id="searchBox" onkeyup="renderAlerts()" placeholder="Search name, vendor, or ID...">
+  <div class="twrap">
+    <table id="alertTable">
+      <thead><tr><th>Alert Type</th><th>ID</th><th>Name / Foundation / Vendor</th><th>Owner / Contact</th><th>Dollar Impact</th><th>Key Date</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="card" style="margin-top:24px;border-color:#10b981;">
+  <h3>Executive Summary: Top 3 Action Items, Execution Plan &amp; Expected ROI</h3>
+  <div class="grid3" style="margin-bottom:0;">
+<div class="ibox" style="border-color:#f59e0b;"><h4>1. Re-Price Over-Budget Repeat Jobs &amp; Curb Scrap</h4><p style="margin:0 0 8px;color:#cbd5e1;"><strong>What to Do:</strong> Audit the 21 work orders exceeding quoted shop hours by 14%+ and review the 18 CNC tolerance rework alerts before the next production release.</p><p style="margin:0 0 8px;color:#cbd5e1;"><strong>Why:</strong> Silent labor overruns and raw material spikes erode 8–12 margin points on repeat OEM parts if estimators don't adjust routing standards.</p><div class="bstat" style="font-size:15px;color:#10b981;">Expected Result: +$315,000 Protected Annual Gross Margin</div></div>
+<div class="ibox" style="border-color:#10b981;"><h4>2. Convert 215 Stalled Engineering RFQs (14d+)</h4><p style="margin:0 0 8px;color:#cbd5e1;"><strong>What to Do:</strong> Have Cost Estimators and Sales Engineers follow up on all 215 open CAD/DFM quotes with value-engineering cost-down options.</p><p style="margin:0 0 8px;color:#cbd5e1;"><strong>Why:</strong> Closing 15% of stalled RFQs adds 32 production orders (~$21,500 avg lot) and fills open Q1/Q2 5-axis CNC capacity.</p><div class="bstat" style="font-size:15px;color:#10b981;">Expected Result: +$688,000 Incremental Plant Shipments</div></div>
+<div class="ibox" style="border-color:#f43f5e;"><h4>3. Lock In Annual Blanket PO &amp; Steel/Alum Resets</h4><p style="margin:0 0 8px;color:#cbd5e1;"><strong>What to Do:</strong> Execute the 37 Blanket Renewal steel/aluminum index resets and pitch Annual Blanket POs to top lapsed $65K+ OEM accounts.</p><p style="margin:0 0 8px;color:#cbd5e1;"><strong>Why:</strong> Blanket PO + VMI accounts generate 2.6x higher 3-year revenue while eliminating emergency spot-buy material premiums.</p><div class="bstat" style="font-size:15px;color:#10b981;">Expected Result: +$540,000 Recurring Backlog Secured</div></div>
+  </div>
+</div>
+<script src="app.js?v=1"></script>
+</body>
+</html>

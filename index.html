@@ -5,21 +5,22 @@
 <title>Carolina Data Advisory - Executive Analytics Demos</title>
 <style>
   body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 48px 24px; }
-  .wrap { max-width: 1180px; margin: 0 auto; }
+  .wrap { max-width: 1360px; margin: 0 auto; }
   h1 { font-size: 28px; margin: 0 0 8px; }
   .sub { color: #94a3b8; font-size: 15px; margin-bottom: 36px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
-  .card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; }
-  .tag { display: inline-block; background: #7c3aed; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 99px; text-transform: uppercase; margin-bottom: 12px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(295px, 1fr)); gap: 20px; }
+  .card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; }
+  .tag { display: inline-block; background: #7c3aed; font-size: 10.5px; font-weight: 700; padding: 4px 10px; border-radius: 99px; text-transform: uppercase; margin-bottom: 12px; }
   .tag-auto { background: #dc2626; }
   .tag-comm { background: #d97706; }
+  .tag-mfg { background: #4f46e5; }
   .tag-hvac { background: #0284c7; }
   .tag-law { background: #0d9488; }
   .tag-truk { background: #2563eb; }
   .tag-med { background: #059669; }
-  h2 { font-size: 19px; margin: 0 0 10px; }
-  p { color: #cbd5e1; font-size: 14px; line-height: 1.5; margin: 0 0 20px; }
-  .btn { display: inline-block; background: #10b981; color: #0f172a; font-weight: 700; text-decoration: none; padding: 10px 18px; border-radius: 8px; text-align: center; }
+  h2 { font-size: 18px; margin: 0 0 10px; }
+  p { color: #cbd5e1; font-size: 13.5px; line-height: 1.5; margin: 0 0 20px; }
+  .btn { display: inline-block; background: #10b981; color: #0f172a; font-weight: 700; text-decoration: none; padding: 10px 16px; border-radius: 8px; text-align: center; font-size: 13.5px; }
 </style>
 </head>
 <body>
@@ -29,7 +30,7 @@
   <div class="grid">
     <div class="card">
       <div>
-        <span class="tag tag-auto">Automotive Retail &amp; Fixed Ops • $68M Group</span>
+        <span class="tag tag-auto">Automotive Retail &amp; Fixed Ops • $68M</span>
         <h2>Carolinas Auto Group</h2>
         <p>Fixed-Ops service absorption, aged used inventory (&gt;45d) alerts, declined MPI repair recovery, BDC lead funnel, and Service-to-Sales equity mining.</p>
       </div>
@@ -37,15 +38,7 @@
     </div>
     <div class="card">
       <div>
-        <span class="tag">Nonprofit &amp; Enterprise Impact</span>
-        <h2>Piedmont Community Impact Alliance</h2>
-        <p>36-month fundraising actuals, dual-scenario revenue forecasting, donor churn win-back playbook, and automated action queues uncovering ~$206K/yr in recoverable value.</p>
-      </div>
-      <a class="btn" href="demo-enterprise-impact/dashboard.html">Launch Interactive Dashboard &rarr;</a>
-    </div>
-    <div class="card">
-      <div>
-        <span class="tag tag-comm">Commercial &amp; Industrial • $40M Run-Rate</span>
+        <span class="tag tag-comm">Commercial &amp; Industrial • $40M</span>
         <h2>Piedmont Power &amp; Electrical Supply</h2>
         <p>Commercial job-margin leakage, custom switchgear backorder alerts, quote recovery funnel, and lapsed electrical contractor win-back intelligence.</p>
       </div>
@@ -53,35 +46,51 @@
     </div>
     <div class="card">
       <div>
-        <span class="tag tag-hvac">Residential &amp; Commercial Field Services • $12M</span>
-        <h2>Carolina Climate &amp; Mechanical</h2>
-        <p>Comfort Club maintenance plan renewals, stalled replacement estimate recovery (+$418K), technician callback tracking, and homeowner win-back intelligence.</p>
+        <span class="tag tag-mfg">Precision CNC &amp; Metal Fab • $26M</span>
+        <h2>Rowan Precision Manufacturing</h2>
+        <p>Quoted-vs-actual job margin variance, CNC scrap alerts, stalled engineering RFQ recovery, and Annual Blanket PO + VMI account expansion.</p>
       </div>
-      <a class="btn" href="demo-hvac-mechanical/dashboard.html">Launch Interactive Dashboard &rarr;</a>
+      <a class="btn" href="demo-precision-mfg/dashboard.html">Launch Interactive Dashboard &rarr;</a>
     </div>
     <div class="card">
       <div>
-        <span class="tag tag-law">Legal Practice &amp; Professional Services • $9.5M</span>
-        <h2>Piedmont Legal Partners (16 Attorneys)</h2>
-        <p>Fee realization rates, evergreen retainer replenishment alerts, unbilled WIP &amp; 60+ day AR recovery, and consultation-to-retainer conversion tracking.</p>
-      </div>
-      <a class="btn" href="demo-legal-partners/dashboard.html">Launch Interactive Dashboard &rarr;</a>
-    </div>
-    <div class="card">
-      <div>
-        <span class="tag tag-truk">Freight, Delivery &amp; Fleet Rentals • $18M</span>
+        <span class="tag tag-truk">Freight, Delivery &amp; Rentals • $18M</span>
         <h2>Carolina Freight &amp; Fleet Logistics</h2>
-        <p>Dedicated contract vs. spot lane margins, unbilled detention &amp; layover fee recovery, low-margin deadhead alerts, and lapsed shipper win-back intelligence.</p>
+        <p>Dedicated contract vs. spot lane margins, unbilled detention &amp; layover fee recovery, low-margin deadhead alerts, and lapsed shipper win-back.</p>
       </div>
       <a class="btn" href="demo-freight-logistics/dashboard.html">Launch Interactive Dashboard &rarr;</a>
     </div>
     <div class="card">
       <div>
-        <span class="tag tag-med">Multi-Location Healthcare &amp; Clinics • $11M</span>
+        <span class="tag tag-hvac">Field Services &amp; HVAC • $12M</span>
+        <h2>Carolina Climate &amp; Mechanical</h2>
+        <p>Comfort Club maintenance plan renewals, stalled replacement estimate recovery (+$418K), technician callback tracking, and homeowner win-back.</p>
+      </div>
+      <a class="btn" href="demo-hvac-mechanical/dashboard.html">Launch Interactive Dashboard &rarr;</a>
+    </div>
+    <div class="card">
+      <div>
+        <span class="tag tag-med">Multi-Location Clinics • $11M</span>
         <h2>Piedmont Dental &amp; Wellness Partners</h2>
         <p>6-month patient recall reactivation, unscheduled high-value treatment recovery, 45+ day insurance claim alerts, and in-house membership growth.</p>
       </div>
       <a class="btn" href="demo-dental-wellness/dashboard.html">Launch Interactive Dashboard &rarr;</a>
+    </div>
+    <div class="card">
+      <div>
+        <span class="tag tag-law">Legal Practice &amp; Services • $9.5M</span>
+        <h2>Piedmont Legal Partners (16 Attys)</h2>
+        <p>Fee realization rates, evergreen retainer replenishment alerts, unbilled WIP &amp; 60+ day AR recovery, and consultation-to-retainer conversion.</p>
+      </div>
+      <a class="btn" href="demo-legal-partners/dashboard.html">Launch Interactive Dashboard &rarr;</a>
+    </div>
+    <div class="card">
+      <div>
+        <span class="tag">Nonprofit &amp; Enterprise Impact</span>
+        <h2>Piedmont Community Impact Alliance</h2>
+        <p>36-month fundraising actuals, dual-scenario revenue forecasting, donor churn win-back playbook, and automated queues uncovering ~$206K/yr.</p>
+      </div>
+      <a class="btn" href="demo-enterprise-impact/dashboard.html">Launch Interactive Dashboard &rarr;</a>
     </div>
   </div>
 </div>
