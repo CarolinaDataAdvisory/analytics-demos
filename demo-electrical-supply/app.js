@@ -16,10 +16,11 @@ const fvWinback = fvBase.map((v, i) => v + Math.round(monthlyLift * (0.6 + i * 0
 const fWinTot = fvWinback.reduce((s, v) => s + v, 0);
 const liftGain = fWinTot - fBaseTot;
 const outCost = D.churnCount * 120;
+const wbPct = Math.round((yrRev / annualPool) * 100);
 const wbRoi = (yrRev / outCost).toFixed(1);
 
 document.getElementById('wbStat').textContent = '+' + fmt(liftGain) + ' (6-Mo) / +' + fmt(yrRev) + '/yr';
-document.getElementById('wbDesc').textContent = 'Reaching all ' + D.churnCount.toLocaleString() + ' lapsed $1,000+ accounts via calls, handwritten board notes & VIP tours costs ~' + fmt(outCost) + ' ($15/account) and returns ' + wbRoi + 'x ROI at 5% full + 10% half-gift reactivation.';
+document.getElementById('wbDesc').textContent = 'Reaching all ' + D.churnCount.toLocaleString() + ' lapsed $1,000+ accounts via Branch Mgr job-site visits, spec reviews &amp; lighting rebates at ' + wbPct + '% reactivation.';
 
 const ds = D.donorStats;
 const netSign = ds.netChange >= 0 ? '+' : '';
