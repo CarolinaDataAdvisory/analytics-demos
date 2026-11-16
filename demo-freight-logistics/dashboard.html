@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Carolina Freight &amp; Fleet Logistics — Executive Intelligence (Demo)</title>
+<link rel="stylesheet" href="style.css">
+<script src="data.js"></script>
+</head>
+<body>
+<div class="header">
+  <div>
+    <h1 style="margin:0;font-size:24px;">Carolina Freight &amp; Fleet Logistics <span class="demo-tag">Simulated $18M Carrier, Delivery &amp; Rentals</span></h1>
+    <p style="margin:4px 0 0;color:#94a3b8;font-size:14px;">Executive Fundraising, Retention & Program Intelligence • 36-Mo Actuals + Dual-Scenario Forecast</p>
+  </div>
+  <span class="badge">✓ 530 Duplicate Shipper Profiles Merged • 3,910 TMS/ELD/QB Records Cleaned</span>
+</div>
+
+<div class="kpis" id="kpiRow"></div>
+
+<div class="grid2">
+  <div class="card">
+    <h3>36-Month Freight &amp; Rental Revenue + 6-Month Forecast</h3>
+    <canvas id="lineCanvas" width="780" height="235" style="width:100%;height:auto;background:#0f172a;border-radius:8px;border:1px solid #334155;"></canvas>
+    <div class="cleg">
+      <span>Jan 2024</span>
+      <span><b style="color:#38bdf8;">—</b> Actuals &nbsp;|&nbsp; <b style="color:#f59e0b;">●</b> Q4 Spikes &nbsp;|&nbsp; <b style="color:#a78bfa;">--</b> Baseline Forecast &nbsp;|&nbsp; <b style="color:#10b981;">--</b> With Donor Outreach (5% Full + 10% Half)</span>
+      <span>Jun 2027</span>
+    </div>
+  </div>
+  <div class="card">
+    <h3>The Dedicated Contract Multiplier (3-Yr Spend)</h3>
+    <div id="volBars"></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:24px;">
+  <h3>Strategic Insights, Nonprofit Benchmarks & High-Dollar Churn Watchlist</h3>
+  <div class="grid3">
+    <div class="ibox" style="border-color:#10b981;">
+      <h4>Volunteer-to-Donor Conversion Play</h4>
+      <div class="bstat">3.0x Higher LTV ($1,443 vs $482)</div>
+      <p style="margin:0;color:#cbd5e1;">Invite top 500 Donor-Only supporters to VIP hands-on impact days (insider access) & promote Corporate Volunteer Grants matching hours with cash.</p>
+    </div>
+    <div class="ibox" style="border-color:#f59e0b;">
+      <h4>High-Dollar Churn Win-Back ROI</h4>
+      <div class="bstat" id="wbStat">Calculating Win-Back ROI...</div>
+      <p style="margin:0;color:#cbd5e1;" id="wbDesc">Calculating outreach cost & return...</p>
+    </div>
+    <div class="ibox" style="border-color:#f43f5e;">
+      <h4>Payment Failure Leakage Benchmark</h4>
+      <div class="bstat">20%–30% Annual Sustainer Loss</div>
+      <p style="margin:0;color:#cbd5e1;">Automated card-updater SMS/email outreach for the 959 Overdue Freight ARring alerts recovers an estimated $68,000+ in annual pledges.</p>
+    </div>
+  </div>
+  <h3>High-Dollar Donor Churn Watchlist (LTV $1,000+ & 120+ Days Inactive)</h3>
+  <div class="twrap" style="max-height:210px;">
+    <table id="churnTable">
+      <thead><tr><th>Shipper ID</th><th>Shipper / Renter Account</th><th>Primary Division</th><th>3-Yr Revenue</th><th>Last Load</th><th>Days Inactive</th><th>Recommended Next Step</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="gridEq">
+  <div class="card">
+    <h3>Fleet Division Gross Margin % &amp; Volume</h3>
+    <div id="progBars"></div>
+  </div>
+  <div class="card">
+    <h3>Account Manager Profitability & 3-Yr Revenue Variance</h3>
+    <div class="twrap">
+      <table id="campTable">
+        <thead><tr><th>Account Manager</th><th>Active Accounts</th><th>3-Yr Revenue</th><th>Net Margin ($)</th><th>Margin %</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Live Executive Action Queue (Grants, Audits & Overdue Freight ARring — 979 Total)</h3>
+  <select id="alertFilter" onchange="renderAlerts()">
+    <option value="ALL">All Alert Types (Prioritized)</option>
+    <option value="Unbilled Detention">At-Risk Grants (Top Priority)</option>
+    <option value="Idle / Low Margin">Flagged Vendor Expenses</option>
+    <option value="Overdue Freight AR">Overdue Freight ARring Gifts</option>
+  </select>
+  <input id="searchBox" onkeyup="renderAlerts()" placeholder="Search name, vendor, or ID...">
+  <div class="twrap">
+    <table id="alertTable">
+      <thead><tr><th>Alert Type</th><th>ID</th><th>Name / Foundation / Vendor</th><th>Owner / Contact</th><th>Dollar Impact</th><th>Key Date</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="card" style="margin-top:24px;border-color:#10b981;">
+  <h3>Executive Summary: Top 3 Action Items, Execution Plan &amp; Expected ROI</h3>
+  <div class="grid3" style="margin-bottom:0;">
+    <div class="ibox" style="border-color:#f43f5e;">
+      <h4>1. Recover 959 Overdue Freight ARring Monthly Pledges</h4>
+      <p style="margin:0 0 8px;color:#cbd5e1;"><strong>What to Do:</strong> Launch an automated 3-step SMS and email card-updater sequence for all 959 failed recurring payments in the Action Queue.</p>
+      <p style="margin:0 0 8px;color:#cbd5e1;"><strong>Why:</strong> Expired cards cause 20%–30% of annual sustainer churn; donors rarely cancel intentionally when given a 1-click mobile update link.</p>
+      <div class="bstat" style="font-size:15px;color:#10b981;">Expected Result: +$68,000+ Recovered Annual Pledges</div>
+    </div>
+    <div class="ibox" style="border-color:#f59e0b;">
+      <h4>2. Launch 90-Day High-Dollar Lapsed Donor Win-Back</h4>
+      <p style="margin:0 0 8px;color:#cbd5e1;"><strong>What to Do:</strong> Have the Executive Director call the Top 50 lapsed $3,000+ donors and send handwritten Board impact notes to the next 150 mid-level supporters.</p>
+      <p style="margin:0 0 8px;color:#cbd5e1;"><strong>Why:</strong> Re-engaging proven $1,000+ supporters costs ~$15/donor and delivers 4.5x net ROI compared to cold donor acquisition.</p>
+      <div class="bstat" style="font-size:15px;color:#10b981;">Expected Result: +$33,378 Gross / +$25,878 Net (4.5x ROI)</div>
+    </div>
+    <div class="ibox" style="border-color:#10b981;">
+      <h4>3. Convert Top Donors Into Volunteers + Checkout Follow-Up</h4>
+      <p style="margin:0 0 8px;color:#cbd5e1;"><strong>What to Do:</strong> Invite 500 Donor-Only supporters to VIP hands-on impact days and trigger a 24-hour reminder email for the 1,500 abandoned checkouts.</p>
+      <p style="margin:0 0 8px;color:#cbd5e1;"><strong>Why:</strong> Donor+Volunteers give 3.0x more ($1,443 vs. $482 LTV), and 15% of abandoned checkouts convert with a single timely reminder.</p>
+      <div class="bstat" style="font-size:15px;color:#10b981;">Expected Result: +$92,000+ Combined Annual Revenue Lift</div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
