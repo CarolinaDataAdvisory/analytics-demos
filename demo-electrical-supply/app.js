@@ -19,7 +19,7 @@ const outCost = D.churnCount * 120;
 const wbRoi = (yrRev / outCost).toFixed(1);
 
 document.getElementById('wbStat').textContent = '+' + fmt(liftGain) + ' (6-Mo) / +' + fmt(yrRev) + '/yr';
-document.getElementById('wbDesc').textContent = 'Reaching all ' + D.churnCount.toLocaleString() + ' lapsed $1,000+ accounts via calls, handwritten board notes & VIP tours costs ~' + fmt(outCost) + ' ($15/donor) and returns ' + wbRoi + 'x ROI at 5% full + 10% half-gift reactivation.';
+document.getElementById('wbDesc').textContent = 'Reaching all ' + D.churnCount.toLocaleString() + ' lapsed $1,000+ accounts via calls, handwritten board notes & VIP tours costs ~' + fmt(outCost) + ' ($15/account) and returns ' + wbRoi + 'x ROI at 5% full + 10% half-gift reactivation.';
 
 const ds = D.donorStats;
 const netSign = ds.netChange >= 0 ? '+' : '';
@@ -74,7 +74,7 @@ D.vol.forEach((r, i) => {
   fl.style.width = (Number(r.at(3)) / ml * 100).toFixed(1) + '%'; fl.style.background = i === 0 ? '#10b981' : '#64748b';
   tk.appendChild(fl); rw.append(lb, tk); document.getElementById('volBars').appendChild(rw);
 });
-const tp = el('div', 'ibox', 'Quick Win: Converting 10% of Counter-Only contractors to Portal ordering adds ~$1.8M in incremental pull-through revenue.');
+const tp = el('div', 'ibox', 'Quick Win: Converting 25 Counter-Only contractors to Portal ordering adds ~$1.8M in incremental pull-through revenue.');
 tp.style.marginTop = '14px'; document.getElementById('volBars').appendChild(tp);
 
 const churnTable = document.getElementById('churnTable');
