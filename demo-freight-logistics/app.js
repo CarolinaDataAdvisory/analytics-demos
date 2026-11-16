@@ -79,7 +79,7 @@ tp.style.marginTop = '14px'; document.getElementById('volBars').appendChild(tp);
 
 const churnTable = document.getElementById('churnTable');
 D.churn.forEach((r, i) => {
-  const tr = el('tr'), ac = i < 5 ? 'Executive Director Call + Site Tour' : (i < 10 ? 'Handwritten Board Impact Letter' : 'VIP Gala & loyal accounts Preview Invite');
+  const tr = el('tr'), ac = i < 5 ? 'VP Fleet Ops Rate Lock + Dedicated Capacity Review' : (i < 10 ? 'Account Mgr Backhaul & Box-Truck Discount Offer' : 'VIP Gala & loyal accounts Preview Invite');
   tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2)), el('td', 'pos', fmt(r.at(4))), el('td', '', r.at(5)), el('td', 'neg', r.at(6) + ' days'), el('td', '', ac));
   churnTable.querySelector('tbody').appendChild(tr);
 });
@@ -112,9 +112,9 @@ const playbook = el('div', 'card');
 playbook.style.margin = '0'; playbook.style.background = '#0f172a'; playbook.style.border = '1px solid #334155';
 playbook.appendChild(el('h3', '', '90-Day Lapsed account Outreach Playbook (' + D.churnCount.toLocaleString() + ' Targets)'));
 new Array(
-  new Array('Tier 1 - Top 50 Major Lapsed ($3,000+ LTV)', 'Personal phone call from Executive Director + private program site tour.', '#10b981'),
-  new Array('Tier 2 - Next 150 Mid-Level Lapsed ($1,500-$2,999)', 'Handwritten impact note signed by a Board Member with 2026 outcome snapshot.', '#38bdf8'),
-  new Array('Tier 3 - Remaining Lapsed ($1,000-$1,499)', 'VIP invitation to upcoming Gala & hands-on loyal accounts preview day.', '#a78bfa')
+  new Array('Tier 1 - Top 20 Major Shippers ($85K+ 3-Yr Spend)', 'VP Fleet Operations call + guaranteed I-85/I-77 dedicated tractor capacity.', '#10b981'),
+  new Array('Tier 2 - Next 25 Regional Accounts ($40K-$84K)', 'Account Manager lane audit + 5% discount on commercial box-truck rentals.', '#38bdf8'),
+  new Array('Tier 3 - Remaining Lapsed Shippers ($22K-$39K)', 'Inside Sales check-in + instant online freight & rental quoting portal invite.', '#a78bfa')
 ).forEach(st => {
   const b = el('div', 'ibox'); b.style.borderColor = st.at(2); b.style.marginBottom = '10px'; b.style.padding = '10px 12px'; b.style.background = '#1e293b';
   const t = el('h4', '', st.at(0)); t.style.fontSize = '13px';

@@ -79,7 +79,7 @@ tp.style.marginTop = '14px'; document.getElementById('volBars').appendChild(tp);
 
 const churnTable = document.getElementById('churnTable');
 D.churn.forEach((r, i) => {
-  const tr = el('tr'), ac = i < 5 ? 'Executive Director Call + Site Tour' : (i < 10 ? 'Handwritten Board Impact Letter' : 'VIP Gala & loyal accounts Preview Invite');
+  const tr = el('tr'), ac = i < 5 ? 'Managing Partner Annual Corporate/Estate Audit' : (i < 10 ? 'Lead Attorney Compliance & Contract Review Check-In' : 'VIP Gala & loyal accounts Preview Invite');
   tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2)), el('td', 'pos', fmt(r.at(4))), el('td', '', r.at(5)), el('td', 'neg', r.at(6) + ' days'), el('td', '', ac));
   churnTable.querySelector('tbody').appendChild(tr);
 });
@@ -112,9 +112,9 @@ const playbook = el('div', 'card');
 playbook.style.margin = '0'; playbook.style.background = '#0f172a'; playbook.style.border = '1px solid #334155';
 playbook.appendChild(el('h3', '', '90-Day Lapsed matter Outreach Playbook (' + D.churnCount.toLocaleString() + ' Targets)'));
 new Array(
-  new Array('Tier 1 - Top 50 Major Lapsed ($3,000+ LTV)', 'Personal phone call from Executive Director + private program site tour.', '#10b981'),
-  new Array('Tier 2 - Next 150 Mid-Level Lapsed ($1,500-$2,999)', 'Handwritten impact note signed by a Board Member with 2026 outcome snapshot.', '#38bdf8'),
-  new Array('Tier 3 - Remaining Lapsed ($1,000-$1,499)', 'VIP invitation to upcoming Gala & hands-on loyal accounts preview day.', '#a78bfa')
+  new Array('Tier 1 - Top 20 Major Clients ($35K+ 3-Yr Fees)', 'Personal call from Managing Partner + complimentary annual corporate/estate review.', '#10b981'),
+  new Array('Tier 2 - Next 25 Mid-Tier Matters ($18K-$34K)', 'Lead Attorney check-in + flat-fee contract/lease compliance audit.', '#38bdf8'),
+  new Array('Tier 3 - Remaining Lapsed Clients ($12K-$17K)', 'Client Relations outreach + priority scheduling under an Evergreen Retainer.', '#a78bfa')
 ).forEach(st => {
   const b = el('div', 'ibox'); b.style.borderColor = st.at(2); b.style.marginBottom = '10px'; b.style.padding = '10px 12px'; b.style.background = '#1e293b';
   const t = el('h4', '', st.at(0)); t.style.fontSize = '13px';
