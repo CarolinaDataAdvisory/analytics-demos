@@ -15,6 +15,11 @@
   <span class="badge">✓ 1,480 Duplicate DMS Profiles Merged • 6,850 CDK/VinSolutions Records Cleaned</span>
 </div>
 
+<div style="display:flex;gap:10px;margin-bottom:20px;">
+  <button id="btnTab1" onclick="switchTab(1)" style="background:#dc2626;color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13.5px;">1. Executive &amp; Fixed-Ops Overview</button>
+  <button id="btnTab2" onclick="switchTab(2)" style="background:#1e293b;color:#cbd5e1;border:1px solid #334155;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13.5px;">2. Showroom Sales &amp; F&amp;I Desk (Front / Back PVR)</button>
+</div>
+<div id="tab1View">
 <div class="kpis" id="kpiRow"></div>
 
 <div class="grid2">
@@ -103,6 +108,47 @@
 <div class="ibox" style="border-color:#f43f5e;"><h4>3. Mine High-Equity Service Drive Customers</h4><p style="margin:0 0 8px;color:#cbd5e1;"><strong>What to Do:</strong> Assign VIP Sales Managers to greet high-equity customers in the service lane with an appraisal & Pre-Paid Maintenance upgrade offer.</p><p style="margin:0 0 8px;color:#cbd5e1;"><strong>Why:</strong> Sales + Service Loyal buyers generate 2.5x higher 3-year gross profit ($17,658 vs. $13,049) and trade in 18 months sooner.</p><div class="bstat" style="font-size:15px;color:#10b981;">Expected Result: +$880,000 Multi-Year Gross Profit Lift</div></div>
   </div>
 </div>
-<script src="app.js?v=6"></script>
+</div>
+<div id="tab2View" style="display:none;">
+  <div class="kpis" id="deskKpis"></div>
+  <div class="gridEq">
+    <div class="card">
+      <h3>F&amp;I Backend Product Mix (VSC Warranties, GAP &amp; Paint/Tire Protection)</h3>
+      <div id="fiMixBars"></div>
+    </div>
+    <div class="card">
+      <h3>F&amp;I Coaching &amp; Desk Profit Opportunity</h3>
+      <div class="ibox" style="border-color:#10b981;margin-bottom:12px;">
+        <h4>Backend PVR Spread: $1,780 Top vs. $1,320 Bottom</h4>
+        <div class="bstat">+$184,000 Annual F&amp;I Lift Potential</div>
+        <p style="margin:0;color:#cbd5e1;">Bringing Salisbury &amp; Lake Norman F&amp;I menus up to Charlotte Honda's VSC + GAP penetration adds ~$310/copy across 600 retail turns.</p>
+      </div>
+      <div class="ibox" style="border-color:#f59e0b;">
+        <h4>Front-End Gross Retention on Pre-Owned Units</h4>
+        <div class="bstat">+$425/Unit Front Gross Advantage</div>
+        <p style="margin:0;color:#cbd5e1;">Reps who present trade-in equity + Pre-Paid Maintenance early hold $1,720–$1,874 front PVR vs. $1,110–$1,380 for discount-first floor reps.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:24px;">
+    <h3>Salesperson Unit Volume &amp; Front-End Gross Leaderboard (New vs. Pre-Owned)</h3>
+    <div class="twrap" style="max-height:320px;">
+      <table id="salesTable">
+        <thead><tr><th>Salesperson</th><th>Rooftop</th><th>New Units</th><th>Used Units</th><th>Total Units</th><th>Front-End Gross ($)</th><th>Front PVR ($)</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Finance Manager (F&amp;I) Backend Gross &amp; Product Penetration Scoreboard</h3>
+    <div class="twrap" style="max-height:300px;">
+      <table id="fiTable">
+        <thead><tr><th>Finance Manager</th><th>Rooftop</th><th>Deals Turned</th><th>VSC / Warranties</th><th>GAP Insurance</th><th>Paint / Tire / Ancil.</th><th>Total Backend Gross</th><th>Backend PVR</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script src="app.js?v=8"></script>
 </body>
 </html>
