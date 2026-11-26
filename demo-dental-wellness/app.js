@@ -175,9 +175,10 @@ fCallout.style.borderColor = '#f59e0b'; fCallout.style.marginTop = '12px'; fCall
 funnelCard.appendChild(fCallout);
 splitHolder.appendChild(funnelCard);
 D.camp.forEach(r => {
-const tr = el('tr');
-tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', fmt(r.at(3))), el('td', '', fmt(r.at(4))), el('td', Number(r.at(5)) >= 0 ? 'pos' : 'neg', r.at(5) + '%'));
-document.querySelector('#campTable tbody').appendChild(tr);
+  const tr = el('tr');
+  const pct = r.length > 5 ? r.at(5) : r.at(4);
+  tr.append(el('td', '', r.at(0)), el('td', '', Number(r.at(1)).toLocaleString()), el('td', '', fmt(r.at(2))), el('td', 'pos', fmt(r.at(3))), el('td', 'pos', Number(pct).toFixed(1) + '%'));
+  document.querySelector('#campTable tbody').appendChild(tr);
 });
 function renderAlerts() {
 const f = document.getElementById('alertFilter').value, q = document.getElementById('searchBox').value.toLowerCase(), tb = document.querySelector('#alertTable tbody');
