@@ -322,7 +322,7 @@ function renderPartsChart() {
   const key = sel ? sel.value : 'ALL';
   const rows = D.partsSeries[key] || D.partsSeries['ALL'];
   const lbl = sel ? sel.options[sel.selectedIndex].text : 'All 4 Rooftops';
-  document.getElementById('partsChartTitle').textContent = '36-Month Parts Sales & Gross Profit + 6-Month Forecast (' + lbl + ')';
+  document.getElementById('partsChartTitle').textContent = 'Parts Sales & Forecast — ' + lbl;
 
   const baseF = rows.slice(24, 30).map(r => Math.round(Number(r.at(1)) * 1.07));
   const optF = baseF.map((v, i) => Math.round(v * (1.05 + i * 0.012)));
