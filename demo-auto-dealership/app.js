@@ -192,13 +192,14 @@ tb.appendChild(tr);
 renderAlerts();
 
 
+
 function switchTab(n) {
-  document.getElementById('tab1View').style.display = n === 1 ? 'block' : 'none';
-  document.getElementById('tab2View').style.display = n === 2 ? 'block' : 'none';
-  document.getElementById('btnTab1').style.background = n === 1 ? '#dc2626' : '#1e293b';
-  document.getElementById('btnTab1').style.color = n === 1 ? '#fff' : '#cbd5e1';
-  document.getElementById('btnTab2').style.background = n === 2 ? '#dc2626' : '#1e293b';
-  document.getElementById('btnTab2').style.color = n === 2 ? '#fff' : '#cbd5e1';
+  new Array(1, 2, 3, 4).forEach(i => {
+    document.getElementById('tab' + i + 'View').style.display = i === n ? 'block' : 'none';
+    const b = document.getElementById('btnTab' + i);
+    b.style.background = i === n ? '#dc2626' : '#1e293b';
+    b.style.color = i === n ? '#fff' : '#cbd5e1';
+  });
 }
 
 if (D.salesReps && D.fiManagers) {
@@ -217,39 +218,98 @@ if (D.salesReps && D.fiManagers) {
     new Array('Combined Front + Back Gross', fmt(totFront + totBack), 'Combined PVR: ' + fmt(avgFrontPvr + avgBackPvr), '#f59e0b', '#10b981'),
     new Array('F&I Share of Variable Gross', Math.round(totBack / (totFront + totBack) * 100) + '% Backend', 'VSC, GAP & Protection Menus', '#a78bfa', '#10b981')
   ).forEach(k => {
-    const c = el('div', 'card');
-    c.appendChild(el('h3', '', k.at(0)));
+    const c = el('div', 'card'); c.appendChild(el('h3', '', k.at(0)));
     const v = el('div', 'val', k.at(1)); v.style.color = k.at(3);
     const sb = el('div', 'sub', k.at(2)); sb.style.color = k.at(4);
-    c.append(v, sb);
-    document.getElementById('deskKpis').appendChild(c);
+    c.append(v, sb); document.getElementById('deskKpis').appendChild(c);
   });
 
   const totVsc = D.fiManagers.reduce((s, r) => s + r.at(3), 0);
   const totGap = D.fiManagers.reduce((s, r) => s + r.at(4), 0);
   const totAnc = D.fiManagers.reduce((s, r) => s + r.at(5), 0);
   new Array(
-    new Array('Vehicle Service Contracts (VSC / Extended Warranties)', totVsc, '#10b981'),
-    new Array('GAP Insurance & Loan Protection', totGap, '#38bdf8'),
-    new Array('Paint, Interior, Tire & Wheel Protection', totAnc, '#f59e0b')
-  ).forEach(m => {
-    const rw = el('div', 'brow'), lb = el('div', 'blbl');
-    lb.append(el('span', '', m.at(0)), el('span', '', fmt(m.at(1)) + ' (' + Math.round(m.at(1) / totBack * 100) + '%)'));
-    const tk = el('div', 'btrk'), fl = el('div', 'bfil');
-    fl.style.width = Math.round(m.at(1) / totVsc * 100) + '%'; fl.style.background = m.at(2);
-    tk.appendChild(fl); rw.append(lb, tk); document.getElementById('fiMixBars').appendChild(rw);
-  });
-
-  D.salesReps.forEach(r => {
-    const tr = el('tr');
-    const uTot = r.at(2) + r.at(3);
-    tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2)), el('td', '', r.at(3)), el('td', '', uTot), el('td', 'pos', fmt(r.at(4))), el('td', 'pos', fmt(r.at(5))));
-    document.querySelector('#salesTable tbody').appendChild(tr);
-  });
-
-  D.fiManagers.forEach(r => {
-    const tr = el('tr');
-    tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2)), el('td', '', fmt(r.at(3))), el('td', '', fmt(r.at(4))), el('td', '', fmt(r.at(5))), el('td', 'pos', fmt(r.at(6))), el('td', 'pos', fmt(r.at(7))));
-    document.querySelector('#fiTable tbody').appendChild(tr);
-  });
+    new Array('Vehicle Service Contracts (VSC / Warranties)', totVsc, '#10b981'),
+new Array('GAP Insurance & Loan Protection', totGap, '#38bdf8'),
+new Array('Paint, Interior, Tire & Wheel Protection', totAnc, '#f59e0b')
+).forEach(m => {
+const rw = el('div', 'brow'), lb = el('div', 'blbl');
+lb.append(el('span', '', m.at(0)), el('span', '', fmt(m.at(1)) + ' (' + Math.round(m.at(1) / totBack * 100) + '%)'));
+const tk = el('div', 'btrk'), fl = el('div', 'bfil');
+fl.style.width = Math.round(m.at(1) / totVsc * 100) + '%'; fl.style.background = m.at(2);
+tk.appendChild(fl); rw.append(lb, tk); document.getElementById('fiMixBars').appendChild(rw);
+});
+D.salesReps.forEach(r => {
+const tr = el('tr');
+tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2)), el('td', '', r.at(3)), el('td', '', r.at(2) + r.at(3)), el('td', 'pos', fmt(r.at(4))), el('td', 'pos', fmt(r.at(5))));
+document.querySelector('#salesTable tbody').appendChild(tr);
+});
+D.fiManagers.forEach(r => {
+const tr = el('tr');
+tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2)), el('td', '', fmt(r.at(3))), el('td', '', fmt(r.at(4))), el('td', '', fmt(r.at(5))), el('td', 'pos', fmt(r.at(6))), el('td', 'pos', fmt(r.at(7))));
+document.querySelector('#fiTable tbody').appendChild(tr);
+});
+}
+if (D.serviceAdvisors) {
+const totRos = D.serviceAdvisors.reduce((s, r) => s + r.at(2), 0);
+const totCp = D.serviceAdvisors.reduce((s, r) => s + r.at(3), 0);
+const totWar = D.serviceAdvisors.reduce((s, r) => s + r.at(4), 0);
+const avgHrs = (D.serviceAdvisors.reduce((s, r) => s + r.at(5), 0) / D.serviceAdvisors.length).toFixed(1);
+const avgElr = Math.round(D.serviceAdvisors.reduce((s, r) => s + r.at(6), 0) / D.serviceAdvisors.length);
+new Array(
+new Array('Total Closed Repair Orders', totRos.toLocaleString() + ' ROs', 'Customer-Pay + Warranty', '#38bdf8', '#10b981'),
+new Array('Total Service Labor Gross', fmt(totCp + totWar), '67.5% Dept Gross Margin', '#10b981', '#10b981'),
+new Array('Customer-Pay Labor Gross', fmt(totCp), Math.round(totCp / (totCp + totWar) * 100) + '% of Total Labor', '#38bdf8', '#10b981'),
+new Array('Avg Hours Per RO', avgHrs + ' Hrs / RO', 'Target Benchmark: 2.5 Hrs', '#f59e0b', '#f59e0b'),
+new Array('Effective Labor Rate (ELR)', '$' + avgElr + ' / Hr', 'Top Advisor: $168 / Hr', '#a78bfa', '#10b981')
+).forEach(k => {
+const c = el('div', 'card'); c.appendChild(el('h3', '', k.at(0)));
+const v = el('div', 'val', k.at(1)); v.style.color = k.at(3);
+const sb = el('div', 'sub', k.at(2)); sb.style.color = k.at(4);
+c.append(v, sb); document.getElementById('svcKpis').appendChild(c);
+});
+const maxSvc = Math.max(...D.serviceAdvisors.map(r => r.at(3) + r.at(4)));
+D.serviceAdvisors.forEach((r, i) => {
+const tot = r.at(3) + r.at(4);
+const rw = el('div', 'brow'), lb = el('div', 'blbl');
+lb.append(el('span', '', r.at(0) + ' (' + r.at(5) + ' hrs/RO)'), el('span', '', fmt(tot)));
+const tk = el('div', 'btrk'), fl = el('div', 'bfil');
+fl.style.width = Math.round(tot / maxSvc * 100) + '%'; fl.style.background = i < 2 ? '#10b981' : '#38bdf8';
+tk.appendChild(fl); rw.append(lb, tk); document.getElementById('svcBars').appendChild(rw);
+});
+D.serviceAdvisors.forEach(r => {
+const tr = el('tr');
+tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2).toLocaleString()), el('td', 'pos', fmt(r.at(3))), el('td', '', fmt(r.at(4))), el('td', '', r.at(5)), el('td', 'pos', '$' + r.at(6) + '/hr'));
+document.querySelector('#svcTable tbody').appendChild(tr);
+});
+}
+if (D.partsChannels) {
+const pSales = D.partsChannels.reduce((s, r) => s + r.at(3), 0);
+const pGross = D.partsChannels.reduce((s, r) => s + r.at(4), 0);
+const pAged = D.partsChannels.reduce((s, r) => s + r.at(6), 0);
+const pGmPct = (pGross / pSales * 100).toFixed(1);
+new Array(
+new Array('Total Parts Sales', fmt(pSales), 'RO, Wholesale & Counter', '#38bdf8', '#10b981'),
+new Array('Total Parts Gross Profit', fmt(pGross), pGmPct + '% Blended Gross Margin', '#10b981', '#10b981'),
+new Array('Service RO Parts Gross', fmt(D.partsChannels.at(0).at(4)), '39.0% Internal/CP Margin', '#38bdf8', '#10b981'),
+new Array('Wholesale Collision Gross', fmt(D.partsChannels.at(1).at(4)), '29.0% Wholesale Margin', '#a78bfa', '#10b981'),
+new Array('Aged Parts (>90 Days)', fmt(pAged), 'Eligible for OEM Return Reserve', '#f43f5e', '#f59e0b')
+).forEach(k => {
+const c = el('div', 'card'); c.appendChild(el('h3', '', k.at(0)));
+const v = el('div', 'val', k.at(1)); v.style.color = k.at(3);
+const sb = el('div', 'sub', k.at(2)); sb.style.color = k.at(4);
+c.append(v, sb); document.getElementById('partsKpis').appendChild(c);
+});
+const maxP = Math.max(...D.partsChannels.map(r => r.at(4)));
+D.partsChannels.forEach((r, i) => {
+const rw = el('div', 'brow'), lb = el('div', 'blbl');
+lb.append(el('span', '', r.at(0) + ' (' + r.at(5) + '% GM)'), el('span', '', fmt(r.at(4))));
+const tk = el('div', 'btrk'), fl = el('div', 'bfil');
+fl.style.width = Math.round(r.at(4) / maxP * 100) + '%'; fl.style.background = i < 2 ? '#10b981' : '#f59e0b';
+tk.appendChild(fl); rw.append(lb, tk); document.getElementById('partsBars').appendChild(rw);
+});
+D.partsChannels.forEach(r => {
+const tr = el('tr');
+tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2).toLocaleString()), el('td', '', fmt(r.at(3))), el('td', 'pos', fmt(r.at(4))), el('td', 'pos', r.at(5) + '%'), el('td', 'neg', fmt(r.at(6))));
+document.querySelector('#partsTable tbody').appendChild(tr);
+});
 }

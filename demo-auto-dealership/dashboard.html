@@ -15,9 +15,12 @@
   <span class="badge">✓ 1,480 Duplicate DMS Profiles Merged • 6,850 CDK/VinSolutions Records Cleaned</span>
 </div>
 
-<div style="display:flex;gap:10px;margin-bottom:20px;">
-  <button id="btnTab1" onclick="switchTab(1)" style="background:#dc2626;color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13.5px;">1. Executive &amp; Fixed-Ops Overview</button>
-  <button id="btnTab2" onclick="switchTab(2)" style="background:#1e293b;color:#cbd5e1;border:1px solid #334155;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13.5px;">2. Showroom Sales &amp; F&amp;I Desk (Front / Back PVR)</button>
+
+<div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;">
+  <button id="btnTab1" onclick="switchTab(1)" style="background:#dc2626;color:#fff;border:none;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">1. Executive Overview (All Depts)</button>
+  <button id="btnTab2" onclick="switchTab(2)" style="background:#1e293b;color:#cbd5e1;border:1px solid #334155;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">2. Variable Ops: Showroom &amp; F&amp;I</button>
+  <button id="btnTab3" onclick="switchTab(3)" style="background:#1e293b;color:#cbd5e1;border:1px solid #334155;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">3. Fixed Ops: Service Drive</button>
+  <button id="btnTab4" onclick="switchTab(4)" style="background:#1e293b;color:#cbd5e1;border:1px solid #334155;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">4. Parts &amp; Wholesale</button>
 </div>
 <div id="tab1View">
 <div class="kpis" id="kpiRow"></div>
@@ -112,43 +115,39 @@
 <div id="tab2View" style="display:none;">
   <div class="kpis" id="deskKpis"></div>
   <div class="gridEq">
-    <div class="card">
-      <h3>F&amp;I Backend Product Mix (VSC Warranties, GAP &amp; Paint/Tire Protection)</h3>
-      <div id="fiMixBars"></div>
-    </div>
-    <div class="card">
-      <h3>F&amp;I Coaching &amp; Desk Profit Opportunity</h3>
-      <div class="ibox" style="border-color:#10b981;margin-bottom:12px;">
-        <h4>Backend PVR Spread: $1,780 Top vs. $1,320 Bottom</h4>
-        <div class="bstat">+$184,000 Annual F&amp;I Lift Potential</div>
-        <p style="margin:0;color:#cbd5e1;">Bringing Salisbury &amp; Lake Norman F&amp;I menus up to Charlotte Honda's VSC + GAP penetration adds ~$310/copy across 600 retail turns.</p>
-      </div>
-      <div class="ibox" style="border-color:#f59e0b;">
-        <h4>Front-End Gross Retention on Pre-Owned Units</h4>
-        <div class="bstat">+$425/Unit Front Gross Advantage</div>
-        <p style="margin:0;color:#cbd5e1;">Reps who present trade-in equity + Pre-Paid Maintenance early hold $1,720–$1,874 front PVR vs. $1,110–$1,380 for discount-first floor reps.</p>
-      </div>
+    <div class="card"><h3>F&amp;I Backend Product Mix (VSC Warranties, GAP &amp; Paint/Tire)</h3><div id="fiMixBars"></div></div>
+    <div class="card"><h3>Variable Ops &amp; Desk Profit Opportunity</h3>
+      <div class="ibox" style="border-color:#10b981;margin-bottom:12px;"><h4>Backend PVR Spread: $1,780 Top vs. $1,320 Bottom</h4><div class="bstat">+$184,000 Annual F&amp;I Lift Potential</div><p style="margin:0;color:#cbd5e1;">Aligning Salisbury &amp; Lake Norman F&amp;I menus to Charlotte Honda's VSC + GAP penetration adds ~$310/copy.</p></div>
+      <div class="ibox" style="border-color:#f59e0b;"><h4>Aged Pre-Owned Lot (&gt;45d) &amp; Unfunded CIT Focus</h4><div class="bstat">25 Aged Units • 21 Open CITs</div><p style="margin:0;color:#cbd5e1;">Re-pricing 45+ day units stops ~$55/day floorplan bleed while clearing lender stips frees $620K+ in working capital.</p></div>
     </div>
   </div>
-  <div class="card" style="margin-bottom:24px;">
-    <h3>Salesperson Unit Volume &amp; Front-End Gross Leaderboard (New vs. Pre-Owned)</h3>
-    <div class="twrap" style="max-height:320px;">
-      <table id="salesTable">
-        <thead><tr><th>Salesperson</th><th>Rooftop</th><th>New Units</th><th>Used Units</th><th>Total Units</th><th>Front-End Gross ($)</th><th>Front PVR ($)</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-  <div class="card">
-    <h3>Finance Manager (F&amp;I) Backend Gross &amp; Product Penetration Scoreboard</h3>
-    <div class="twrap" style="max-height:300px;">
-      <table id="fiTable">
-        <thead><tr><th>Finance Manager</th><th>Rooftop</th><th>Deals Turned</th><th>VSC / Warranties</th><th>GAP Insurance</th><th>Paint / Tire / Ancil.</th><th>Total Backend Gross</th><th>Backend PVR</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
+  <div class="card" style="margin-bottom:24px;"><h3>Salesperson Unit Volume &amp; Front-End Gross Leaderboard</h3><div class="twrap" style="max-height:280px;"><table id="salesTable"><thead><tr><th>Salesperson</th><th>Rooftop</th><th>New</th><th>Used</th><th>Total</th><th>Front Gross</th><th>Front PVR</th></tr></thead><tbody></tbody></table></div></div>
+  <div class="card"><h3>Finance Manager (F&amp;I) Backend Gross &amp; Product Penetration</h3><div class="twrap" style="max-height:260px;"><table id="fiTable"><thead><tr><th>Finance Manager</th><th>Rooftop</th><th>Turns</th><th>VSC / Warranty</th><th>GAP</th><th>Paint / Tire</th><th>Backend Gross</th><th>Backend PVR</th></tr></thead><tbody></tbody></table></div></div>
 </div>
-<script src="app.js?v=8"></script>
+
+<div id="tab3View" style="display:none;">
+  <div class="kpis" id="svcKpis"></div>
+  <div class="gridEq">
+    <div class="card"><h3>Service Advisor Customer-Pay vs. Warranty Gross</h3><div id="svcBars"></div></div>
+    <div class="card"><h3>Fixed-Ops Service Drive Action Priorities</h3>
+      <div class="ibox" style="border-color:#10b981;margin-bottom:12px;"><h4>Hours Per RO Lift (1.8 hrs -> 2.4 hrs)</h4><div class="bstat">+$310,000 Annual Labor Gross Opportunity</div><p style="margin:0;color:#cbd5e1;">Coaching Express &amp; Salisbury advisors on Multi-Point Inspection (MPI) walkarounds adds 0.6 hrs/RO at 67.5% labor margin.</p></div>
+      <div class="ibox" style="border-color:#f59e0b;"><h4>31 Declined MPI Brake &amp; 30K/60K Service Alerts</h4><div class="bstat">Immediate Service BDC Follow-Up Queue</div><p style="margin:0;color:#cbd5e1;">Outbound Service BDC text/call reminders within 14 days recover ~22% of declined safety &amp; factory maintenance work.</p></div>
+    </div>
+  </div>
+  <div class="card"><h3>Service Advisor Leaderboard (ROs, Effective Labor Rate &amp; Gross)</h3><div class="twrap" style="max-height:280px;"><table id="svcTable"><thead><tr><th>Service Advisor</th><th>Rooftop</th><th>Closed ROs</th><th>Customer-Pay Gross</th><th>Warranty Gross</th><th>Hours / RO</th><th>ELR ($/Hr)</th></tr></thead><tbody></tbody></table></div></div>
+</div>
+
+<div id="tab4View" style="display:none;">
+  <div class="kpis" id="partsKpis"></div>
+  <div class="gridEq">
+    <div class="card"><h3>Parts Gross Profit by Channel (RO, Wholesale &amp; Counter)</h3><div id="partsBars"></div></div>
+    <div class="card"><h3>Parts Inventory &amp; Wholesale Margin Priorities</h3>
+      <div class="ibox" style="border-color:#f43f5e;margin-bottom:12px;"><h4>$160,000 Aged / Obsolete Parts (&gt;90 Days No Movement)</h4><div class="bstat">Return-Reserve &amp; Wholesale Liquidation</div><p style="margin:0;color:#cbd5e1;">Using OEM factory return allowances before the 12-month cutoff recovers 85–90 cents on the dollar vs. write-offs.</p></div>
+      <div class="ibox" style="border-color:#10b981;"><h4>Wholesale Body-Shop Matrix Pricing Audit</h4><div class="bstat">+2.4% Wholesale Margin Lift (+$87K/yr)</h4><p style="margin:0;color:#cbd5e1;">Tightening off-matrix discounts on non-captive collision accounts lifts wholesale margin from 29.0% to 31.4%.</p></div>
+    </div>
+  </div>
+  <div class="card"><h3>Parts &amp; Wholesale Channel Breakdown</h3><div class="twrap" style="max-height:280px;"><table id="partsTable"><thead><tr><th>Parts Channel</th><th>Scope</th><th>Orders / ROs</th><th>Gross Sales</th><th>Gross Profit</th><th>Margin %</th><th>Aged &gt;90d ($)</th></tr></thead><tbody></tbody></table></div></div>
+</div>
+<script src="app.js?v=9"></script>
 </body>
 </html>
