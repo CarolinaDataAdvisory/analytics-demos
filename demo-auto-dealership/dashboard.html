@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Carolinas Auto Group — Executive Intelligence (Demo)</title>
 <link rel="stylesheet" href="style.css">
-<script src="data.js?v=2"></script>
+<script src="data.js?v=3"></script>
 </head>
 <body>
 <div class="header">
@@ -139,6 +139,24 @@
 
 <div id="tab4View" style="display:none;">
   <div class="kpis" id="partsKpis"></div>
+  <div class="card" style="margin-bottom:24px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:10px;">
+      <h3 style="margin:0;" id="partsChartTitle">36-Month Parts Sales &amp; Gross Profit + 6-Month Shaded Forecast (All 4 Rooftops)</h3>
+      <select id="partsLocSelect" onchange="renderPartsChart()" style="margin:0;font-weight:600;border-color:#dc2626;">
+        <option value="ALL">All 4 Rooftops (Group Rollup)</option>
+        <option value="Charlotte Honda &amp; Acura">Charlotte Honda &amp; Acura</option>
+        <option value="Concord Chevrolet Buick GMC">Concord Chevrolet Buick GMC</option>
+        <option value="Lake Norman Toyota &amp; Lexus">Lake Norman Toyota &amp; Lexus</option>
+        <option value="Salisbury Ford Lincoln">Salisbury Ford Lincoln</option>
+      </select>
+    </div>
+    <canvas id="partsCanvas" width="1040" height="230" style="width:100%;height:auto;background:#0f172a;border-radius:8px;border:1px solid #334155;"></canvas>
+    <div class="cleg">
+      <span>Jan 2024</span>
+      <span><b style="color:#38bdf8;">—</b> Actual Parts Sales &nbsp;|&nbsp; <b style="color:#10b981;">—</b> Parts Gross Profit &nbsp;|&nbsp; <b style="color:#a78bfa;">--</b> Baseline Forecast &nbsp;|&nbsp; <b style="color:#f59e0b;">--</b> Matrix &amp; Return Optimization</span>
+      <span>Jun 2027</span>
+    </div>
+  </div>
   <div class="gridEq">
     <div class="card"><h3>Parts Gross Profit by Channel (RO, Wholesale &amp; Counter)</h3><div id="partsBars"></div></div>
     <div class="card"><h3>Parts Inventory &amp; Wholesale Margin Priorities</h3>
@@ -148,6 +166,6 @@
   </div>
   <div class="card"><h3>Parts &amp; Wholesale Channel Breakdown</h3><div class="twrap" style="max-height:280px;"><table id="partsTable"><thead><tr><th>Parts Channel</th><th>Scope</th><th>Orders / ROs</th><th>Gross Sales</th><th>Gross Profit</th><th>Margin %</th><th>Aged &gt;90d ($)</th></tr></thead><tbody></tbody></table></div></div>
 </div>
-<script src="app.js?v=10"></script>
+<script src="app.js?v=11"></script>
 </body>
 </html>

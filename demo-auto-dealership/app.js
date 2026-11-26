@@ -314,3 +314,62 @@ tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2).toL
 document.querySelector('#partsTable tbody').appendChild(tr);
 });
 }
+
+
+function renderPartsChart() {
+  if (!D.partsSeries) return;
+  const sel = document.getElementById('partsLocSelect');
+  const key = sel ? sel.value : 'ALL';
+  const rows = D.partsSeries[key] || D.partsSeries['ALL'];
+  const lbl = sel ? sel.options[sel.selectedIndex].text : 'All 4 Rooftops';
+  document.getElementById('partsChartTitle').textContent = '36-Month Parts Sales & Gross Profit + 6-Month Forecast (' + lbl + ')';
+
+  const baseF = rows.slice(24, 30).map(r => Math.round(Number(r.at(1)) * 1.07));
+  const optF = baseF.map((v, i) => Math.round(v * (1.05 + i * 0.012)));
+
+  const cv = document.getElementById('partsCanvas'), ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height, P = 38;
+  ctx.clearRect(0, 0, W, H);
+
+  const allVals = rows.map(r => Number(r.at(1))).concat(optF);
+  const mx = Math.max(...allVals) * 1.08;
+  const totPts = rows.length + baseF.length;
+  const lastIdx = rows.length - 1;
+  const gx = i => P + (i / (totPts - 1)) * (W - P * 2);
+  const gy = v => H - P - (v / mx) * (H - P * 2);
+
+  // Shaded 6-month forecast zone
+  const fX0 = gx(lastIdx), fW = gx(totPts - 1) - fX0;
+  ctx.fillStyle = 'rgba(167,139,250,0.14)'; ctx.fillRect(fX0, 14, fW, H - P - 14);
+  ctx.strokeStyle = '#a78bfa'; ctx.setLineDash(new Array(4, 4)); ctx.beginPath(); ctx.moveTo(fX0, 14); ctx.lineTo(fX0, H - P); ctx.stroke(); ctx.setLineDash(new Array());
+  ctx.fillStyle = '#c4b5fd'; ctx.font = 'bold 11px Segoe UI'; ctx.fillText('FORECAST ZONE', fX0 + 10, 28);
+
+  // Actual Parts Sales line + area
+  ctx.beginPath(); ctx.moveTo(gx(0), H - P); rows.forEach((r, i) => ctx.lineTo(gx(i), gy(Number(r.at(1))))); ctx.lineTo(gx(lastIdx), H - P); ctx.closePath();
+  ctx.fillStyle = 'rgba(56,189,248,0.13)'; ctx.fill();
+  ctx.beginPath(); rows.forEach((r, i) => { const x = gx(i), y = gy(Number(r.at(1))); i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
+  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.5; ctx.stroke();
+
+  // Actual Parts Gross Profit line
+  ctx.beginPath(); rows.forEach((r, i) => { const x = gx(i), y = gy(Number(r.at(2))); i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
+  ctx.strokeStyle = '#10b981'; ctx.lineWidth = 2.2; ctx.stroke();
+
+  // Dual Forecast dashed lines
+  const lastSales = Number(rows.at(lastIdx).at(1));
+  ctx.setLineDash(new Array(6, 4));
+  ctx.beginPath(); ctx.moveTo(gx(lastIdx), gy(lastSales)); baseF.forEach((v, i) => ctx.lineTo(gx(lastIdx + 1 + i), gy(v))); ctx.strokeStyle = '#a78bfa'; ctx.lineWidth = 2.4; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(gx(lastIdx), gy(lastSales)); optF.forEach((v, i) => ctx.lineTo(gx(lastIdx + 1 + i), gy(v))); ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2.6; ctx.stroke();
+  ctx.setLineDash(new Array());
+
+  rows.forEach((r, i) => {
+    ctx.beginPath(); ctx.arc(gx(i), gy(Number(r.at(1))), 2.5, 0, Math.PI * 2); ctx.fillStyle = '#38bdf8'; ctx.fill();
+    ctx.beginPath(); ctx.arc(gx(i), gy(Number(r.at(2))), 2.2, 0, Math.PI * 2); ctx.fillStyle = '#10b981'; ctx.fill();
+  });
+  optF.forEach((v, i) => { ctx.beginPath(); ctx.arc(gx(lastIdx + 1 + i), gy(v), 3.6, 0, Math.PI * 2); ctx.fillStyle = '#f59e0b'; ctx.fill(); });
+
+  // Left axis labels
+  ctx.fillStyle = '#94a3b8'; ctx.font = '600 10px Segoe UI';
+  ctx.fillText(fmt(mx), 6, 18);
+  ctx.fillText(fmt(mx * 0.5), 6, (H - P) * 0.5 + 8);
+}
+renderPartsChart();
