@@ -139,22 +139,29 @@
 </div>
 
 </div>
-<div id="tab4View" style="display:none;width:100%;">
+<div id="tab4View" style="display:none;">
   <div class="kpis" id="partsKpis"></div>
-  
   <div class="gridEq">
     <div class="card"><h3>Parts Gross Profit by Channel (RO, Wholesale &amp; Counter)</h3><div id="partsBars"></div></div>
     <div class="card"><h3>Parts Inventory &amp; Wholesale Margin Priorities</h3>
       <div class="ibox" style="border-color:#f43f5e;margin-bottom:12px;"><h4>$160,000 Aged / Obsolete Parts (&gt;90 Days No Movement)</h4><div class="bstat">Return-Reserve &amp; Wholesale Liquidation</div><p style="margin:0;color:#cbd5e1;">Using OEM factory return allowances before the 12-month cutoff recovers 85–90 cents on the dollar vs. write-offs.</p></div>
-      <div class="ibox" style="border-color:#10b981;"><h4>Wholesale Body-Shop Matrix Pricing Audit</h4><div class="bstat">+2.4% Wholesale Margin Lift (+$87K/yr)</h4><p style="margin:0;color:#cbd5e1;">Tightening off-matrix discounts on non-captive collision accounts lifts wholesale margin from 29.0% to 31.4%.</p></div>
+      <div class="ibox" style="border-color:#10b981;"><h4>Wholesale Body-Shop Matrix Pricing Audit</h4><div class="bstat">+2.4% Wholesale Margin Lift (+$87K/yr)</div><p style="margin:0;color:#cbd5e1;">Tightening off-matrix discounts on non-captive collision accounts lifts wholesale margin from 29.0% to 31.4%.</p></div>
     </div>
   </div>
-  <div style="display:grid;grid-template-columns:1.1fr 1.25fr;gap:16px;width:100%;margin-bottom:0;">
-    <div class="card" style="margin:0;"><h3>Parts &amp; Wholesale Channel Breakdown</h3><div class="twrap" style="max-height:260px;"><table id="partsTable"><thead><tr><th>Parts Channel</th><th>Scope</th><th>Orders / ROs</th><th>Gross Sales</th><th>Gross Profit</th><th>Margin %</th><th>Aged &gt;90d ($)</th></tr></thead><tbody></tbody></table></div></div>
-    <div class="card" style="margin:0;">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
-        <h3 style="margin:0;" id="partsChartTitle">36-Mo Parts Trend &amp; Forecast</h3>
-        <select id="partsLocSelect" onchange="renderPartsChart()" style="margin:0;padding:5px 8px;font-size:12px;font-weight:600;border-color:#dc2626;">
+  <div class="gridEq" style="margin-bottom:0;">
+    <div class="card">
+      <h3>Parts &amp; Wholesale Channel Breakdown</h3>
+      <div class="twrap" style="max-height:265px;">
+        <table id="partsTable">
+          <thead><tr><th>Parts Channel</th><th>Scope</th><th>Orders / ROs</th><th>Gross Sales</th><th>Gross Profit</th><th>Margin %</th><th>Aged &gt;90d ($)</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+        <h3 style="margin:0;" id="partsChartTitle">Parts Sales &amp; Forecast — All 4 Rooftops</h3>
+        <select id="partsLocSelect" onchange="renderPartsChart()" style="margin:0;padding:6px 10px;font-size:12.5px;font-weight:600;border-color:#dc2626;">
           <option value="ALL">All 4 Rooftops</option>
           <option value="Charlotte Honda &amp; Acura">Charlotte Honda &amp; Acura</option>
           <option value="Concord Chevrolet Buick GMC">Concord Chevrolet Buick GMC</option>
@@ -162,15 +169,15 @@
           <option value="Salisbury Ford Lincoln">Salisbury Ford Lincoln</option>
         </select>
       </div>
-      <canvas id="partsCanvas" width="780" height="230" style="width:100%;height:auto;background:#0f172a;border-radius:8px;border:1px solid #334155;"></canvas>
+      <canvas id="partsCanvas" width="760" height="225" style="width:100%;height:auto;background:#0f172a;border-radius:8px;border:1px solid #334155;"></canvas>
       <div class="cleg">
-        <span>Jan 24</span>
-        <span><b style="color:#38bdf8;">—</b> Sales &nbsp;|&nbsp; <b style="color:#10b981;">—</b> Gross Profit &nbsp;|&nbsp; <b style="color:#a78bfa;">--</b> Base &nbsp;|&nbsp; <b style="color:#f59e0b;">--</b> Optimized</span>
-        <span>Jun 27</span>
+        <span>Jan 2024</span>
+        <span><b style="color:#38bdf8;">—</b> Parts Sales &nbsp;|&nbsp; <b style="color:#10b981;">—</b> Gross Profit &nbsp;|&nbsp; <b style="color:#a78bfa;">--</b> Baseline &nbsp;|&nbsp; <b style="color:#f59e0b;">--</b> Matrix Optimized</span>
+        <span>Jun 2027</span>
       </div>
     </div>
   </div>
 </div>
-<script src="app.js?v=14"></script>
+<script src="app.js?v=15"></script>
 </body>
 </html>
