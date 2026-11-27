@@ -12,7 +12,7 @@ const fullRev = Math.round(annualPool * 0.09);
 const halfRev = Math.round(annualPool * 0.09);
 const yrRev = fullRev + halfRev;
 const monthlyLift = Math.round(yrRev / 12);
-const fvWinback = fvBase.map((v, i) => v + Math.round(monthlyLift * (0.6 + i * 0.16)));
+const fvWinback = fvBase.map((v, i) => v + Math.round(monthlyLift * (0.6 + i * 0.16)) + Math.round(145000 + i * 36667));
 const fWinTot = fvWinback.reduce((s, v) => s + v, 0);
 const liftGain = fWinTot - fBaseTot;
 const outCost = D.churnCount * 35;
