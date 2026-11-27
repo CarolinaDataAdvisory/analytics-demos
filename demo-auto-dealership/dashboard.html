@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Carolinas Auto Group — Executive Intelligence (Demo)</title>
 <link rel="stylesheet" href="style.css">
-<script src="data.js?v=10"></script>
+<script src="data.js?v=12"></script>
 </head>
 <body>
 <div class="header">
@@ -21,6 +21,7 @@
   <button id="btnTab2" onclick="switchTab(2)" style="background:#1e293b;color:#cbd5e1;border:1px solid #334155;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">2. Variable Ops: Showroom &amp; F&amp;I</button>
   <button id="btnTab3" onclick="switchTab(3)" style="background:#1e293b;color:#cbd5e1;border:1px solid #334155;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">3. Fixed Ops: Service Drive</button>
   <button id="btnTab4" onclick="switchTab(4)" style="background:#1e293b;color:#cbd5e1;border:1px solid #334155;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">4. Parts &amp; Wholesale</button>
+  <button id="btnTab5" onclick="switchTab(5)" style="background:#1e293b;color:#cbd5e1;border:1px solid #334155;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">5. Service-to-Sales Equity</button>
 </div>
 <div id="tab1View">
 <div class="kpis" id="kpiRow"></div>
@@ -211,6 +212,35 @@
   </div>
 </div>
 </div>
+<div id="tab5View" style="display:none;">
+  <div class="kpis">
+    <div class="card"><h3>High-Equity Service Appts</h3><div class="val" style="color:#10b981;">48 Vehicles</div><div class="sub" style="color:#10b981;">2022–2024 Models in Lane This Wk</div></div>
+    <div class="card"><h3>Total Trade-In Equity</h3><div class="val" style="color:#38bdf8;">$342,800</div><div class="sub" style="color:#10b981;">Avg +$7,140 Equity Per Vehicle</div></div>
+    <div class="card"><h3>Projected Upgrade Gross</h3><div class="val" style="color:#f59e0b;">$118,400 / mo</div><div class="sub" style="color:#10b981;">Front + F&amp;I Combined @ 25% Close</div></div>
+    <div class="card"><h3>Avg Payment Delta</h3><div class="val" style="color:#a78bfa;">+$13 / mo</div><div class="sub" style="color:#10b981;">Near-Identical Payment Upgrade</div></div>
+    <div class="card"><h3>ROs Eligible to Waive</h3><div class="val" style="color:#f43f5e;">$18,900</div><div class="sub" style="color:#f59e0b;">Credit Repair Bill Toward Trade</div></div>
+  </div>
+  <div class="gridEq">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
+        <h3 style="margin:0;" id="eqChartTitle">Service-to-Sales Upgrade Gross + Forecast</h3>
+        <select id="eqLocSelect" onchange="renderEquityTab()" style="margin:0;padding:5px 10px;font-size:12px;font-weight:600;border-color:#dc2626;">
+          <option value="ALL">All 4 Rooftops</option>
+          <option value="Charlotte Honda &amp; Acura">Charlotte Honda &amp; Acura</option>
+          <option value="Concord Chevrolet Buick GMC">Concord Chevrolet Buick GMC</option>
+          <option value="Lake Norman Toyota &amp; Lexus">Lake Norman Toyota &amp; Lexus</option>
+          <option value="Salisbury Ford Lincoln">Salisbury Ford Lincoln</option>
+        </select>
+      </div>
+      <canvas id="eqCanvas" width="760" height="220" style="width:100%;height:auto;background:#0f172a;border-radius:8px;border:1px solid #334155;"></canvas>
+    </div>
+    <div class="card"><h3>Service-Lane Sourcing Advantage</h3>
+      <div class="ibox" style="border-color:#10b981;margin-bottom:12px;"><h4>+$1,450 Front Gross Advantage Over Auctions</h4><div class="bstat">Zero Auction Fees • Known Service History</div><p style="margin:0;color:#cbd5e1;">Acquiring clean 1-owner trades in the service drive saves $650+ in auction fees and cuts recon by 35%.</p></div>
+      <div class="ibox" style="border-color:#f59e0b;"><h4>Replaces $3,500/Mo Equity Mining Software</h4><div class="bstat">$42,000 Annual Vendor Savings</div><p style="margin:0;color:#cbd5e1;">Built directly from existing DMS Service Appointments + Sales History CSVs.</p></div>
+    </div>
+  </div>
+  <div class="card"><h3>This Week's High-Equity Service Lane Appointment Queue</h3><div class="twrap" style="max-height:290px;"><table id="eqTable"><thead><tr><th>Appt Time</th><th>Rooftop</th><th>Customer</th><th>Current Vehicle</th><th>Booked RO</th><th>Est. Equity</th><th>Upgrade Pmt</th><th>VIP Owner</th></tr></thead><tbody></tbody></table></div></div>
+</div>
 <script src="app.js?v=18"></script>
 <script id="deskFilterScript">
 function renderDeskTables() {
@@ -252,6 +282,45 @@ function renderDeskTables() {
 }
 document.addEventListener('DOMContentLoaded', renderDeskTables);
 setTimeout(renderDeskTables, 150);
+</script>
+<script id="eqScript">
+function renderEquityTab() {
+  const d = window.DASH_DATA;
+  if (!d || !d.equitySeries || !d.equityQueue) return;
+  const sel = document.getElementById('eqLocSelect');
+  const loc = sel ? sel.value : 'ALL';
+  const rows = d.equitySeries[loc] || d.equitySeries['ALL'];
+  const baseF = rows.slice(6, 12).map(r => Math.round(r[1] * 1.08));
+  const optF = baseF.map((v, i) => Math.round(v * (1.14 + i * 0.025)));
+  const cv = document.getElementById('eqCanvas');
+  if (cv) {
+    const ctx = cv.getContext('2d'), W = cv.width, H = cv.height, P = 40;
+    ctx.clearRect(0, 0, W, H);
+    const mx = Math.max(...rows.map(r => r[1]).concat(optF)) * 1.1;
+    const tot = rows.length + baseF.length, last = rows.length - 1;
+    const gx = i => P + (i / (tot - 1)) * (W - P * 2);
+    const gy = v => H - P - (v / mx) * (H - P * 2);
+    ctx.fillStyle = 'rgba(167,139,250,0.14)'; ctx.fillRect(gx(last), 14, gx(tot - 1) - gx(last), H - P - 14);
+    ctx.beginPath(); rows.forEach((r, i) => i === 0 ? ctx.moveTo(gx(i), gy(r[1])) : ctx.lineTo(gx(i), gy(r[1])));
+    ctx.strokeStyle = '#10b981'; ctx.lineWidth = 2.6; ctx.stroke();
+    ctx.setLineDash([6, 4]);
+    ctx.beginPath(); ctx.moveTo(gx(last), gy(rows[last][1])); baseF.forEach((v, i) => ctx.lineTo(gx(last + 1 + i), gy(v))); ctx.strokeStyle = '#38bdf8'; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(gx(last), gy(rows[last][1])); optF.forEach((v, i) => ctx.lineTo(gx(last + 1 + i), gy(v))); ctx.strokeStyle = '#f59e0b'; ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#94a3b8'; ctx.font = '600 10px Segoe UI';
+    ctx.fillText('$' + Math.round(mx / 1000) + 'K', 6, 18);
+  }
+  const tb = document.querySelector('#eqTable tbody');
+  if (tb) {
+    tb.innerHTML = '';
+    (loc === 'ALL' ? d.equityQueue : d.equityQueue.filter(r => r[1] === loc)).forEach(r => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td>'+r[0]+'</td><td>'+r[1]+'</td><td><b>'+r[2]+'</b></td><td>'+r[3]+'</td><td>'+r[4]+'</td><td class="pos">+$'+r[5].toLocaleString()+'</td><td class="pos">'+r[6]+'</td><td>'+r[7]+'</td>';
+      tb.appendChild(tr);
+    });
+  }
+}
+setTimeout(renderEquityTab, 250);
 </script>
 </body>
 </html>
