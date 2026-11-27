@@ -239,16 +239,35 @@ const tk = el('div', 'btrk'), fl = el('div', 'bfil');
 fl.style.width = Math.round(m.at(1) / totVsc * 100) + '%'; fl.style.background = m.at(2);
 tk.appendChild(fl); rw.append(lb, tk); document.getElementById('fiMixBars').appendChild(rw);
 });
-D.salesReps.forEach(r => {
-const tr = el('tr');
-tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2)), el('td', '', r.at(3)), el('td', '', r.at(2) + r.at(3)), el('td', 'pos', fmt(r.at(4))), el('td', 'pos', fmt(r.at(5))));
-document.querySelector('#salesTable tbody').appendChild(tr);
-});
-D.fiManagers.forEach(r => {
-const tr = el('tr');
-tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2)), el('td', '', fmt(r.at(3))), el('td', '', fmt(r.at(4))), el('td', '', fmt(r.at(5))), el('td', 'pos', fmt(r.at(6))), el('td', 'pos', fmt(r.at(7))));
-document.querySelector('#fiTable tbody').appendChild(tr);
-});
+window.renderDeskTables = function() {
+    const sel = document.getElementById('deskLocSelect');
+    const loc = sel ? sel.value : 'ALL';
+    const sBody = document.querySelector('#salesTable tbody');
+    const fBody = document.querySelector('#fiTable tbody');
+    if (!sBody || !fBody) return;
+    sBody.innerHTML = '';
+    fBody.innerHTML = '';
+
+    const sRows = (loc === 'ALL' ? D.salesReps.slice().sort((a, b) => b.at(4) - a.at(4)).slice(0, 8) : D.salesReps.filter(r => r.at(1) === loc).sort((a, b) => b.at(4) - a.at(4)));
+    const fRows = (loc === 'ALL' ? D.fiManagers.slice().sort((a, b) => b.at(6) - a.at(6)).slice(0, 6) : D.fiManagers.filter(r => r.at(1) === loc).sort((a, b) => b.at(6) - a.at(6)));
+
+    const lbl = loc === 'ALL' ? 'Top Across Group' : loc + ' — Ranked Best to Worst';
+    const sh = document.getElementById('salesHdr'); if (sh) sh.textContent = 'Salesperson Unit Volume & Front-End Gross Leaderboard (' + lbl + ')';
+    const fh = document.getElementById('fiHdr'); if (fh) fh.textContent = 'Finance Manager (F&I) Backend Gross & Product Penetration (' + lbl + ')';
+
+    sRows.forEach((r, idx) => {
+      const tr = el('tr');
+      tr.append(el('td', '', '#' + (idx + 1) + ' ' + r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2)), el('td', '', r.at(3)), el('td', '', r.at(2) + r.at(3)), el('td', 'pos', fmt(r.at(4))), el('td', 'pos', fmt(r.at(5))));
+      sBody.appendChild(tr);
+    });
+
+    fRows.forEach((r, idx) => {
+      const tr = el('tr');
+      tr.append(el('td', '', '#' + (idx + 1) + ' ' + r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2)), el('td', '', fmt(r.at(3))), el('td', '', fmt(r.at(4))), el('td', '', fmt(r.at(5))), el('td', 'pos', fmt(r.at(6))), el('td', 'pos', fmt(r.at(7))));
+      fBody.appendChild(tr);
+    });
+  };
+  window.renderDeskTables();
 }
 if (D.serviceAdvisors) {
 const totRos = D.serviceAdvisors.reduce((s, r) => s + r.at(2), 0);
