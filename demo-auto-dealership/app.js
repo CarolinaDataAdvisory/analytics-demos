@@ -82,8 +82,12 @@ D.vol.forEach((r, i) => {
   fl.style.width = (Number(r.at(3)) / ml * 100).toFixed(1) + '%'; fl.style.background = i === 0 ? '#10b981' : '#64748b';
   tk.appendChild(fl); rw.append(lb, tk); document.getElementById('volBars').appendChild(rw);
 });
-const tp = el('div', 'ibox', 'Quick Win: Enrolling 15% of Sales-Only buyers into Pre-Paid Maintenance adds ~$880K in cumulative 3-yr Fixed-Ops & trade-in gross.');
-tp.style.marginTop = '14px'; document.getElementById('volBars').appendChild(tp);
+const tp = el('div', 'ibox', 'Quick Win: Enrolling 15% of Sales-Only buyers into Pre-Paid Maintenance at F&I adds +$410K/yr in Fixed-Ops & repeat trade gross.');
+tp.style.marginTop = '12px'; document.getElementById('volBars').appendChild(tp);
+const stBox = el('div', 'ibox', '');
+stBox.style.marginTop = '12px'; stBox.style.borderColor = '#38bdf8';
+stBox.innerHTML = '<h4>6-Month All-Department Profit Lift Attribution (+$1.74M)</h4><p style="margin:0;color:#cbd5e1;line-height:1.45;"><b>Tab 2 (F&amp;I / Aged Lot):</b> +$92K &nbsp;•&nbsp; <b>Tab 3 (Service MPI):</b> +$155K<br><b>Tab 4 (Parts Matrix):</b> +$112K &nbsp;•&nbsp; <b>Tab 5 (Service-to-Sales Equity &amp; Win-Back):</b> +$1.38M</p>';
+document.getElementById('volBars').appendChild(stBox);
 
 const churnTable = document.getElementById('churnTable');
 D.churn.forEach((r, i) => {
