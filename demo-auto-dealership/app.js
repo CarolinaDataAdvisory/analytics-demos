@@ -286,11 +286,11 @@ if (D.partsChannels) {
   const pGmPct = (pGross / pSales * 100).toFixed(1);
 
   [
-    ['Total Parts Sales', fmt(pSales), 'RO, Wholesale & Counter', '#38bdf8', '#10b981'],
-    ['Total Parts Gross Profit', fmt(pGross), pGmPct + '% Blended Gross Margin', '#10b981', '#10b981'],
-    ['Service RO Parts Gross', fmt(D.partsChannels[0][4]), '39.0% Internal/CP Margin', '#38bdf8', '#10b981'],
-    ['Wholesale Collision Gross', fmt(D.partsChannels[1][4]), '29.0% Wholesale Margin', '#a78bfa', '#10b981'],
-    ['Aged Parts (>90 Days)', fmt(pAged), 'Eligible for OEM Return Reserve', '#f43f5e', '#f59e0b']
+    ['Total Parts Sales (12-Mo)', fmt(pSales), 'RO, Wholesale & Counter', '#38bdf8', '#10b981'],
+    ['Parts Gross Profit (12-Mo)', fmt(pGross), pGmPct + '% Blended Gross Margin', '#10b981', '#10b981'],
+    ['Service RO Parts Gross (12-Mo)', fmt(D.partsChannels[0][4]), '39.0% Internal/CP Margin', '#38bdf8', '#10b981'],
+    ['Wholesale Collision Gross (12-Mo)', fmt(D.partsChannels[1][4]), '29.0% Wholesale Margin', '#a78bfa', '#10b981'],
+    ['Aged Parts (>90 Days)', fmt(pAged), 'Current On-Hand • OEM Return Eligible', '#f43f5e', '#f59e0b']
   ].forEach(k => {
     const c = el('div', 'card'); c.appendChild(el('h3', '', k[0]));
     const v = el('div', 'val', k[1]); v.style.color = k[3];
