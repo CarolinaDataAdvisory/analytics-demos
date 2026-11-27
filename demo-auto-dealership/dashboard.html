@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Carolinas Auto Group — Executive Intelligence (Demo)</title>
 <link rel="stylesheet" href="style.css">
-<script src="data.js?v=6"></script>
+<script src="data.js?v=7"></script>
 </head>
 <body>
 <div class="header">
@@ -122,8 +122,18 @@
       <div class="ibox" style="border-color:#f59e0b;"><h4>Aged Pre-Owned Lot (&gt;45d) &amp; Unfunded CIT Focus</h4><div class="bstat">25 Aged Units • 21 Open CITs</div><p style="margin:0;color:#cbd5e1;">Re-pricing 45+ day units stops ~$55/day floorplan bleed while clearing lender stips frees $620K+ in working capital.</p></div>
     </div>
   </div>
-  <div class="card" style="margin-bottom:24px;"><h3>Salesperson Unit Volume &amp; Front-End Gross Leaderboard</h3><div class="twrap" style="max-height:280px;"><table id="salesTable"><thead><tr><th>Salesperson</th><th>Rooftop</th><th>New</th><th>Used</th><th>Total</th><th>Front Gross</th><th>Front PVR</th></tr></thead><tbody></tbody></table></div></div>
-  <div class="card"><h3>Finance Manager (F&amp;I) Backend Gross &amp; Product Penetration</h3><div class="twrap" style="max-height:260px;"><table id="fiTable"><thead><tr><th>Finance Manager</th><th>Rooftop</th><th>Turns</th><th>VSC / Warranty</th><th>GAP</th><th>Paint / Tire</th><th>Backend Gross</th><th>Backend PVR</th></tr></thead><tbody></tbody></table></div></div>
+  <div class="card" style="margin-bottom:24px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
+      <h3 style="margin:0;" id="salesHdr">Salesperson Unit Volume &amp; Front-End Gross Leaderboard (Top Across Group)</h3>
+      <select id="deskLocSelect" onchange="renderDeskTables()" style="margin:0;padding:6px 12px;font-size:12.5px;font-weight:600;border-color:#dc2626;">
+        <option value="ALL">All 4 Rooftops (Top Performers)</option>
+        <option value="Charlotte Honda &amp; Acura">Charlotte Honda &amp; Acura (Full Roster)</option>
+        <option value="Concord Chevrolet Buick GMC">Concord Chevrolet Buick GMC (Full Roster)</option>
+        <option value="Lake Norman Toyota &amp; Lexus">Lake Norman Toyota &amp; Lexus (Full Roster)</option>
+        <option value="Salisbury Ford Lincoln">Salisbury Ford Lincoln (Full Roster)</option>
+      </select>
+    </div><div class="twrap" style="max-height:280px;"><table id="salesTable"><thead><tr><th>Salesperson</th><th>Rooftop</th><th>New</th><th>Used</th><th>Total</th><th>Front Gross</th><th>Front PVR</th></tr></thead><tbody></tbody></table></div></div>
+  <div class="card"><h3 id="fiHdr">Finance Manager (F&amp;I) Backend Gross &amp; Product Penetration (Top Across Group)</h3><div class="twrap" style="max-height:260px;"><table id="fiTable"><thead><tr><th>Finance Manager</th><th>Rooftop</th><th>Turns</th><th>VSC / Warranty</th><th>GAP</th><th>Paint / Tire</th><th>Backend Gross</th><th>Backend PVR</th></tr></thead><tbody></tbody></table></div></div>
   <div class="card" style="margin-top:24px;border-color:#10b981;">
     <h3>Variable Ops &amp; F&amp;I Summary: Top 3 Immediate Profit Actions</h3>
     <div class="grid3" style="margin-bottom:0;">
@@ -201,6 +211,6 @@
   </div>
 </div>
 </div>
-<script src="app.js?v=15"></script>
+<script src="app.js?v=16"></script>
 </body>
 </html>
