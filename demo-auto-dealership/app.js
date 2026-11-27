@@ -214,11 +214,11 @@ if (D.salesReps && D.fiManagers) {
   const avgBackPvr = Math.round(totBack / D.fiManagers.reduce((s, r) => s + r[2], 0));
 
   [
-    ['Total Retail Units', totUnits.toLocaleString() + ' Units', totNew + ' New | ' + totUsed + ' Pre-Owned', '#38bdf8', '#10b981'],
-    ['Total Front-End Gross', fmt(totFront), 'Avg Front PVR: ' + fmt(avgFrontPvr), '#38bdf8', '#10b981'],
-    ['Total F&I Backend Gross', fmt(totBack), 'Avg Backend PVR: ' + fmt(avgBackPvr), '#10b981', '#10b981'],
-    ['Combined Front + Back Gross', fmt(totFront + totBack), 'Combined PVR: ' + fmt(avgFrontPvr + avgBackPvr), '#f59e0b', '#10b981'],
-    ['F&I Share of Variable Gross', Math.round(totBack / (totFront + totBack) * 100) + '% Backend', 'VSC, GAP & Protection Menus', '#a78bfa', '#10b981']
+    ['Retail Units Sold (12-Mo)', totUnits.toLocaleString() + ' Units', totNew + ' New | ' + totUsed + ' Pre-Owned', '#38bdf8', '#10b981'],
+    ['Front-End Gross (12-Mo)', fmt(totFront), 'Avg Front PVR: ' + fmt(avgFrontPvr), '#38bdf8', '#10b981'],
+    ['F&I Backend Gross (12-Mo)', fmt(totBack), 'Avg Backend PVR: ' + fmt(avgBackPvr), '#10b981', '#10b981'],
+    ['Combined Variable Gross (12-Mo)', fmt(totFront + totBack), 'Combined PVR: ' + fmt(avgFrontPvr + avgBackPvr), '#f59e0b', '#10b981'],
+    ['F&I Share of Gross (12-Mo)', Math.round(totBack / (totFront + totBack) * 100) + '% Backend', 'VSC, GAP & Protection Menus', '#a78bfa', '#10b981']
   ].forEach(k => {
     const c = el('div', 'card'); c.appendChild(el('h3', '', k[0]));
     const v = el('div', 'val', k[1]); v.style.color = k[3];
@@ -250,11 +250,11 @@ if (D.serviceAdvisors) {
   const avgElr = Math.round(D.serviceAdvisors.reduce((s, r) => s + r[6], 0) / D.serviceAdvisors.length);
 
   [
-    ['Total Closed Repair Orders', totRos.toLocaleString() + ' ROs', 'Customer-Pay + Warranty', '#38bdf8', '#10b981'],
-    ['Total Service Labor Gross', fmt(totCp + totWar), '67.5% Dept Gross Margin', '#10b981', '#10b981'],
-    ['Customer-Pay Labor Gross', fmt(totCp), Math.round(totCp / (totCp + totWar) * 100) + '% of Total Labor', '#38bdf8', '#10b981'],
-    ['Avg Hours Per RO', avgHrs + ' Hrs / RO', 'Target Benchmark: 2.5 Hrs', '#f59e0b', '#f59e0b'],
-    ['Effective Labor Rate (ELR)', '$' + avgElr + ' / Hr', 'Top Advisor: $168 / Hr', '#a78bfa', '#10b981']
+    ['Closed Repair Orders (12-Mo)', totRos.toLocaleString() + ' ROs', 'Customer-Pay + Warranty', '#38bdf8', '#10b981'],
+    ['Service Labor Gross (12-Mo)', fmt(totCp + totWar), '67.5% Dept Gross Margin', '#10b981', '#10b981'],
+    ['Customer-Pay Gross (12-Mo)', fmt(totCp), Math.round(totCp / (totCp + totWar) * 100) + '% of Total Labor', '#38bdf8', '#10b981'],
+    ['Avg Hours Per RO (12-Mo)', avgHrs + ' Hrs / RO', 'Target Benchmark: 2.5 Hrs', '#f59e0b', '#f59e0b'],
+    ['Effective Labor Rate (12-Mo)', '$' + avgElr + ' / Hr', 'Top Advisor: $168 / Hr', '#a78bfa', '#10b981']
   ].forEach(k => {
     const c = el('div', 'card'); c.appendChild(el('h3', '', k[0]));
     const v = el('div', 'val', k[1]); v.style.color = k[3];
