@@ -212,6 +212,7 @@
   </div>
 </div>
 </div>
+</div>
 <div id="tab5View" style="display:none;">
   <div class="kpis">
     <div class="card"><h3>High-Equity Service Appts</h3><div class="val" style="color:#10b981;">48 Vehicles</div><div class="sub" style="color:#10b981;">2022–2024 Models in Lane</div></div>
@@ -282,6 +283,17 @@ function renderDeskTables() {
 }
 document.addEventListener('DOMContentLoaded', renderDeskTables);
 setTimeout(renderDeskTables, 150);
+</script>
+<script>
+window.switchTab = function(n) {
+  new Array(1, 2, 3, 4, 5).forEach(i => {
+    const v = document.getElementById('tab' + i + 'View');
+    const b = document.getElementById('btnTab' + i);
+    if (v) v.style.display = i === n ? 'block' : 'none';
+    if (b) { b.style.background = i === n ? '#dc2626' : '#1e293b'; b.style.color = i === n ? '#fff' : '#cbd5e1'; }
+  });
+  if (n === 5 && typeof renderEquityTab === 'function') renderEquityTab();
+};
 </script>
 </body>
 </html>
