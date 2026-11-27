@@ -31,7 +31,7 @@ new Array(
   new Array('Trailing 12-Mo Revenue', fmt(D.rev.slice(24).reduce((s, r) => s + Number(r.at(2)), 0)), 'Current Mo: ' + fmt(Number(D.rev.at(35).at(2))) + ' | 6-Mo: ' + fmt(D.rev.slice(30).reduce((s, r) => s + Number(r.at(2)), 0)), '#38bdf8', '#10b981'),
   new Array('Active DMS Customers (2026)', ds.active2026.toLocaleString() + ' (' + ds.totalUnique.toLocaleString() + ' Total)', netLabel, '#38bdf8', netColor),
   new Array('6-Mo Forecast (Baseline)', fmt(fBaseTot), 'H1 2027 Sales & Fixed-Ops Forecast', '#a78bfa', '#10b981'),
-  new Array('6-Mo With Churn Outreach', fmt(fWinTot), '+' + fmt(liftGain) + ' Gain (Cost: ~' + fmt(outCost) + ')', '#10b981', '#10b981'),
+  new Array('6-Mo Optimized Forecast', fmt(fWinTot), '+' + fmt(liftGain) + ' Gain (Cost: ~' + fmt(outCost) + ')', '#10b981', '#10b981'),
   new Array('Actionable Alerts', D.alerts.length + ' Items', 'Aged Lot, Declined MPI & CIT', '#f59e0b', '#f59e0b')
 ).forEach(k => {
   const c = el('div', 'card');
@@ -47,6 +47,13 @@ const allV = D.rev.map(r => Number(r.at(2))).concat(fvWinback), mx = Math.max(..
 const lastIdx = D.rev.length - 1;
 const gx = i => P + (i / (totPts - 1)) * (W - P * 2), gy = v => H - P - (v / mx) * (H - P * 2);
 const fX0 = gx(lastIdx), fW = gx(totPts - 1) - fX0;
+ctx.font = '600 10px Segoe UI';
+new Array(0.25, 0.5, 0.75, 1).forEach(st => {
+  const val = mx * st, gyVal = H - P - (val / mx) * (H - P * 2);
+  ctx.strokeStyle = 'rgba(148,163,184,0.14)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(P, gyVal); ctx.lineTo(W - P, gyVal); ctx.stroke();
+  ctx.fillStyle = '#94a3b8'; ctx.fillText('$' + (val / 1e6).toFixed(1) + 'M', 4, gyVal + 3);
+});
 ctx.fillStyle = 'rgba(167,139,250,0.14)'; ctx.fillRect(fX0, 16, fW, H - P - 16);
 ctx.strokeStyle = '#a78bfa'; ctx.setLineDash(new Array(4, 4)); ctx.beginPath(); ctx.moveTo(fX0, 16); ctx.lineTo(fX0, H - P); ctx.stroke(); ctx.setLineDash(new Array());
 ctx.fillStyle = '#c4b5fd'; ctx.font = 'bold 11px Segoe UI'; ctx.fillText('FORECAST ZONE', fX0 + 10, 30);
