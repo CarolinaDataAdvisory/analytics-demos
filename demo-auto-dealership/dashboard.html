@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Carolinas Auto Group — Executive Intelligence (Demo)</title>
 <link rel="stylesheet" href="style.css">
-<script src="data.js?v=7"></script>
+<script src="data.js?v=8"></script>
 </head>
 <body>
 <div class="header">
@@ -226,10 +226,10 @@ function renderDeskTables() {
 
   const money = n => '$' + Math.round(Number(n)).toLocaleString();
   const sList = loc === 'ALL'
-    ? d.salesReps.slice().sort((a, b) => b.at(4) - a.at(4)).slice(0, 8)
+    ? d.salesReps.slice().sort((a, b) => b.at(4) - a.at(4)).slice(0, 12)
     : d.salesReps.filter(r => r.at(1) === loc).sort((a, b) => b.at(4) - a.at(4));
   const fList = loc === 'ALL'
-    ? d.fiManagers.slice().sort((a, b) => b.at(6) - a.at(6)).slice(0, 6)
+    ? d.fiManagers.slice().sort((a, b) => b.at(6) - a.at(6)).slice(0, 8)
     : d.fiManagers.filter(r => r.at(1) === loc).sort((a, b) => b.at(6) - a.at(6));
 
   const lbl = loc === 'ALL' ? 'Top Across Group' : loc + ' — Ranked Best to Worst';
