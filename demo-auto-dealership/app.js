@@ -362,3 +362,40 @@ function renderPartsChart() {
   ctx.fillText(fmt(mx * 0.5), 6, (H - P) * 0.5 + 8);
 }
 renderPartsChart();
+
+
+function renderEquityTab() {
+  if (!D.equitySeries || !D.equityQueue) return;
+  const sel = document.getElementById('eqLocSelect');
+  const loc = sel ? sel.value : 'ALL';
+  const rows = D.equitySeries[loc] || D.equitySeries['ALL'];
+  const baseF = rows.slice(6, 12).map(r => Math.round(r.at(1) * 1.08));
+  const optF = baseF.map((v, i) => Math.round(v * (1.14 + i * 0.025)));
+  const cv = document.getElementById('eqCanvas');
+  if (cv) {
+    const ctx = cv.getContext('2d'), W = cv.width, H = cv.height, P = 42;
+    ctx.clearRect(0, 0, W, H);
+    const mx = Math.max(...rows.map(r => r.at(1)).concat(optF)) * 1.1;
+    const tot = rows.length + baseF.length, last = rows.length - 1;
+    const gx = i => P + (i / (tot - 1)) * (W - P * 2);
+    const gy = v => H - P - (v / mx) * (H - P * 2);
+    ctx.fillStyle = 'rgba(167,139,250,0.14)'; ctx.fillRect(gx(last), 14, gx(tot - 1) - gx(last), H - P - 14);
+    ctx.beginPath(); rows.forEach((r, i) => i === 0 ? ctx.moveTo(gx(i), gy(r.at(1))) : ctx.lineTo(gx(i), gy(r.at(1))));
+    ctx.strokeStyle = '#10b981'; ctx.lineWidth = 2.6; ctx.stroke();
+    ctx.setLineDash(new Array(6, 4));
+    ctx.beginPath(); ctx.moveTo(gx(last), gy(rows.at(last).at(1))); baseF.forEach((v, i) => ctx.lineTo(gx(last + 1 + i), gy(v))); ctx.strokeStyle = '#38bdf8'; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(gx(last), gy(rows.at(last).at(1))); optF.forEach((v, i) => ctx.lineTo(gx(last + 1 + i), gy(v))); ctx.strokeStyle = '#f59e0b'; ctx.stroke();
+    ctx.setLineDash(new Array());
+    ctx.fillStyle = '#94a3b8'; ctx.font = '600 10px Segoe UI'; ctx.fillText('$' + Math.round(mx / 1000) + 'K', 6, 18);
+  }
+  const tb = document.querySelector('#eqTable tbody');
+  if (tb) {
+    tb.innerHTML = '';
+    (loc === 'ALL' ? D.equityQueue : D.equityQueue.filter(r => r.at(1) === loc)).forEach(r => {
+      const tr = el('tr');
+      tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2)), el('td', '', r.at(3)), el('td', '', r.at(4)), el('td', 'pos', '+$' + r.at(5).toLocaleString()), el('td', 'pos', r.at(6)), el('td', '', r.at(7)));
+      tb.appendChild(tr);
+    });
+  }
+}
+renderEquityTab();
