@@ -194,146 +194,125 @@ renderAlerts();
 
 
 
+
 function switchTab(n) {
-  new Array(1, 2, 3, 4).forEach(i => {
-    document.getElementById('tab' + i + 'View').style.display = i === n ? 'block' : 'none';
+  [1, 2, 3, 4].forEach(i => {
+    const v = document.getElementById('tab' + i + 'View');
     const b = document.getElementById('btnTab' + i);
-    b.style.background = i === n ? '#dc2626' : '#1e293b';
-    b.style.color = i === n ? '#fff' : '#cbd5e1';
+    if (v) v.style.display = i === n ? 'block' : 'none';
+    if (b) { b.style.background = i === n ? '#dc2626' : '#1e293b'; b.style.color = i === n ? '#fff' : '#cbd5e1'; }
   });
 }
 
 if (D.salesReps && D.fiManagers) {
-  const totNew = D.salesReps.reduce((s, r) => s + r.at(2), 0);
-  const totUsed = D.salesReps.reduce((s, r) => s + r.at(3), 0);
+  const totNew = D.salesReps.reduce((s, r) => s + r[2], 0);
+  const totUsed = D.salesReps.reduce((s, r) => s + r[3], 0);
   const totUnits = totNew + totUsed;
-  const totFront = D.salesReps.reduce((s, r) => s + r.at(4), 0);
-  const totBack = D.fiManagers.reduce((s, r) => s + r.at(6), 0);
+  const totFront = D.salesReps.reduce((s, r) => s + r[4], 0);
+  const totBack = D.fiManagers.reduce((s, r) => s + r[6], 0);
   const avgFrontPvr = Math.round(totFront / totUnits);
-  const avgBackPvr = Math.round(totBack / D.fiManagers.reduce((s, r) => s + r.at(2), 0));
+  const avgBackPvr = Math.round(totBack / D.fiManagers.reduce((s, r) => s + r[2], 0));
 
-  new Array(
-    new Array('Total Retail Units', totUnits.toLocaleString() + ' Units', totNew + ' New | ' + totUsed + ' Pre-Owned', '#38bdf8', '#10b981'),
-    new Array('Total Front-End Gross', fmt(totFront), 'Avg Front PVR: ' + fmt(avgFrontPvr), '#38bdf8', '#10b981'),
-    new Array('Total F&I Backend Gross', fmt(totBack), 'Avg Backend PVR: ' + fmt(avgBackPvr), '#10b981', '#10b981'),
-    new Array('Combined Front + Back Gross', fmt(totFront + totBack), 'Combined PVR: ' + fmt(avgFrontPvr + avgBackPvr), '#f59e0b', '#10b981'),
-    new Array('F&I Share of Variable Gross', Math.round(totBack / (totFront + totBack) * 100) + '% Backend', 'VSC, GAP & Protection Menus', '#a78bfa', '#10b981')
-  ).forEach(k => {
-    const c = el('div', 'card'); c.appendChild(el('h3', '', k.at(0)));
-    const v = el('div', 'val', k.at(1)); v.style.color = k.at(3);
-    const sb = el('div', 'sub', k.at(2)); sb.style.color = k.at(4);
+  [
+    ['Total Retail Units', totUnits.toLocaleString() + ' Units', totNew + ' New | ' + totUsed + ' Pre-Owned', '#38bdf8', '#10b981'],
+    ['Total Front-End Gross', fmt(totFront), 'Avg Front PVR: ' + fmt(avgFrontPvr), '#38bdf8', '#10b981'],
+    ['Total F&I Backend Gross', fmt(totBack), 'Avg Backend PVR: ' + fmt(avgBackPvr), '#10b981', '#10b981'],
+    ['Combined Front + Back Gross', fmt(totFront + totBack), 'Combined PVR: ' + fmt(avgFrontPvr + avgBackPvr), '#f59e0b', '#10b981'],
+    ['F&I Share of Variable Gross', Math.round(totBack / (totFront + totBack) * 100) + '% Backend', 'VSC, GAP & Protection Menus', '#a78bfa', '#10b981']
+  ].forEach(k => {
+    const c = el('div', 'card'); c.appendChild(el('h3', '', k[0]));
+    const v = el('div', 'val', k[1]); v.style.color = k[3];
+    const sb = el('div', 'sub', k[2]); sb.style.color = k[4];
     c.append(v, sb); document.getElementById('deskKpis').appendChild(c);
   });
 
-  const totVsc = D.fiManagers.reduce((s, r) => s + r.at(3), 0);
-  const totGap = D.fiManagers.reduce((s, r) => s + r.at(4), 0);
-  const totAnc = D.fiManagers.reduce((s, r) => s + r.at(5), 0);
-  new Array(
-    new Array('Vehicle Service Contracts (VSC / Warranties)', totVsc, '#10b981'),
-new Array('GAP Insurance & Loan Protection', totGap, '#38bdf8'),
-new Array('Paint, Interior, Tire & Wheel Protection', totAnc, '#f59e0b')
-).forEach(m => {
-const rw = el('div', 'brow'), lb = el('div', 'blbl');
-lb.append(el('span', '', m.at(0)), el('span', '', fmt(m.at(1)) + ' (' + Math.round(m.at(1) / totBack * 100) + '%)'));
-const tk = el('div', 'btrk'), fl = el('div', 'bfil');
-fl.style.width = Math.round(m.at(1) / totVsc * 100) + '%'; fl.style.background = m.at(2);
-tk.appendChild(fl); rw.append(lb, tk); document.getElementById('fiMixBars').appendChild(rw);
-});
-window.renderDeskTables = function() {
-    const sel = document.getElementById('deskLocSelect');
-    const loc = sel ? sel.value : 'ALL';
-    const sBody = document.querySelector('#salesTable tbody');
-    const fBody = document.querySelector('#fiTable tbody');
-    if (!sBody || !fBody) return;
-    sBody.innerHTML = '';
-    fBody.innerHTML = '';
-
-    const sRows = (loc === 'ALL' ? D.salesReps.slice().sort((a, b) => b.at(4) - a.at(4)).slice(0, 8) : D.salesReps.filter(r => r.at(1) === loc).sort((a, b) => b.at(4) - a.at(4)));
-    const fRows = (loc === 'ALL' ? D.fiManagers.slice().sort((a, b) => b.at(6) - a.at(6)).slice(0, 6) : D.fiManagers.filter(r => r.at(1) === loc).sort((a, b) => b.at(6) - a.at(6)));
-
-    const lbl = loc === 'ALL' ? 'Top Across Group' : loc + ' — Ranked Best to Worst';
-    const sh = document.getElementById('salesHdr'); if (sh) sh.textContent = 'Salesperson Unit Volume & Front-End Gross Leaderboard (' + lbl + ')';
-    const fh = document.getElementById('fiHdr'); if (fh) fh.textContent = 'Finance Manager (F&I) Backend Gross & Product Penetration (' + lbl + ')';
-
-    sRows.forEach((r, idx) => {
-      const tr = el('tr');
-      tr.append(el('td', '', '#' + (idx + 1) + ' ' + r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2)), el('td', '', r.at(3)), el('td', '', r.at(2) + r.at(3)), el('td', 'pos', fmt(r.at(4))), el('td', 'pos', fmt(r.at(5))));
-      sBody.appendChild(tr);
-    });
-
-    fRows.forEach((r, idx) => {
-      const tr = el('tr');
-      tr.append(el('td', '', '#' + (idx + 1) + ' ' + r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2)), el('td', '', fmt(r.at(3))), el('td', '', fmt(r.at(4))), el('td', '', fmt(r.at(5))), el('td', 'pos', fmt(r.at(6))), el('td', 'pos', fmt(r.at(7))));
-      fBody.appendChild(tr);
-    });
-  };
-  window.renderDeskTables();
+  const totVsc = D.fiManagers.reduce((s, r) => s + r[3], 0);
+  const totGap = D.fiManagers.reduce((s, r) => s + r[4], 0);
+  const totAnc = D.fiManagers.reduce((s, r) => s + r[5], 0);
+  [
+    ['Vehicle Service Contracts (VSC / Warranties)', totVsc, '#10b981'],
+    ['GAP Insurance & Loan Protection', totGap, '#38bdf8'],
+    ['Paint, Interior, Tire & Wheel Protection', totAnc, '#f59e0b']
+  ].forEach(m => {
+    const rw = el('div', 'brow'), lb = el('div', 'blbl');
+    lb.append(el('span', '', m[0]), el('span', '', fmt(m[1]) + ' (' + Math.round(m[1] / totBack * 100) + '%)'));
+    const tk = el('div', 'btrk'), fl = el('div', 'bfil');
+    fl.style.width = Math.round(m[1] / totVsc * 100) + '%'; fl.style.background = m[2];
+    tk.appendChild(fl); rw.append(lb, tk); document.getElementById('fiMixBars').appendChild(rw);
+  });
 }
+
 if (D.serviceAdvisors) {
-const totRos = D.serviceAdvisors.reduce((s, r) => s + r.at(2), 0);
-const totCp = D.serviceAdvisors.reduce((s, r) => s + r.at(3), 0);
-const totWar = D.serviceAdvisors.reduce((s, r) => s + r.at(4), 0);
-const avgHrs = (D.serviceAdvisors.reduce((s, r) => s + r.at(5), 0) / D.serviceAdvisors.length).toFixed(1);
-const avgElr = Math.round(D.serviceAdvisors.reduce((s, r) => s + r.at(6), 0) / D.serviceAdvisors.length);
-new Array(
-new Array('Total Closed Repair Orders', totRos.toLocaleString() + ' ROs', 'Customer-Pay + Warranty', '#38bdf8', '#10b981'),
-new Array('Total Service Labor Gross', fmt(totCp + totWar), '67.5% Dept Gross Margin', '#10b981', '#10b981'),
-new Array('Customer-Pay Labor Gross', fmt(totCp), Math.round(totCp / (totCp + totWar) * 100) + '% of Total Labor', '#38bdf8', '#10b981'),
-new Array('Avg Hours Per RO', avgHrs + ' Hrs / RO', 'Target Benchmark: 2.5 Hrs', '#f59e0b', '#f59e0b'),
-new Array('Effective Labor Rate (ELR)', '$' + avgElr + ' / Hr', 'Top Advisor: $168 / Hr', '#a78bfa', '#10b981')
-).forEach(k => {
-const c = el('div', 'card'); c.appendChild(el('h3', '', k.at(0)));
-const v = el('div', 'val', k.at(1)); v.style.color = k.at(3);
-const sb = el('div', 'sub', k.at(2)); sb.style.color = k.at(4);
-c.append(v, sb); document.getElementById('svcKpis').appendChild(c);
-});
-const maxSvc = Math.max(...D.serviceAdvisors.map(r => r.at(3) + r.at(4)));
-D.serviceAdvisors.forEach((r, i) => {
-const tot = r.at(3) + r.at(4);
-const rw = el('div', 'brow'), lb = el('div', 'blbl');
-lb.append(el('span', '', r.at(0) + ' (' + r.at(5) + ' hrs/RO)'), el('span', '', fmt(tot)));
-const tk = el('div', 'btrk'), fl = el('div', 'bfil');
-fl.style.width = Math.round(tot / maxSvc * 100) + '%'; fl.style.background = i < 2 ? '#10b981' : '#38bdf8';
-tk.appendChild(fl); rw.append(lb, tk); document.getElementById('svcBars').appendChild(rw);
-});
-D.serviceAdvisors.forEach(r => {
-const tr = el('tr');
-tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2).toLocaleString()), el('td', 'pos', fmt(r.at(3))), el('td', '', fmt(r.at(4))), el('td', '', r.at(5)), el('td', 'pos', '$' + r.at(6) + '/hr'));
-document.querySelector('#svcTable tbody').appendChild(tr);
-});
-}
-if (D.partsChannels) {
-const pSales = D.partsChannels.reduce((s, r) => s + r.at(3), 0);
-const pGross = D.partsChannels.reduce((s, r) => s + r.at(4), 0);
-const pAged = D.partsChannels.reduce((s, r) => s + r.at(6), 0);
-const pGmPct = (pGross / pSales * 100).toFixed(1);
-new Array(
-new Array('Total Parts Sales', fmt(pSales), 'RO, Wholesale & Counter', '#38bdf8', '#10b981'),
-new Array('Total Parts Gross Profit', fmt(pGross), pGmPct + '% Blended Gross Margin', '#10b981', '#10b981'),
-new Array('Service RO Parts Gross', fmt(D.partsChannels.at(0).at(4)), '39.0% Internal/CP Margin', '#38bdf8', '#10b981'),
-new Array('Wholesale Collision Gross', fmt(D.partsChannels.at(1).at(4)), '29.0% Wholesale Margin', '#a78bfa', '#10b981'),
-new Array('Aged Parts (>90 Days)', fmt(pAged), 'Eligible for OEM Return Reserve', '#f43f5e', '#f59e0b')
-).forEach(k => {
-const c = el('div', 'card'); c.appendChild(el('h3', '', k.at(0)));
-const v = el('div', 'val', k.at(1)); v.style.color = k.at(3);
-const sb = el('div', 'sub', k.at(2)); sb.style.color = k.at(4);
-c.append(v, sb); document.getElementById('partsKpis').appendChild(c);
-});
-const maxP = Math.max(...D.partsChannels.map(r => r.at(4)));
-D.partsChannels.forEach((r, i) => {
-const rw = el('div', 'brow'), lb = el('div', 'blbl');
-lb.append(el('span', '', r.at(0) + ' (' + r.at(5) + '% GM)'), el('span', '', fmt(r.at(4))));
-const tk = el('div', 'btrk'), fl = el('div', 'bfil');
-fl.style.width = Math.round(r.at(4) / maxP * 100) + '%'; fl.style.background = i < 2 ? '#10b981' : '#f59e0b';
-tk.appendChild(fl); rw.append(lb, tk); document.getElementById('partsBars').appendChild(rw);
-});
-D.partsChannels.forEach(r => {
-const tr = el('tr');
-tr.append(el('td', '', r.at(0)), el('td', '', r.at(1)), el('td', '', r.at(2).toLocaleString()), el('td', '', fmt(r.at(3))), el('td', 'pos', fmt(r.at(4))), el('td', 'pos', r.at(5) + '%'), el('td', 'neg', fmt(r.at(6))));
-document.querySelector('#partsTable tbody').appendChild(tr);
-});
+  const totRos = D.serviceAdvisors.reduce((s, r) => s + r[2], 0);
+  const totCp = D.serviceAdvisors.reduce((s, r) => s + r[3], 0);
+  const totWar = D.serviceAdvisors.reduce((s, r) => s + r[4], 0);
+  const avgHrs = (D.serviceAdvisors.reduce((s, r) => s + r[5], 0) / D.serviceAdvisors.length).toFixed(1);
+  const avgElr = Math.round(D.serviceAdvisors.reduce((s, r) => s + r[6], 0) / D.serviceAdvisors.length);
+
+  [
+    ['Total Closed Repair Orders', totRos.toLocaleString() + ' ROs', 'Customer-Pay + Warranty', '#38bdf8', '#10b981'],
+    ['Total Service Labor Gross', fmt(totCp + totWar), '67.5% Dept Gross Margin', '#10b981', '#10b981'],
+    ['Customer-Pay Labor Gross', fmt(totCp), Math.round(totCp / (totCp + totWar) * 100) + '% of Total Labor', '#38bdf8', '#10b981'],
+    ['Avg Hours Per RO', avgHrs + ' Hrs / RO', 'Target Benchmark: 2.5 Hrs', '#f59e0b', '#f59e0b'],
+    ['Effective Labor Rate (ELR)', '$' + avgElr + ' / Hr', 'Top Advisor: $168 / Hr', '#a78bfa', '#10b981']
+  ].forEach(k => {
+    const c = el('div', 'card'); c.appendChild(el('h3', '', k[0]));
+    const v = el('div', 'val', k[1]); v.style.color = k[3];
+    const sb = el('div', 'sub', k[2]); sb.style.color = k[4];
+    c.append(v, sb); document.getElementById('svcKpis').appendChild(c);
+  });
+
+  const maxSvc = Math.max(...D.serviceAdvisors.map(r => r[3] + r[4]));
+  D.serviceAdvisors.forEach((r, i) => {
+    const tot = r[3] + r[4];
+    const rw = el('div', 'brow'), lb = el('div', 'blbl');
+    lb.append(el('span', '', r[0] + ' (' + r[5] + ' hrs/RO)'), el('span', '', fmt(tot)));
+    const tk = el('div', 'btrk'), fl = el('div', 'bfil');
+    fl.style.width = Math.round(tot / maxSvc * 100) + '%'; fl.style.background = i < 2 ? '#10b981' : '#38bdf8';
+    tk.appendChild(fl); rw.append(lb, tk); document.getElementById('svcBars').appendChild(rw);
+  });
+
+  D.serviceAdvisors.forEach(r => {
+    const tr = el('tr');
+    tr.append(el('td', '', r[0]), el('td', '', r[1]), el('td', '', r[2].toLocaleString()), el('td', 'pos', fmt(r[3])), el('td', '', fmt(r[4])), el('td', '', r[5]), el('td', 'pos', '$' + r[6] + '/hr'));
+    document.querySelector('#svcTable tbody').appendChild(tr);
+  });
 }
 
+if (D.partsChannels) {
+  const pSales = D.partsChannels.reduce((s, r) => s + r[3], 0);
+  const pGross = D.partsChannels.reduce((s, r) => s + r[4], 0);
+  const pAged = D.partsChannels.reduce((s, r) => s + r[6], 0);
+  const pGmPct = (pGross / pSales * 100).toFixed(1);
+
+  [
+    ['Total Parts Sales', fmt(pSales), 'RO, Wholesale & Counter', '#38bdf8', '#10b981'],
+    ['Total Parts Gross Profit', fmt(pGross), pGmPct + '% Blended Gross Margin', '#10b981', '#10b981'],
+    ['Service RO Parts Gross', fmt(D.partsChannels[0][4]), '39.0% Internal/CP Margin', '#38bdf8', '#10b981'],
+    ['Wholesale Collision Gross', fmt(D.partsChannels[1][4]), '29.0% Wholesale Margin', '#a78bfa', '#10b981'],
+    ['Aged Parts (>90 Days)', fmt(pAged), 'Eligible for OEM Return Reserve', '#f43f5e', '#f59e0b']
+  ].forEach(k => {
+    const c = el('div', 'card'); c.appendChild(el('h3', '', k[0]));
+    const v = el('div', 'val', k[1]); v.style.color = k[3];
+    const sb = el('div', 'sub', k[2]); sb.style.color = k[4];
+    c.append(v, sb); document.getElementById('partsKpis').appendChild(c);
+  });
+
+  const maxP = Math.max(...D.partsChannels.map(r => r[4]));
+  D.partsChannels.forEach((r, i) => {
+    const rw = el('div', 'brow'), lb = el('div', 'blbl');
+    lb.append(el('span', '', r[0] + ' (' + r[5] + '% GM)'), el('span', '', fmt(r[4])));
+    const tk = el('div', 'btrk'), fl = el('div', 'bfil');
+    fl.style.width = Math.round(r[4] / maxP * 100) + '%'; fl.style.background = i < 2 ? '#10b981' : '#f59e0b';
+    tk.appendChild(fl); rw.append(lb, tk); document.getElementById('partsBars').appendChild(rw);
+  });
+
+  D.partsChannels.forEach(r => {
+    const tr = el('tr');
+    tr.append(el('td', '', r[0]), el('td', '', r[1]), el('td', '', r[2].toLocaleString()), el('td', '', fmt(r[3])), el('td', 'pos', fmt(r[4])), el('td', 'pos', r[5] + '%'), el('td', 'neg', fmt(r[6])));
+    document.querySelector('#partsTable tbody').appendChild(tr);
+  });
+}
 
 function renderPartsChart() {
   if (!D.partsSeries) return;
@@ -341,52 +320,43 @@ function renderPartsChart() {
   const key = sel ? sel.value : 'ALL';
   const rows = D.partsSeries[key] || D.partsSeries['ALL'];
   const lbl = sel ? sel.options[sel.selectedIndex].text : 'All 4 Rooftops';
-  document.getElementById('partsChartTitle').textContent = 'Parts Sales & Forecast — ' + lbl;
+  const tEl = document.getElementById('partsChartTitle');
+  if (tEl) tEl.textContent = 'Parts Sales & Forecast — ' + lbl;
 
-  const baseF = rows.slice(24, 30).map(r => Math.round(Number(r.at(1)) * 1.07));
+  const baseF = rows.slice(24, 30).map(r => Math.round(Number(r[1]) * 1.07));
   const optF = baseF.map((v, i) => Math.round(v * (1.05 + i * 0.012)));
 
-  const cv = document.getElementById('partsCanvas'), ctx = cv.getContext('2d');
-  const W = cv.width, H = cv.height, P = 38;
+  const cv = document.getElementById('partsCanvas');
+  if (!cv) return;
+  const ctx = cv.getContext('2d'), W = cv.width, H = cv.height, P = 38;
   ctx.clearRect(0, 0, W, H);
 
-  const allVals = rows.map(r => Number(r.at(1))).concat(optF);
+  const allVals = rows.map(r => Number(r[1])).concat(optF);
   const mx = Math.max(...allVals) * 1.08;
   const totPts = rows.length + baseF.length;
   const lastIdx = rows.length - 1;
   const gx = i => P + (i / (totPts - 1)) * (W - P * 2);
   const gy = v => H - P - (v / mx) * (H - P * 2);
 
-  // Shaded 6-month forecast zone
   const fX0 = gx(lastIdx), fW = gx(totPts - 1) - fX0;
   ctx.fillStyle = 'rgba(167,139,250,0.14)'; ctx.fillRect(fX0, 14, fW, H - P - 14);
-  ctx.strokeStyle = '#a78bfa'; ctx.setLineDash(new Array(4, 4)); ctx.beginPath(); ctx.moveTo(fX0, 14); ctx.lineTo(fX0, H - P); ctx.stroke(); ctx.setLineDash(new Array());
+  ctx.strokeStyle = '#a78bfa'; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(fX0, 14); ctx.lineTo(fX0, H - P); ctx.stroke(); ctx.setLineDash([]);
   ctx.fillStyle = '#c4b5fd'; ctx.font = 'bold 11px Segoe UI'; ctx.fillText('FORECAST ZONE', fX0 + 10, 28);
 
-  // Actual Parts Sales line + area
-  ctx.beginPath(); ctx.moveTo(gx(0), H - P); rows.forEach((r, i) => ctx.lineTo(gx(i), gy(Number(r.at(1))))); ctx.lineTo(gx(lastIdx), H - P); ctx.closePath();
+  ctx.beginPath(); ctx.moveTo(gx(0), H - P); rows.forEach((r, i) => ctx.lineTo(gx(i), gy(Number(r[1])))); ctx.lineTo(gx(lastIdx), H - P); ctx.closePath();
   ctx.fillStyle = 'rgba(56,189,248,0.13)'; ctx.fill();
-  ctx.beginPath(); rows.forEach((r, i) => { const x = gx(i), y = gy(Number(r.at(1))); i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
+  ctx.beginPath(); rows.forEach((r, i) => { const x = gx(i), y = gy(Number(r[1])); i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
   ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.5; ctx.stroke();
 
-  // Actual Parts Gross Profit line
-  ctx.beginPath(); rows.forEach((r, i) => { const x = gx(i), y = gy(Number(r.at(2))); i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
+  ctx.beginPath(); rows.forEach((r, i) => { const x = gx(i), y = gy(Number(r[2])); i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
   ctx.strokeStyle = '#10b981'; ctx.lineWidth = 2.2; ctx.stroke();
 
-  // Dual Forecast dashed lines
-  const lastSales = Number(rows.at(lastIdx).at(1));
-  ctx.setLineDash(new Array(6, 4));
+  const lastSales = Number(rows[lastIdx][1]);
+  ctx.setLineDash([6, 4]);
   ctx.beginPath(); ctx.moveTo(gx(lastIdx), gy(lastSales)); baseF.forEach((v, i) => ctx.lineTo(gx(lastIdx + 1 + i), gy(v))); ctx.strokeStyle = '#a78bfa'; ctx.lineWidth = 2.4; ctx.stroke();
   ctx.beginPath(); ctx.moveTo(gx(lastIdx), gy(lastSales)); optF.forEach((v, i) => ctx.lineTo(gx(lastIdx + 1 + i), gy(v))); ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2.6; ctx.stroke();
-  ctx.setLineDash(new Array());
+  ctx.setLineDash([]);
 
-  rows.forEach((r, i) => {
-    ctx.beginPath(); ctx.arc(gx(i), gy(Number(r.at(1))), 2.5, 0, Math.PI * 2); ctx.fillStyle = '#38bdf8'; ctx.fill();
-    ctx.beginPath(); ctx.arc(gx(i), gy(Number(r.at(2))), 2.2, 0, Math.PI * 2); ctx.fillStyle = '#10b981'; ctx.fill();
-  });
-  optF.forEach((v, i) => { ctx.beginPath(); ctx.arc(gx(lastIdx + 1 + i), gy(v), 3.6, 0, Math.PI * 2); ctx.fillStyle = '#f59e0b'; ctx.fill(); });
-
-  // Left axis labels
   ctx.fillStyle = '#94a3b8'; ctx.font = '600 10px Segoe UI';
   ctx.fillText(fmt(mx), 6, 18);
   ctx.fillText(fmt(mx * 0.5), 6, (H - P) * 0.5 + 8);
