@@ -28,7 +28,7 @@ const netLabel = (ds.netChange >= 0 ? 'UP ' : 'DOWN ') + netSign + ds.netChange.
 const netColor = ds.netChange >= 0 ? '#10b981' : '#f43f5e';
 
 new Array(
-  new Array('Trailing 12-Mo Revenue', fmt(D.rev.slice(-12).reduce((s, r) => s + Number(r.at(2)), 0)), 'Current Mo: ' + fmt(Number(D.rev.at(-1).at(2))) + ' | 6-Mo: ' + fmt(D.rev.slice(-6).reduce((s, r) => s + Number(r.at(2)), 0)), '#38bdf8', '#10b981'), 'Current Mo: ' + fmt(Number(D.rev.at(-1).at(1))) + ' | 6-Mo: ' + fmt(D.rev.slice(-6).reduce((s, r) => s + Number(r.at(1)), 0)), '#38bdf8', '#10b981'),
+  new Array('Trailing 12-Mo Revenue', fmt(D.rev.slice(24).reduce((s, r) => s + Number(r.at(2)), 0)), 'Current Mo: ' + fmt(Number(D.rev.at(35).at(2))) + ' | 6-Mo: ' + fmt(D.rev.slice(30).reduce((s, r) => s + Number(r.at(2)), 0)), '#38bdf8', '#10b981'), 0)), 'Current Mo: ' + fmt(Number(D.rev.at(-1).at(2))) + ' | 6-Mo: ' + fmt(D.rev.slice(-6).reduce((s, r) => s + Number(r.at(2)), 0)), '#38bdf8', '#10b981'), 'Current Mo: ' + fmt(Number(D.rev.at(-1).at(1))) + ' | 6-Mo: ' + fmt(D.rev.slice(-6).reduce((s, r) => s + Number(r.at(1)), 0)), '#38bdf8', '#10b981'),
   new Array('Active DMS Customers (2026)', ds.active2026.toLocaleString() + ' (' + ds.totalUnique.toLocaleString() + ' Total)', netLabel, '#38bdf8', netColor),
   new Array('6-Mo Forecast (Baseline)', fmt(fBaseTot), 'H1 2027 Sales & Fixed-Ops Forecast', '#a78bfa', '#10b981'),
   new Array('6-Mo With Churn Outreach', fmt(fWinTot), '+' + fmt(liftGain) + ' Gain (Cost: ~' + fmt(outCost) + ')', '#10b981', '#10b981'),
