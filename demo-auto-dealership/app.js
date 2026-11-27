@@ -141,7 +141,7 @@ const progWrap = document.getElementById('progBars');
 const mc = Math.max(...D.prog.map(r => Number(r.at(4))));
 D.prog.forEach((r, i) => {
   const rw = el('div', 'brow'), lb = el('div', 'blbl');
-  lb.append(el('span', '', r.at(0) + ' (' + fmt(r.at(2)) + ' rev)'), el('span', '', '$' + Number(r.at(4)).toFixed(2) + ' / person'));
+  lb.append(el('span', '', r.at(0) + ' (' + fmt(r.at(2)) + ' rev)'), el('span', '', '$' + Number(r.at(4)).toFixed(2) + '% GM'));
   const tk = el('div', 'btrk'), fl = el('div', 'bfil');
   fl.style.width = (Number(r.at(4)) / mc * 100).toFixed(1) + '%'; fl.style.background = i === 0 ? '#10b981' : '#818cf8';
   tk.appendChild(fl); rw.append(lb, tk); progWrap.appendChild(rw);
