@@ -212,5 +212,46 @@
 </div>
 </div>
 <script src="app.js?v=18"></script>
+<script id="deskFilterScript">
+function renderDeskTables() {
+  const d = window.DASH_DATA;
+  if (!d || !d.salesReps || !d.fiManagers) return;
+  const sel = document.getElementById('deskLocSelect');
+  const loc = sel ? sel.value : 'ALL';
+  const sBody = document.querySelector('#salesTable tbody');
+  const fBody = document.querySelector('#fiTable tbody');
+  if (!sBody || !fBody) return;
+  sBody.innerHTML = '';
+  fBody.innerHTML = '';
+
+  const money = n => '$' + Math.round(Number(n)).toLocaleString();
+  const sList = loc === 'ALL'
+    ? d.salesReps.slice().sort((a, b) => b.at(4) - a.at(4)).slice(0, 8)
+    : d.salesReps.filter(r => r.at(1) === loc).sort((a, b) => b.at(4) - a.at(4));
+  const fList = loc === 'ALL'
+    ? d.fiManagers.slice().sort((a, b) => b.at(6) - a.at(6)).slice(0, 6)
+    : d.fiManagers.filter(r => r.at(1) === loc).sort((a, b) => b.at(6) - a.at(6));
+
+  const lbl = loc === 'ALL' ? 'Top Across Group' : loc + ' — Ranked Best to Worst';
+  const sh = document.getElementById('salesHdr');
+  if (sh) sh.textContent = 'Salesperson Unit Volume & Front-End Gross Leaderboard (' + lbl + ')';
+  const fh = document.getElementById('fiHdr');
+  if (fh) fh.textContent = 'Finance Manager (F&I) Backend Gross & Product Penetration (' + lbl + ')';
+
+  sList.forEach((r, i) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = '<td>#' + (i + 1) + ' ' + r.at(0) + '</td><td>' + r.at(1) + '</td><td>' + r.at(2) + '</td><td>' + r.at(3) + '</td><td>' + (r.at(2) + r.at(3)) + '</td><td class="pos">' + money(r.at(4)) + '</td><td class="pos">' + money(r.at(5)) + '</td>';
+    sBody.appendChild(tr);
+  });
+
+  fList.forEach((r, i) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = '<td>#' + (i + 1) + ' ' + r.at(0) + '</td><td>' + r.at(1) + '</td><td>' + r.at(2) + '</td><td>' + money(r.at(3)) + '</td><td>' + money(r.at(4)) + '</td><td>' + money(r.at(5)) + '</td><td class="pos">' + money(r.at(6)) + '</td><td class="pos">' + money(r.at(7)) + '</td>';
+    fBody.appendChild(tr);
+  });
+}
+document.addEventListener('DOMContentLoaded', renderDeskTables);
+setTimeout(renderDeskTables, 150);
+</script>
 </body>
 </html>
