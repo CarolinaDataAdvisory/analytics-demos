@@ -19,8 +19,8 @@ const outCost = D.churnCount * 35;
 const wbPct = Math.round((yrRev / annualPool) * 100);
 const wbRoi = (yrRev / outCost).toFixed(1);
 
-document.getElementById('wbStat').textContent = '+' + fmt(liftGain) + ' (6-Mo) / +' + fmt(yrRev) + '/yr';
-document.getElementById('wbDesc').textContent = 'Reaching all ' + D.churnCount.toLocaleString() + ' lapsed $1,000+ buyers via VIP Sales Mgr calls, equity appraisals &amp; service passes at ' + wbPct + '% reactivation.';
+document.getElementById('wbStat').textContent = '+' + fmt(Math.round(yrRev / 2)) + ' (6-Mo) / +' + fmt(yrRev) + '/yr';
+document.getElementById('wbDesc').textContent = 'Reaching all ' + D.churnCount.toLocaleString() + ' lapsed $1,000+ buyers via VIP Sales Mgr calls, equity appraisals & service passes at ' + wbPct + '% reactivation.';
 
 const ds = D.donorStats;
 const netSign = ds.netChange >= 0 ? '+' : '';
@@ -103,10 +103,10 @@ bottomRow.style.marginTop = '18px'; bottomRow.style.marginBottom = '0';
 const wbCard = el('div', 'card');
 wbCard.style.margin = '0'; wbCard.style.background = '#0f172a'; wbCard.style.border = '1px solid #334155';
 wbCard.appendChild(el('h3', '', 'High-Dollar Churn Win-Back ROI (6-Mo & 12-Mo)'));
-const maxBar = Math.max(yrRev, liftGain, outCost);
+const maxBar = Math.max(yrRev, Math.round(yrRev / 2), outCost);
 new Array(
   new Array('Outreach Cost (' + D.churnCount.toLocaleString() + ' customers @ $35)', outCost, '#f43f5e'),
-  new Array('6-Mo Recovered Revenue (H1 2027)', liftGain, '#38bdf8'),
+  new Array('6-Mo Recovered Revenue (H1 2027)', Math.round(yrRev / 2), '#38bdf8'),
   new Array('12-Mo Recovered Revenue (18% Reactivation)', yrRev, '#10b981')
 ).forEach(it => {
   const rw = el('div', 'brow'), lb = el('div', 'blbl');
