@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Carolina Data Advisory — 5-Day Profit &amp; Margin Leakage Audit</title>
+<style>
+  @page { size: letter; margin: 0.45in; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px; background: #0f172a; font-family: 'Segoe UI', Arial, sans-serif; color: #0f172a; }
+  .toolbar { max-width: 8.5in; margin: 0 auto 16px; display: flex; justify-content: space-between; align-items: center; background: #1e293b; color: #f8fafc; padding: 12px 18px; border-radius: 8px; border: 1px solid #334155; }
+  .btn-pdf { background: #10b981; color: #052e16; border: none; padding: 9px 16px; border-radius: 6px; font-weight: 800; cursor: pointer; font-size: 13px; }
+  .sheet { width: 8.5in; min-height: 11in; margin: 0 auto 24px; background: #fff; padding: 0.5in; box-shadow: 0 12px 35px rgba(0,0,0,0.45); }
+  .page-break { page-break-before: always; }
+  .hdr { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid #0f172a; padding-bottom: 12px; margin-bottom: 16px; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
+  .kpi { border: 1px solid #cbd5e1; border-top: 3px solid #0369a1; padding: 10px; background: #f8fafc; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin: 16px 0 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 14px; }
+  th { background: #0f172a; color: #fff; text-align: left; padding: 7px 8px; }
+  td { padding: 6.5px 8px; border-bottom: 1px solid #e2e8f0; }
+  .num { text-align: right; font-weight: 700; color: #047857; } .warn { text-align: right; font-weight: 700; color: #b91c1c; }
+  .callout { background: #f0fdf4; border-left: 4px solid #10b981; padding: 11px 14px; font-size: 11.5px; line-height: 1.5; margin-top: 12px; }
+  .ftr { border-top: 1px solid #cbd5e1; padding-top: 8px; margin-top: 18px; display: flex; justify-content: space-between; font-size: 10px; color: #64748b; }
+  @media print { body { background: #fff; padding: 0; } .toolbar { display: none !important; } .sheet { width: 100%; min-height: auto; margin: 0; padding: 0; box-shadow: none; } }
+</style></head><body>
+<div class="toolbar"><div><a href="../index.html" style="color:#94a3b8;text-decoration:none;font-weight:600;">&larr; Back to Portfolio Hub</a> &nbsp;|&nbsp; <strong>8.5&times;11" Boardroom Executive Audit Memo</strong></div><button class="btn-pdf" onclick="window.print()">Save / Print as PDF (8.5&times;11")</button></div>
+<div class="sheet">
+  <div class="hdr"><div><div style="font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#0369a1;">Carolina Data Advisory &bull; Concord &amp; Charlotte, NC</div><h1 style="margin:4px 0;font-size:21px;">5-Day Profit &amp; Margin Leakage Executive Audit</h1><div style="font-size:11.5px;color:#475569;"><strong>Prepared For:</strong> Ownership &amp; Executive Leadership (Multi-Site Retail / Commercial Sample)<br><strong>Data Scope:</strong> 12-Month Sales, Inventory, Service/Job Costing &amp; Customer Billing CSVs</div></div><div style="background:#fef3c7;color:#92400e;border:1px solid #f59e0b;padding:4px 10px;border-radius:4px;font-size:10.5px;font-weight:800;">BOARDROOM SAMPLE</div></div>
+  <div class="kpis">
+    <div class="kpi"><div style="font-size:10px;font-weight:700;color:#475569;">VERIFIED ANNUAL LEAKAGE</div><div style="font-size:18px;font-weight:800;color:#b91c1c;margin:3px 0;">$418,600 / yr</div><div style="font-size:10.5px;font-weight:600;color:#047857;">3.4% Net Margin Recovery</div></div>
+    <div class="kpi"><div style="font-size:10px;font-weight:700;color:#475569;">90-DAY QUICK-WIN CASH</div><div style="font-size:18px;font-weight:800;color:#047857;margin:3px 0;">$184,200</div><div style="font-size:10.5px;font-weight:600;color:#047857;">Zero Ad Spend Required</div></div>
+    <div class="kpi"><div style="font-size:10px;font-weight:700;color:#475569;">TRAPPED WORKING CAPITAL</div><div style="font-size:18px;font-weight:800;margin:3px 0;">$265,000</div><div style="font-size:10.5px;font-weight:600;color:#047857;">Aged Stock &amp; Unbilled WIP</div></div>
+    <div class="kpi"><div style="font-size:10px;font-weight:700;color:#475569;">AUDIT-TO-BUILD CREDIT</div><div style="font-size:18px;font-weight:800;color:#0369a1;margin:3px 0;">100% Credited</div><div style="font-size:10.5px;font-weight:600;color:#047857;">Applied to Full Build</div></div>
+  </div>
+  <h2>1. Executive Profit-Leakage Decomposition Scorecard</h2>
+  <table><thead><tr><th>Leakage Category</th><th>Root Cause Identified in Raw CSVs</th><th style="text-align:right;">Trapped Cash</th><th style="text-align:right;">Annual Profit Lift</th></tr></thead><tbody>
+    <tr><td><strong>Unpassed Vendor Cost Increases</strong></td><td>142 high-turn SKUs/parts billed using outdated price-matrix tiers after supplier hikes.</td><td class="num">&mdash;</td><td class="num">+$138,400 / yr</td></tr>
+    <tr><td><strong>Lapsed High-Margin Accounts</strong></td><td>84 repeat commercial/service accounts (avg $9,400/yr) inactive 90+ days with zero outreach.</td><td class="num">&mdash;</td><td class="num">+$142,000 / yr</td></tr>
+    <tr><td><strong>Aged Inventory &amp; Return Cutoff</strong></td><td>Stock &gt;90 days idle approaching OEM/vendor return cutoff without phase-out alerts.</td><td class="warn">$160,000</td><td class="num">+$64,000 / yr</td></tr>
+    <tr><td><strong>Unbilled WIP &amp; Stalled Quotes</strong></td><td>Completed labor tickets open &gt;21 days unbilled + $310K in open quotes unfollowed &gt;7d.</td><td class="warn">$105,000</td><td class="num">+$74,200 / yr</td></tr>
+    <tr style="background:#ecfdf5;"><td colspan="2"><strong>TOTAL VERIFIED OPPORTUNITY ACROSS 4 LEVERS</strong></td><td class="num"><strong>$265,000</strong></td><td class="num"><strong>+$418,600 / yr</strong></td></tr>
+  </tbody></table>
+  <h2>2. 30-60-90 Day Cash-Recovery Execution Roadmap</h2>
+  <table><thead><tr><th>Phase</th><th>Immediate Operational Action</th><th>Owner</th><th style="text-align:right;">Target Impact</th></tr></thead><tbody>
+    <tr><td><strong>Days 1&ndash;15</strong></td><td>Re-price 142 cost-eroded SKUs/parts in billing matrix &amp; invoice $105K in completed unbilled WIP.</td><td>Controller / Ops Mgr</td><td class="num">+$105,000 Cash</td></tr>
+    <tr><td><strong>Days 16&ndash;45</strong></td><td>Submit $160K aged stock return reserve &amp; launch direct outreach to top 50 lapsed VIP accounts.</td><td>Inventory / Sales Lead</td><td class="num">+$160,000 Freed</td></tr>
+    <tr><td><strong>Days 46&ndash;90</strong></td><td>Deploy automated monthly CSV refresh &amp; live 5-Tab Command Center to prevent margin drift.</td><td>Carolina Data Advisory</td><td class="num">+$34,880 / mo Run-Rate</td></tr>
+  </tbody></table>
+  <div class="callout"><strong>Enterprise Retail Pedigree:</strong> Built using institutional margin, SKU shrink, and cohort retention frameworks honed over 10 years of enterprise analytics leadership at Ahold Delhaize USA&mdash;adapted for Carolinas mid-market operators without new ERP software licenses.</div>
+  <div class="ftr"><span>Carolina Data Advisory &bull; Concord / Charlotte, NC</span><span>Confidential Executive Sample &bull; Page 1 of 2</span></div>
+</div>
+<div class="sheet page-break">
+  <div class="hdr"><div><div style="font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#0369a1;">Appendix A &bull; Immediate Action Roster</div><h1 style="margin:4px 0;font-size:21px;">Top Priority Margin &amp; Account Recovery Queue</h1><div style="font-size:11.5px;color:#475569;">Sample extract from the accompanying 50-row Action CSV delivered on Day 5 alongside this Memo.</div></div><div style="background:#fef3c7;color:#92400e;border:1px solid #f59e0b;padding:4px 10px;border-radius:4px;font-size:10.5px;font-weight:800;">DAY-5 DELIVERABLE</div></div>
+  <h2>3. Sample High-Priority Recovery Items Flagged in Audit</h2>
+  <table><thead><tr><th>Priority</th><th>Category</th><th>Account / SKU / Asset</th><th>Diagnostic Finding</th><th style="text-align:right;">Dollar Impact</th></tr></thead><tbody>
+    <tr><td>#1</td><td>Pricing Leakage</td><td>Commercial Tier-2 Matrix (48 SKUs)</td><td>Gross margin fell from 34.0% to 24.8% after Q3 supplier cost hike.</td><td class="num">+$62,400 / yr</td></tr>
+    <tr><td>#2</td><td>Lapsed VIP Account</td><td>Piedmont Regional Builders LLC</td><td>$48,200 trailing spend; zero orders in 104 days (historical 21-day cycle).</td><td class="num">+$48,200 / yr</td></tr>
+    <tr><td>#3</td><td>Unbilled WIP</td><td>19 Completed Tickets (&gt;21 Days)</td><td>Work marked complete in dispatch/shop log with no final invoice generated.</td><td class="warn">$41,850 Cash</td></tr>
+    <tr><td>#4</td><td>Aged Stock Cutoff</td><td>Vendor Return Window (34 Items)</td><td>112 days idle; eligible for factory return credit before month-end cutoff.</td><td class="warn">$38,900 Cash</td></tr>
+    <tr><td>#5</td><td>Stalled Quote</td><td>Concord Facility Expansion Bid</td><td>High-margin quote ($64,000) untouched for 18 days without manager follow-up.</td><td class="num">+$64,000 Rev</td></tr>
+  </tbody></table>
+  <h2>4. Engagement Options &amp; 100% Audit-to-Build Credit Guarantee</h2>
+  <table><thead><tr><th>Engagement Tier</th><th>Deliverables &amp; Cadence</th><th style="text-align:right;">Investment</th></tr></thead><tbody>
+    <tr><td><strong>Step 1: 5-Day Profit Leakage Audit</strong></td><td>Executive PDF Memo + 50-row Action CSV + 45-min Leadership Readout.</td><td class="num">$2,500 Single / $4,500 Multi-Site</td></tr>
+    <tr><td><strong>Step 2: Live Command Center Build</strong></td><td>Custom multi-tab interactive dashboard + automated CSV pipeline (100% of Audit Fee credited within 14 days).</td><td class="num">$6,500 Single / $16,500 Multi-Site</td></tr>
+    <tr><td><strong>Step 3: Monthly Executive Retainer</strong></td><td>Monthly CSV hygiene refresh, updated forecasts, new leakage alerts &amp; executive review.</td><td class="num">$1,000/mo Single / $2,750/mo Multi</td></tr>
+  </tbody></table>
+  <div class="callout"><strong>How to Get Started in 15 Minutes:</strong> Export 3&ndash;5 standard CSVs from your existing DMS, ERP, or QuickBooks system. Within 5 business days, you receive your complete Profit &amp; Margin Leakage Executive Audit Memo and Top-50 Action CSV&mdash;backed by our 100% Audit-to-Build Credit Guarantee.</div>
+  <div class="ftr"><span>Carolina Data Advisory &bull; Concord / Charlotte, NC</span><span>Confidential Executive Sample &bull; Page 2 of 2</span></div>
+</div></body></html>
