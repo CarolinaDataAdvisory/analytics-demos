@@ -369,24 +369,57 @@ function renderEquityTab() {
   const sel = document.getElementById('eqLocSelect');
   const loc = sel ? sel.value : 'ALL';
   const rows = D.equitySeries[loc] || D.equitySeries['ALL'];
-  const baseF = rows.slice(6, 12).map(r => Math.round(r.at(1) * 1.08));
-  const optF = baseF.map((v, i) => Math.round(v * (1.14 + i * 0.025)));
+  const baseF = rows.slice(6, 12).map(r => Math.round(r.at(1) * 1.06));
+  const optF = baseF.map((v, i) => Math.round(v * (1.16 + i * 0.025)));
   const cv = document.getElementById('eqCanvas');
   if (cv) {
-    const ctx = cv.getContext('2d'), W = cv.width, H = cv.height, P = 42;
+    const ctx = cv.getContext('2d'), W = cv.width, H = cv.height, L = 54, R = 18, T = 26, B = 28;
     ctx.clearRect(0, 0, W, H);
-    const mx = Math.max(...rows.map(r => r.at(1)).concat(optF)) * 1.1;
+    const allV = rows.map(r => r.at(1)).concat(optF);
+    const mx = Math.ceil((Math.max(...allV) * 1.12) / 10000) * 10000;
+    const mn = Math.floor((Math.min(...allV) * 0.78) / 10000) * 10000;
     const tot = rows.length + baseF.length, last = rows.length - 1;
-    const gx = i => P + (i / (tot - 1)) * (W - P * 2);
-    const gy = v => H - P - (v / mx) * (H - P * 2);
-    ctx.fillStyle = 'rgba(167,139,250,0.14)'; ctx.fillRect(gx(last), 14, gx(tot - 1) - gx(last), H - P - 14);
+    const gx = i => L + (i / (tot - 1)) * (W - L - R);
+    const gy = v => H - B - ((v - mn) / (mx - mn)) * (H - T - B);
+
+    // Horizontal gridlines + Y-axis dollar labels
+    ctx.font = '600 10px Segoe UI';
+    new Array(0, 0.25, 0.5, 0.75, 1).forEach(st => {
+      const val = mn + (mx - mn) * st, y = gy(val);
+      ctx.strokeStyle = 'rgba(148,163,184,0.14)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(L, y); ctx.lineTo(W - R, y); ctx.stroke();
+      ctx.fillStyle = '#94a3b8'; ctx.fillText('$' + Math.round(val / 1000) + 'K', 8, y + 3);
+    });
+
+    // Shaded 6-month forecast zone + divider
+    const fx0 = gx(last);
+    ctx.fillStyle = 'rgba(167,139,250,0.12)'; ctx.fillRect(fx0, T, W - R - fx0, H - T - B);
+    ctx.strokeStyle = '#a78bfa'; ctx.setLineDash(new Array(4, 4)); ctx.beginPath(); ctx.moveTo(fx0, T); ctx.lineTo(fx0, H - B); ctx.stroke(); ctx.setLineDash(new Array());
+    ctx.fillStyle = '#c4b5fd'; ctx.font = 'bold 10px Segoe UI'; ctx.fillText('6-MO FORECAST ZONE', fx0 + 10, T + 13);
+
+    // Area fill + Actual Upgrade Gross line
+    ctx.beginPath(); ctx.moveTo(gx(0), H - B); rows.forEach((r, i) => ctx.lineTo(gx(i), gy(r.at(1)))); ctx.lineTo(gx(last), H - B); ctx.closePath();
+    ctx.fillStyle = 'rgba(16,185,129,0.16)'; ctx.fill();
     ctx.beginPath(); rows.forEach((r, i) => i === 0 ? ctx.moveTo(gx(i), gy(r.at(1))) : ctx.lineTo(gx(i), gy(r.at(1))));
-    ctx.strokeStyle = '#10b981'; ctx.lineWidth = 2.6; ctx.stroke();
+    ctx.strokeStyle = '#10b981'; ctx.lineWidth = 2.8; ctx.stroke();
+
+    // Baseline & VIP Handoff Forecast lines
+    const lastV = rows.at(last).at(1);
     ctx.setLineDash(new Array(6, 4));
-    ctx.beginPath(); ctx.moveTo(gx(last), gy(rows.at(last).at(1))); baseF.forEach((v, i) => ctx.lineTo(gx(last + 1 + i), gy(v))); ctx.strokeStyle = '#38bdf8'; ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(gx(last), gy(rows.at(last).at(1))); optF.forEach((v, i) => ctx.lineTo(gx(last + 1 + i), gy(v))); ctx.strokeStyle = '#f59e0b'; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(gx(last), gy(lastV)); baseF.forEach((v, i) => ctx.lineTo(gx(last + 1 + i), gy(v))); ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.2; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(gx(last), gy(lastV)); optF.forEach((v, i) => ctx.lineTo(gx(last + 1 + i), gy(v))); ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2.6; ctx.stroke();
     ctx.setLineDash(new Array());
-    ctx.fillStyle = '#94a3b8'; ctx.font = '600 10px Segoe UI'; ctx.fillText('$' + Math.round(mx / 1000) + 'K', 6, 18);
+
+    // Data point dots + X-axis month labels
+    const fMos = new Array('Jan 27', 'Feb 27', 'Mar 27', 'Apr 27', 'May 27', 'Jun 27');
+    rows.forEach((r, i) => {
+      ctx.beginPath(); ctx.arc(gx(i), gy(r.at(1)), 3.2, 0, Math.PI * 2); ctx.fillStyle = '#10b981'; ctx.fill();
+      if (i % 2 === 0 || i === last) { ctx.fillStyle = '#94a3b8'; ctx.fillText(r.at(0), gx(i) - 16, H - 10); }
+    });
+    optF.forEach((v, i) => {
+      ctx.beginPath(); ctx.arc(gx(last + 1 + i), gy(v), 3.6, 0, Math.PI * 2); ctx.fillStyle = '#f59e0b'; ctx.fill();
+      if (i % 2 === 1) { ctx.fillStyle = '#cbd5e1'; ctx.fillText(fMos.at(i), gx(last + 1 + i) - 16, H - 10); }
+    });
   }
   const tb = document.querySelector('#eqTable tbody');
   if (tb) {
