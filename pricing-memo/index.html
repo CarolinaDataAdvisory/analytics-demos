@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Carolina Data Advisory — Pricing, SKU Margin &amp; Inventory Turn Memo</title>
+<style>
+  @page { size: letter; margin: 0.45in; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px; background: #0f172a; font-family: 'Segoe UI', Arial, sans-serif; color: #0f172a; }
+  .toolbar { max-width: 8.5in; margin: 0 auto 16px; display: flex; justify-content: space-between; align-items: center; background: #1e293b; color: #f8fafc; padding: 12px 18px; border-radius: 8px; border: 1px solid #334155; }
+  .btn-pdf { background: #f59e0b; color: #451a03; border: none; padding: 9px 16px; border-radius: 6px; font-weight: 800; cursor: pointer; font-size: 13px; }
+  .sheet { width: 8.5in; min-height: 11in; margin: 0 auto 24px; background: #fff; padding: 0.5in; box-shadow: 0 12px 35px rgba(0,0,0,0.45); }
+  .page-break { page-break-before: always; }
+  .hdr { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid #0f172a; padding-bottom: 12px; margin-bottom: 16px; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
+  .kpi { border: 1px solid #cbd5e1; border-top: 3px solid #d97706; padding: 10px; background: #f8fafc; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin: 16px 0 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 14px; }
+  th { background: #0f172a; color: #fff; text-align: left; padding: 7px 8px; }
+  td { padding: 6.5px 8px; border-bottom: 1px solid #e2e8f0; }
+  .num { text-align: right; font-weight: 700; color: #047857; } .warn { text-align: right; font-weight: 700; color: #b91c1c; }
+  .callout { background: #fffbeb; border-left: 4px solid #d97706; padding: 11px 14px; font-size: 11.5px; line-height: 1.5; margin-top: 12px; }
+  .ftr { border-top: 1px solid #cbd5e1; padding-top: 8px; margin-top: 18px; display: flex; justify-content: space-between; font-size: 10px; color: #64748b; }
+  @media print { body { background: #fff; padding: 0; } .toolbar { display: none !important; } .sheet { width: 100%; min-height: auto; margin: 0; padding: 0; box-shadow: none; } }
+</style></head><body>
+<div class="toolbar"><div><a href="../index.html" style="color:#94a3b8;text-decoration:none;font-weight:600;">&larr; Back to Portfolio Hub</a> &nbsp;|&nbsp; <strong>8.5&times;11" Pricing, SKU Margin &amp; Inventory Turn Memo</strong></div><button class="btn-pdf" onclick="window.print()">Save / Print as PDF (8.5&times;11")</button></div>
+<div class="sheet">
+  <div class="hdr"><div><div style="font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#d97706;">Carolina Data Advisory &bull; Concord &amp; Charlotte, NC</div><h1 style="margin:4px 0;font-size:21px;">Pricing Matrix, SKU Margin &amp; Inventory Turn Audit</h1><div style="font-size:11.5px;color:#475569;"><strong>Prepared For:</strong> Ownership, Merchandising / Parts &amp; Operations Leadership<br><strong>Data Scope:</strong> 12-Month Item/SKU Sales, Vendor Cost Changes &amp; Stock Aging CSV Exports</div></div><div style="background:#fef3c7;color:#92400e;border:1px solid #d97706;padding:4px 10px;border-radius:4px;font-size:10.5px;font-weight:800;">MARGIN &amp; TURN AUDIT</div></div>
+  <div class="kpis">
+    <div class="kpi"><div style="font-size:10px;font-weight:700;color:#475569;">ANNUAL MARGIN RECOVERY</div><div style="font-size:18px;font-weight:800;color:#047857;margin:3px 0;">+$294,500 / yr</div><div style="font-size:10.5px;font-weight:600;color:#047857;">+2.6% Blended Gross Margin</div></div>
+    <div class="kpi"><div style="font-size:10px;font-weight:700;color:#475569;">UNDER-PRICED SKUs / JOBS</div><div style="font-size:18px;font-weight:800;color:#b91c1c;margin:3px 0;">186 Items</div><div style="font-size:10.5px;font-weight:600;color:#047857;">Stale Matrix &amp; Discount Creep</div></div>
+    <div class="kpi"><div style="font-size:10px;font-weight:700;color:#475569;">SLOW-MOVING CAPITAL</div><div style="font-size:18px;font-weight:800;margin:3px 0;">$318,000</div><div style="font-size:10.5px;font-weight:600;color:#047857;">&gt;60-Day Stock &amp; Floorplan</div></div>
+    <div class="kpi"><div style="font-size:10px;font-weight:700;color:#475569;">INVENTORY TURN LIFT</div><div style="font-size:18px;font-weight:800;color:#d97706;margin:3px 0;">+1.4x Faster</div><div style="font-size:10.5px;font-weight:600;color:#047857;">-19 Days Avg Holding Time</div></div>
+  </div>
+  <h2>1. Pricing &amp; Inventory Velocity Decomposition</h2>
+  <table><thead><tr><th>Margin / Velocity Lever</th><th>Diagnostic Finding in Item &amp; Stock CSVs</th><th style="text-align:right;">Capital Freed</th><th style="text-align:right;">Annual Profit Lift</th></tr></thead><tbody>
+    <tr><td><strong>Unpassed Supplier Cost Increases</strong></td><td>118 fast-moving SKUs/parts billed on outdated cost tiers after vendor price hikes.</td><td class="num">&mdash;</td><td class="num">+$146,200 / yr</td></tr>
+    <tr><td><strong>Off-Matrix Sales Rep Discounting</strong></td><td>68 wholesale/commercial accounts receiving unapproved 8%&ndash;12% margin overrides.</td><td class="num">&mdash;</td><td class="num">+$84,300 / yr</td></tr>
+    <tr><td><strong>&gt;60-Day Aged Stock &amp; Return Cutoff</strong></td><td>$318K in idle units/parts incurring floorplan interest &amp; approaching OEM return cutoff.</td><td class="warn">$318,000</td><td class="num">+$64,000 / yr</td></tr>
+    <tr style="background:#fffbeb;"><td colspan="2"><strong>TOTAL VERIFIED ANNUAL PRICING &amp; TURN OPPORTUNITY</strong></td><td class="warn"><strong>$318,000 Freed</strong></td><td class="num"><strong>+$294,500 / yr</strong></td></tr>
+  </tbody></table>
+  <h2>2. 30-Day Re-Pricing &amp; Inventory Turn Action Plan</h2>
+  <table><thead><tr><th>Window</th><th>Execution Step</th><th>Owner</th><th style="text-align:right;">Target Impact</th></tr></thead><tbody>
+    <tr><td><strong>Days 1&ndash;7</strong></td><td>Upload updated cost-plus matrix rules for the 118 margin-eroded SKUs/parts.</td><td>Parts / Merchandising Mgr</td><td class="num">+$12,180 / mo Margin</td></tr>
+    <tr><td><strong>Days 8&ndash;20</strong></td><td>Cap discretionary rep discounting above 5% &amp; re-price &gt;45-day aged inventory units.</td><td>General / Sales Manager</td><td class="num">+$148,000 Cash Freed</td></tr>
+    <tr><td><strong>Day 30+</strong></td><td>Track SKU margin drift &amp; 45/60/90-day aging brackets monthly in live Command Center.</td><td>Carolina Data Advisory</td><td class="num">+$24,540 / mo Run-Rate</td></tr>
+  </tbody></table>
+  <div class="callout"><strong>Enterprise Retail Margin Pedigree:</strong> Built using institutional SKU pricing elasticity, shrink control, and inventory-turn frameworks honed over 10 years of analytics leadership at Ahold Delhaize USA&mdash;bringing Fortune-500 retail margin discipline to Carolinas operators.</div>
+  <div class="ftr"><span>Carolina Data Advisory &bull; Concord / Charlotte, NC</span><span>Confidential Executive Sample &bull; Page 1 of 2</span></div>
+</div>
+<div class="sheet page-break">
+  <div class="hdr"><div><div style="font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#d97706;">Appendix A &bull; SKU &amp; Stock Action Extract</div><h1 style="margin:4px 0;font-size:21px;">Sample Priority Re-Pricing &amp; Stock Turn Roster</h1><div style="font-size:11.5px;color:#475569;">Extract from the 100-item Re-Pricing &amp; Aging Action CSV delivered on Day 5 alongside this Memo.</div></div><div style="background:#fef3c7;color:#92400e;border:1px solid #d97706;padding:4px 10px;border-radius:4px;font-size:10.5px;font-weight:800;">ITEM-LEVEL ROSTER</div></div>
+  <h2>3. Sample High-Impact Items Flagged for Immediate Action</h2>
+  <table><thead><tr><th>Priority</th><th>Category</th><th>SKU / Stock Group</th><th>Diagnostic Finding</th><th style="text-align:right;">Dollar Impact</th></tr></thead><tbody>
+    <tr><td>#1</td><td>Cost-Hike Lag</td><td>OEM Brake &amp; Filter Matrix (42 SKUs)</td><td>Vendor cost rose +9.5% in Q3; retail/CP matrix never updated (GM -6.8%).</td><td class="num">+$54,600 / yr</td></tr>
+    <tr><td>#2</td><td>Discount Creep</td><td>Wholesale Body Shop Tier-B (14 Accts)</td><td>Counter reps overriding matrix to Cost +12% vs. contracted Cost +24%.</td><td class="num">+$48,900 / yr</td></tr>
+    <tr><td>#3</td><td>45+ Day Lot Aging</td><td>25 Pre-Owned Units (&gt;45 Days)</td><td>Incurring $3,625/mo floorplan interest; market re-pricing frees $610K cash.</td><td class="warn">$165,000 Cash</td></tr>
+    <tr><td>#4</td><td>OEM Return Cutoff</td><td>Obsolete Parts Phase-Out (84 SKUs)</td><td>98 days without sale; eligible for 100% OEM return credit before month-end.</td><td class="warn">$153,000 Cash</td></tr>
+  </tbody></table>
+  <div class="callout"><strong>100% Audit-to-Build Credit Guarantee:</strong> Every 5-Day Diagnostic Audit ($2,500 single / $4,500 multi-site) includes this exact item-level Action CSV and 2-page Boardroom PDF Memo&mdash;and 100% of the audit fee is credited toward your full dashboard build within 14 days.</div>
+  <div class="ftr"><span>Carolina Data Advisory &bull; Concord / Charlotte, NC</span><span>Confidential Executive Sample &bull; Page 2 of 2</span></div>
+</div></body></html>
